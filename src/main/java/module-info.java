@@ -1,8 +1,9 @@
 module presence.presenceum {
     requires javafx.controls;
     requires javafx.fxml;
-            
-                            
-    opens presence.presenceum to javafx.fxml;
-    exports presence.presenceum;
+    requires com.jfoenix;
+
+
+    opens presence to javafx.fxml;
+    exports presence;
 }

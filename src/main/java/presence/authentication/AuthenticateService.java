@@ -1,6 +1,8 @@
-package um.presence.authentication;
+package presence.authentication;
 
 import java.io.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 
 public class AuthenticateService {
@@ -41,11 +43,11 @@ public class AuthenticateService {
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String rowLineUserInformation;
             while ((rowLineUserInformation = br.readLine()) != null) {
-                String[] sessionToken = rowLineUserInformation.split(":");
+                String[] sessionToken = rowLineUserInformation.split(",");
                 USER_HASHMAP.put(sessionToken[0], sessionToken[1]);
             }
         } catch (IOException e) {
-            System.out.println("Failed to read users from file.");
+            System.out.println("FROM: readUsersFromFile MSG: Failed to read users from file. READS");
             e.printStackTrace();
         }
     }
@@ -55,13 +57,13 @@ public class AuthenticateService {
      @param filePath the path to the file to write USER_HASHMAP information to
      */
     public void saveUsersToFile(String filePath) {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath, true))) {
             for (String username : USER_HASHMAP.keySet()) {
-                bw.write(username + ":" + USER_HASHMAP.get(username));
+                bw.write(username + "," + USER_HASHMAP.get(username));
                 bw.newLine();
             }
         } catch (IOException e) {
-            System.out.println("Failed to save users to file.");
+            System.out.println("FROM: saveUsersToFile MSG: Failed to save users to file.");
             e.printStackTrace();
         }
     }

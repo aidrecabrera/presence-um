@@ -1,4 +1,4 @@
-package um.presence.authentication;
+package presence.authentication;
 
 /**
  The AuthenticateUserRetrieval class encapsulates the
