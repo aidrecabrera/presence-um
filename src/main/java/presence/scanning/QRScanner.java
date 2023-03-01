@@ -87,15 +87,16 @@ public class QRScanner extends JFrame implements Runnable {
                 System.out.println(result.getText());
                 this.label.setText(result.getText());
 
-                // Draw a box around the QR code.
-                int x = (int) result.getResultPoints()[0].getX();
-                int y = (int) result.getResultPoints()[0].getY();
+                // Get the location and size of the detected QR code
+                int qrCodeX = (int) result.getResultPoints()[0].getX();
+                int qrCodeY = (int) result.getResultPoints()[0].getY();
+                int qrCodeSize = (int) (result.getResultPoints()[2].getX() - result.getResultPoints()[0].getX());
                 int width = (int) (result.getResultPoints()[2].getX() - result.getResultPoints()[0].getX());
                 int height = (int) (result.getResultPoints()[2].getY() - result.getResultPoints()[0].getY());
                 Graphics2D g2d = bufferedImage.createGraphics();
                 g2d.setColor(Color.GREEN);
                 g2d.setStroke(new BasicStroke(3));
-                g2d.drawRect(x, y, width, height);
+                g2d.drawRect(qrCodeX, qrCodeY, width, height);
                 g2d.dispose();
 
                 // Draw the barcode text in the top left corner of the image.
@@ -103,6 +104,14 @@ public class QRScanner extends JFrame implements Runnable {
                 g2d.setColor(Color.BLACK);
                 g2d.drawString(result.getText(), 10, 30);
                 g2d.dispose();
+                g2d.setColor(Color.GREEN);
+                g2d.setStroke(new BasicStroke(5));
+                g2d.drawRect(qrCodeX, qrCodeY, qrCodeSize, qrCodeSize);
+                g2d.dispose();
+
+                // Overlay the scanned data below the QR code
+                this.label.setText("<html><div style='text-align: center;'>" + result.getText() + "</div></html>");
+
             }
         } catch (Exception e) {
             // No QR code found in the image.
