@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="937.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presence.AuthenticatePresence">
+   <children>
+      <ImageView fx:id="UM" fitHeight="124.0" fitWidth="179.0" layoutX="25.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../Downloads/um_new_logo_2009%20(4).png" />
+         </image>
+      </ImageView>
+      <Text layoutX="446.0" layoutY="253.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TEADASDASD" />
+   </children>
+</AnchorPane>

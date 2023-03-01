@@ -27,6 +27,7 @@ public class AuthenticateService {
      *
      * @USER_HASHMAPS Private field to store the registered users
      */
+
     private final HashMap<String, String> USER_HASHMAP = new HashMap<>();
     /**
 

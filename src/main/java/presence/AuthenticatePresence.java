@@ -34,10 +34,10 @@ public class AuthenticatePresence extends Authenticate {
     void loginAuthenticate(ActionEvent event) throws IOException {
         signIn(userAddress.getText(), userPassword.getText());
         requestLogs(userAddress.getText(), true);
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MainDashboard.fxml"));
-        Parent dashboardRoot = fxmlLoader.load();
-        Scene currentScene = Description.getScene();
-        currentScene.setRoot(dashboardRoot);
+//        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MainDashboard.fxml"));
+//        Parent dashboardRoot = fxmlLoader.load();
+//        Scene currentScene = Description.getScene();
+//        currentScene.setRoot(dashboardRoot);
     }
 
     @FXML
