@@ -16,6 +16,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -30,7 +32,7 @@ public class QRScanner extends JFrame implements Runnable {
     private final JPanel panel = new JPanel();
     private final JLabel label = new JLabel();
 
-    private final Webcam webcam = Webcam.getDefault();
+    private Webcam webcam = Webcam.getDefault();
     private final Dimension size = WebcamResolution.VGA.getSize();
 
     static {
@@ -45,9 +47,15 @@ public class QRScanner extends JFrame implements Runnable {
 
         this.setContentPane(this.panel);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.pack();
+        this.setSize(640, 480); // Set the size to 640x480
         this.setLocationRelativeTo(null);
         this.setVisible(true);
+
+        // Let the user select the webcam
+        List<Webcam> webcams = Webcam.getWebcams();
+        String[] options = webcams.stream().map(Webcam::getName).toArray(String[]::new);
+        String selectedOption = (String) JOptionPane.showInputDialog(null, "Select a webcam", "Webcam selection", JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+        this.webcam = webcams.get(Arrays.asList(options).indexOf(selectedOption));
 
         this.webcam.setViewSize(size);
         this.webcam.open();
