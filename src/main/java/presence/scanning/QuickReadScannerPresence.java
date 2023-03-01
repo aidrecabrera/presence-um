@@ -10,6 +10,7 @@ import com.google.zxing.common.HybridBinarizer;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -28,17 +29,33 @@ public class QuickReadScannerPresence {
         JLabel label = new JLabel();
         frame.add(label);
 
-        Webcam webcam = Webcam.getDefault();
-        webcam.setViewSize(new Dimension(IMAGE_WIDTH, IMAGE_HEIGHT));
-        webcam.open();
+        List<Webcam> webcams = Webcam.getWebcams();
+        if (webcams.isEmpty()) {
+            System.out.println("No webcams found");
+            return;
+        }
+
+        System.out.println("Available webcams:");
+        for (int i = 0; i < webcams.size(); i++) {
+            System.out.println((i + 1) + ". " + webcams.get(i).getName());
+        }
+
+        int selectedWebcamIndex = 0; // Change this to select a different webcam
+        if (selectedWebcamIndex < 0 || selectedWebcamIndex >= webcams.size()) {
+            System.out.println("Invalid webcam index");
+            return;
+        }
+
+        Webcam selectedWebcam = webcams.get(selectedWebcamIndex);
+        selectedWebcam.setViewSize(new Dimension(IMAGE_WIDTH, IMAGE_HEIGHT));
+        selectedWebcam.open();
 
         Executor executor = Executors.newSingleThreadExecutor();
         executor.execute(() -> {
             while (true) {
-                BufferedImage image = webcam.getImage();
-                BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(new BufferedImageLuminanceSource(image)));
+                BufferedImage image = selectedWebcam.getImage();
                 try {
-                    Result result = new MultiFormatReader().decode(bitmap);
+                    Result result = new MultiFormatReader().decode(new BinaryBitmap(new HybridBinarizer(new BufferedImageLuminanceSource(image))));
                     if (result != null) {
                         label.setIcon(new ImageIcon(image));
                         System.out.println(result.getText());
@@ -52,4 +69,5 @@ public class QuickReadScannerPresence {
         frame.setVisible(true);
     }
 }
+
 
