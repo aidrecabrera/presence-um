@@ -1,11 +1,16 @@
 package presence.authentication;
-import java.io.*;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Authenticate {
     private static final String USER_FILE_PATH = "src/main/resources/presence/DB_PRESENCE_AUTHENTICATION.csv";
-    private static AuthenticateService authenticationService = new AuthenticateService();
+    private static final String UM_PRESENCE_REQUEST_LOGS = "src/main/resources/presence/UM_PRESENCE_REQUEST_LOGS.csv";
+    private static AuthenticateService authenticationService = new AuthenticateService(USER_FILE_PATH);
 
     public static void DatabaseValidation() {
         createFileIfNotExists(USER_FILE_PATH);
@@ -33,32 +38,26 @@ public class Authenticate {
             System.out.println("Username already exists.");
             return;
         }
-
-        AuthenticateUserRetrieval user = new AuthenticateUserRetrieval(userAddress, userPassword);
-        authenticationService.registerUser(user);
-
+        AuthenticateUserRetrieval newUserInformation = new AuthenticateUserRetrieval(userAddress, userPassword);
+        authenticationService.registerUser(newUserInformation);
+        authenticationService.saveUsersToFile(USER_FILE_PATH); // Move this line outside the if-else block
         System.out.println("Registration successful.");
-        authenticationService.saveUsersToFile(USER_FILE_PATH);
     }
 
-     protected static void signIn(String userAddress, String userPassword) {
+    protected static boolean signIn(String userAddress, String userPassword) {
         if (!authenticationService.userExists(userAddress)) {
             requestLogs(userAddress, false);
             System.out.println("Username not found.");
-            return;
+            return false;
         }
-
         if (!authenticationService.authenticateUser(userAddress, userPassword)) {
             requestLogs(userAddress, false);
             System.out.println("Incorrect password.");
-            return;
+            return false;
         }
-
         System.out.println("Sign in successful.");
-        authenticationService.saveUsersToFile(USER_FILE_PATH);
+        return true;
     }
-    private static final String UM_PRESENCE_REQUEST_LOGS = "src/main/resources/presence/UM_PRESENCE_REQUEST_LOGS.csv";
-
     public static void requestLogs(String username, boolean successful) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(UM_PRESENCE_REQUEST_LOGS, true))) {
             writer.write("DATE,LOGIN DATE,NAME,STATUS,HASH\n");

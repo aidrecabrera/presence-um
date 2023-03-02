@@ -2,23 +2,21 @@ package presence;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import presence.authentication.Authenticate;
-import presence.switcher.PresenceSwitcher;
+import presence.utilities.BasicFunctions;
 
 import java.io.IOException;
 
+import static presence.utilities.BasicFunctions.validateEntry;
+
 public class AuthenticatePresence extends Authenticate {
+    static BasicFunctions utilities = new BasicFunctions();
     @FXML
     private Text Description;
-
     @FXML
     private Text Headline;
-
     @FXML
     private TextField userAddress;
     @FXML
@@ -29,20 +27,20 @@ public class AuthenticatePresence extends Authenticate {
         System.out.println("UM Presence by Cabrera, Aidre Love");
         DatabaseValidation();
     }
-
     @FXML
     void loginAuthenticate(ActionEvent event) throws IOException {
-        signIn(userAddress.getText(), userPassword.getText());
-        requestLogs(userAddress.getText(), true);
-//        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MainDashboard.fxml"));
-//        Parent dashboardRoot = fxmlLoader.load();
-//        Scene currentScene = Description.getScene();
-//        currentScene.setRoot(dashboardRoot);
+        boolean loginValid = validateEntry(userAddress.getText(), userPassword.getText());
+        if (loginValid) {
+            if (signIn(userAddress.getText(), userPassword.getText())) {
+                utilities.PresenceSwitchScene("/presence/MainDashboard.fxml", Description);
+            }
+        }
     }
-
     @FXML
     void registerAuthenticate(ActionEvent event) {
-        register(userAddress.getText(), userPassword.getText());
+        boolean loginValid = validateEntry(userAddress.getText(), userPassword.getText());
+        if (loginValid) {
+            register(userAddress.getText(), userPassword.getText());
+        }
     }
-
 }

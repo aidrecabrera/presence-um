@@ -1,8 +1,6 @@
 package presence.authentication;
 
 import java.io.*;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 
 public class AuthenticateService {
@@ -29,6 +27,11 @@ public class AuthenticateService {
      */
 
     private final HashMap<String, String> USER_HASHMAP = new HashMap<>();
+    private final String filePath;
+    public AuthenticateService(String userFilePath) {
+        this.filePath = userFilePath;
+    }
+
     /**
 
      Reads user information from a file and stores it in the users map.
@@ -75,6 +78,7 @@ public class AuthenticateService {
      @return true if the user exists, false otherwise
      */
     public boolean userExists(String username) {
+        readUsersFromFile(filePath);
         return USER_HASHMAP.containsKey(username);
     }
     /**
