@@ -1,10 +1,10 @@
-package presence.Database;
+package presence.database;
 
 public class Database {
     private String DatabaseAuthentication = "src/main/resources/database/DB_PRESENCE_USER_AUTH.csv";
     private String DatabaseCourseList = "src/main/resources/course/courseList.csv";
     private String DatabaseRequestLogs = "src/main/resources/database/PRESENCE_ACTIVITY_LOGS.csv";
-    
+
     public Database() {
     }
 

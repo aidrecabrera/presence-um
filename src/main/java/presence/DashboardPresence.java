@@ -7,7 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import presence.Database.Database;
+import presence.database.Database;
 import presence.dashboard.DashboardBindCourses;
 import presence.utilities.BasicFunctions;
 

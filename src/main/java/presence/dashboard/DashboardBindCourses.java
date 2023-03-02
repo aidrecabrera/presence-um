@@ -2,7 +2,7 @@ package presence.dashboard;
 
 import com.jfoenix.controls.JFXButton;
 import javafx.scene.layout.GridPane;
-import presence.Database.Database;
+import presence.database.Database;
 import presence.utilities.BasicFunctions;
 
 import java.io.BufferedReader;

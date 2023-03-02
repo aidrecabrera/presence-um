@@ -1,56 +1,83 @@
 package presence.attendance;
 
+import presence.attendance.Calculate.AttendanceCalculate;
+import presence.attendance.Meeting.AttendanceMeeting;
+import presence.attendance.Sheet.AttendanceSheet;
+import presence.database.Database;
 import presence.utilities.BasicFunctions;
 
 import java.io.*;
 
-class AttendanceFunction {
-    static void generateAttendanceSheet(String paramsATTENDANCE_FILE_PATH) {
-        File attendanceFile = new File(paramsATTENDANCE_FILE_PATH);
+public abstract class AttendanceFunction implements AttendanceSheet, AttendanceMeeting, AttendanceCalculate {
+    Database importDatabase = new Database();
+    private static String COURSE_SUBJECT;
+    private static String COURSE_CODE;
+    private static final String LOCATION_SHEET_FILE_PATH = "src/main/resources/presence/" + COURSE_CODE + "_" + COURSE_SUBJECT + "_ATTENDANCE_SHEET.csv";
+
+    public static void setCourseSubject(String courseSubject) {
+        COURSE_SUBJECT = courseSubject;
+    }
+
+    public static void setCourseCode(String courseCode) {
+        COURSE_CODE = courseCode;
+    }
+
+    @Override
+    public void createNewMeeting() {
+
+    }
+    @Override
+    public void markStudentMeetingStatus() {
+
+    }
+
+    @Override
+    public void calculateOverallCourseAttendance() {
+
+    }
+    @Override
+    public void calculateOverallStudentAttendance() {
+
+    }
+
+    @Override
+    public void generateAttendanceSheet() {
+        File attendanceFile = new File(LOCATION_SHEET_FILE_PATH);
         if (!attendanceFile.exists()) {
             try {
-                System.out.println("File created: " + paramsATTENDANCE_FILE_PATH);
+                System.out.println("File created: " + LOCATION_SHEET_FILE_PATH);
                 try (BufferedWriter writer = new BufferedWriter(new FileWriter(attendanceFile))) {
                     writer.write("COURSE,STUDENT_ID,STUDENT_NAME\n");
                     writer.flush();
                 }
             } catch (IOException e) {
-                System.out.println("Failed to create file: " + paramsATTENDANCE_FILE_PATH);
+                System.out.println("Failed to create file: " + LOCATION_SHEET_FILE_PATH);
                 e.printStackTrace();
             }
         }
     }
-
-    static void initializeAttendanceSheetHeader(String paramsATTENDANCE_FILE_PATH) {
+    public void initializeAttendanceSheetHeader() {
         BasicFunctions DateAPI = new BasicFunctions();
         try {
-            // Open the file in read mode
-            FileReader fileReader = new FileReader(paramsATTENDANCE_FILE_PATH);
+            FileReader fileReader = new FileReader(LOCATION_SHEET_FILE_PATH);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 
-            // Read the first line and modify it
             String firstLine = bufferedReader.readLine();
             String DateNowForMeetingSession = DateAPI.getCurrentDate();
             String modifiedFirstLine = firstLine + "," + DateNowForMeetingSession;
 
-            // modifiedFirstLine change to date
-
-            // Open the file in write mode
-            FileWriter fileWriter = new FileWriter(paramsATTENDANCE_FILE_PATH);
+            FileWriter fileWriter = new FileWriter(LOCATION_SHEET_FILE_PATH);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
-            // Write the modified first line to the file
             bufferedWriter.write(modifiedFirstLine);
             bufferedWriter.newLine();
 
-            // Write the rest of the file to the BufferedWriter
             String line;
             while ((line = bufferedReader.readLine()) != null) {
                 bufferedWriter.write(line + ",UNMARKED");
                 bufferedWriter.newLine();
             }
 
-            // Close the BufferedReader, BufferedWriter, FileReader, and FileWriter objects
             bufferedReader.close();
             bufferedWriter.close();
             fileReader.close();
@@ -60,7 +87,7 @@ class AttendanceFunction {
         }
     }
 
-    static void attendanceEditor(String paramFile, String paramStudentID, String paramAttendanceStatus) throws IOException {
+    public static void attendanceEditor(String paramFile, String paramStudentID, String paramAttendanceStatus) throws IOException {
         BasicFunctions util = new BasicFunctions();
         String filePath = paramFile;
         String searchString = util.removeFirstChar(paramStudentID);
@@ -89,18 +116,14 @@ class AttendanceFunction {
         }
         sb.append(headerRow).append("\n");
 
-        // read and edit each row
         while ((line = br.readLine()) != null) {
             String[] values = line.split(",");
             if (values.length >= 3 && values[1].equals(searchString)) {
-                // found a matching row
                 if ((values.length == header.length) && !values[colIndex].isBlank() || !values[colIndex].isEmpty()) {
-                    // row already has data in the column, replace it
                     values[colIndex] = newData;
                     line = String.join(",", values);
                     found = true;
                 } else {
-                    // row doesn't have data in the column, skip it
                     System.out.println("Row doesn't have data in the column, skipping...");
                 }
             }
