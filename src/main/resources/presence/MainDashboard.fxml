@@ -4,6 +4,8 @@
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -17,413 +19,231 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="938.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presence.DashboardPresence">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="777.0" prefWidth="1325.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presence.DashboardPresence">
    <children>
-      <VBox alignment="TOP_CENTER" prefHeight="660.0" prefWidth="206.0" style="-fx-background-color: #457B9D;">
-         <children>
-            <VBox prefHeight="457.0" prefWidth="203.0">
+      <SplitPane dividerPositions="0.21794871794871795" layoutX="-1.0" prefHeight="779.0" prefWidth="1329.0">
+         <items>
+            <VBox alignment="TOP_CENTER" prefHeight="661.0" prefWidth="365.0" style="-fx-background-color: #d3f36b;">
                <children>
-                  <ImageView fitHeight="87.0" fitWidth="201.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../UMlogo.png" />
-                     </image></ImageView>
-                  <HBox prefHeight="29.0" prefWidth="206.0" />
-                  <HBox alignment="TOP_CENTER" prefHeight="43.0" prefWidth="206.0">
+                  <VBox alignment="CENTER" fillWidth="false" prefHeight="200.0" prefWidth="0.0">
                      <children>
-                        <ImageView fitHeight="39.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../img.png" />
-                           </image></ImageView>
-                        <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#DashboardBclicked" prefHeight="43.0" prefWidth="115.0" text="Dashboard">
-                           <font>
-                              <Font name="Segoe UI Semibold" size="17.0" />
-                           </font>
-                        </JFXButton>
+                        <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="152.0">
+                           <children>
+                              <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#DashboardBclicked" prefHeight="51.0" prefWidth="179.0" text=" ">
+                                 <font>
+                                    <Font name="Segoe UI Semibold" size="17.0" />
+                                 </font>
+                                 <graphic>
+                                    <HBox alignment="CENTER" prefHeight="43.0" prefWidth="152.0" spacing="5.0">
+                                       <children>
+                                          <ImageView fitHeight="29.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@img.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label text="Dashboard">
+                                             <font>
+                                                <Font size="17.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                 </graphic>
+                              </JFXButton>
+                              <JFXButton alignment="CENTER" contentDisplay="CENTER" layoutX="38.0" layoutY="97.0" onAction="#CalendarBclicked" prefHeight="51.0" prefWidth="146.0" text=" ">
+                                 <font>
+                                    <Font name="Segoe UI Semibold" size="17.0" />
+                                 </font>
+                                 <graphic>
+                                    <HBox alignment="CENTER" prefHeight="43.0" prefWidth="152.0" spacing="5.0">
+                                       <children>
+                                          <ImageView fitHeight="33.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@img_2.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label text="Calendar">
+                                             <font>
+                                                <Font size="17.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                 </graphic>
+                              </JFXButton>
+                              <JFXButton alignment="CENTER" contentDisplay="CENTER" layoutX="38.0" layoutY="71.0" onAction="#AttendanceBclicked" prefHeight="51.0" prefWidth="146.0" text=" ">
+                                 <font>
+                                    <Font name="Segoe UI Semibold" size="17.0" />
+                                 </font>
+                                 <graphic>
+                                    <HBox alignment="CENTER" prefHeight="43.0" prefWidth="152.0" spacing="5.0">
+                                       <children>
+                                          <ImageView fitHeight="33.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@img_1.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label text="Sign Out">
+                                             <font>
+                                                <Font size="17.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                 </graphic>
+                              </JFXButton>
+                           </children>
+                        </VBox>
                      </children>
-                  </HBox>
-                  <HBox layoutX="10.0" layoutY="93.0" prefHeight="14.0" prefWidth="206.0" />
-                  <HBox alignment="TOP_CENTER" prefHeight="47.0" prefWidth="206.0">
-                     <children>
-                        <ImageView fitHeight="45.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../img_1.png" />
-                           </image></ImageView>
-                        <JFXButton alignment="CENTER" onAction="#AttendanceBclicked" prefHeight="52.0" prefWidth="114.0" text="Attendance">
-                           <font>
-                              <Font name="Segoe UI Semibold" size="17.0" />
-                           </font>
-                        </JFXButton>
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="15.0" prefWidth="206.0" />
-                  <HBox alignment="TOP_CENTER" prefHeight="47.0" prefWidth="101.0">
-                     <children>
-                        <ImageView fitHeight="47.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../img_2.png" />
-                           </image></ImageView>
-                        <JFXButton alignment="CENTER" onAction="#CalendarBclicked" prefHeight="47.0" prefWidth="117.0" text="Calendar">
-                           <font>
-                              <Font name="Segoe UI Semibold" size="17.0" />
-                           </font>
-                        </JFXButton>
-                     </children>
-                  </HBox>
+                  </VBox>
                </children>
             </VBox>
-         </children></VBox>
-      <StackPane layoutX="203.0" layoutY="-1.0" prefHeight="661.0" prefWidth="734.0">
-         <children>
-            <Pane fx:id="AttendancePane" prefHeight="661.0" prefWidth="736.0" style="-fx-background-color: A8DADC;">
+            <StackPane prefHeight="660.0" prefWidth="941.0">
                <children>
-                  <HBox layoutX="31.0" layoutY="133.0" prefHeight="425.0" prefWidth="686.0">
+                  <Pane fx:id="AttendancePane" prefHeight="661.0" prefWidth="736.0" style="-fx-background-color: A8DADC;">
                      <children>
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d3d5d7" height="497.0" stroke="BLACK" strokeType="INSIDE" width="111.0" />
-                        <VBox alignment="TOP_CENTER" prefHeight="497.0" prefWidth="78.0">
+                        <HBox layoutX="31.0" layoutY="133.0" prefHeight="425.0" prefWidth="686.0">
                            <children>
-                              <Label prefHeight="28.0" prefWidth="27.0" text="Mon">
-                                 <font>
-                                    <Font name="Segoe UI Black" size="12.0" />
-                                 </font>
-                              </Label>
-                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d3d5d7" height="468.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d3d5d7" height="497.0" stroke="BLACK" strokeType="INSIDE" width="111.0" />
+                              <VBox alignment="TOP_CENTER" prefHeight="497.0" prefWidth="78.0">
+                                 <children>
+                                    <Label prefHeight="28.0" prefWidth="27.0" text="Mon">
+                                       <font>
+                                          <Font name="Segoe UI Black" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d3d5d7" height="468.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="TOP_CENTER" layoutX="197.0" layoutY="10.0" prefHeight="497.0" prefWidth="78.0">
+                                 <children>
+                                    <Label prefHeight="28.0" prefWidth="27.0" text="Tue">
+                                       <font>
+                                          <Font name="Segoe UI Black" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d3d5d7" height="468.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="TOP_CENTER" layoutX="277.0" layoutY="10.0" prefHeight="497.0" prefWidth="78.0">
+                                 <children>
+                                    <Label prefHeight="28.0" prefWidth="27.0" text="Wed">
+                                       <font>
+                                          <Font name="Segoe UI Black" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d3d5d7" height="468.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="TOP_CENTER" layoutX="357.0" layoutY="10.0" prefHeight="497.0" prefWidth="78.0">
+                                 <children>
+                                    <Label prefHeight="28.0" prefWidth="27.0" text="Thu">
+                                       <font>
+                                          <Font name="Segoe UI Black" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d3d5d7" height="468.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="TOP_CENTER" layoutX="437.0" layoutY="10.0" prefHeight="497.0" prefWidth="78.0">
+                                 <children>
+                                    <Label prefHeight="28.0" prefWidth="27.0" text="Fri">
+                                       <font>
+                                          <Font name="Segoe UI Black" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d3d5d7" height="468.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="TOP_CENTER" layoutX="437.0" layoutY="10.0" prefHeight="497.0" prefWidth="78.0">
+                                 <children>
+                                    <Label prefHeight="28.0" prefWidth="27.0" text="Sat">
+                                       <font>
+                                          <Font name="Segoe UI Black" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d3d5d7" height="468.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="TOP_CENTER" layoutX="597.0" layoutY="10.0" prefHeight="497.0" prefWidth="78.0">
+                                 <children>
+                                    <Label prefHeight="28.0" prefWidth="27.0" text="Sun">
+                                       <font>
+                                          <Font name="Segoe UI Black" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d3d5d7" height="468.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
+                                 </children>
+                              </VBox>
                            </children>
-                        </VBox>
-                        <VBox alignment="TOP_CENTER" layoutX="197.0" layoutY="10.0" prefHeight="497.0" prefWidth="78.0">
-                           <children>
-                              <Label prefHeight="28.0" prefWidth="27.0" text="Tue">
-                                 <font>
-                                    <Font name="Segoe UI Black" size="12.0" />
-                                 </font>
-                              </Label>
-                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d3d5d7" height="468.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
-                           </children>
-                        </VBox>
-                        <VBox alignment="TOP_CENTER" layoutX="277.0" layoutY="10.0" prefHeight="497.0" prefWidth="78.0">
-                           <children>
-                              <Label prefHeight="28.0" prefWidth="27.0" text="Wed">
-                                 <font>
-                                    <Font name="Segoe UI Black" size="12.0" />
-                                 </font>
-                              </Label>
-                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d3d5d7" height="468.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
-                           </children>
-                        </VBox>
-                        <VBox alignment="TOP_CENTER" layoutX="357.0" layoutY="10.0" prefHeight="497.0" prefWidth="78.0">
-                           <children>
-                              <Label prefHeight="28.0" prefWidth="27.0" text="Thu">
-                                 <font>
-                                    <Font name="Segoe UI Black" size="12.0" />
-                                 </font>
-                              </Label>
-                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d3d5d7" height="468.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
-                           </children>
-                        </VBox>
-                        <VBox alignment="TOP_CENTER" layoutX="437.0" layoutY="10.0" prefHeight="497.0" prefWidth="78.0">
-                           <children>
-                              <Label prefHeight="28.0" prefWidth="27.0" text="Fri">
-                                 <font>
-                                    <Font name="Segoe UI Black" size="12.0" />
-                                 </font>
-                              </Label>
-                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d3d5d7" height="468.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
-                           </children>
-                        </VBox>
-                        <VBox alignment="TOP_CENTER" layoutX="437.0" layoutY="10.0" prefHeight="497.0" prefWidth="78.0">
-                           <children>
-                              <Label prefHeight="28.0" prefWidth="27.0" text="Sat">
-                                 <font>
-                                    <Font name="Segoe UI Black" size="12.0" />
-                                 </font>
-                              </Label>
-                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d3d5d7" height="468.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
-                           </children>
-                        </VBox>
-                        <VBox alignment="TOP_CENTER" layoutX="597.0" layoutY="10.0" prefHeight="497.0" prefWidth="78.0">
-                           <children>
-                              <Label prefHeight="28.0" prefWidth="27.0" text="Sun">
-                                 <font>
-                                    <Font name="Segoe UI Black" size="12.0" />
-                                 </font>
-                              </Label>
-                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d3d5d7" height="468.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
-                           </children>
-                        </VBox>
+                        </HBox>
+                        <JFXComboBox fx:id="combobox1" layoutX="530.0" layoutY="43.0" prefHeight="25.0" prefWidth="118.0" unFocusColor="#457b9d" viewOrder="3.0" />
                      </children>
-                  </HBox>
-                  <JFXComboBox fx:id="combobox1" layoutX="530.0" layoutY="43.0" prefHeight="25.0" prefWidth="118.0" unFocusColor="#457b9d" viewOrder="3.0" />
+                  </Pane>
+                  <Pane fx:id="CalendarPane" prefHeight="660.0" prefWidth="734.0" style="-fx-background-color: #E63946;">
+                     <StackPane.margin>
+                        <Insets />
+                     </StackPane.margin>
+                  </Pane>
+                  <Pane fx:id="DashboardPane" prefHeight="660.0" prefWidth="970.0" style="-fx-background-color: #f7f6f0;">
+                     <children>
+                        <ScrollPane layoutX="37.0" layoutY="138.0" prefHeight="610.0" prefWidth="969.0">
+                           <content>
+                              <GridPane fx:id="courseContainer" alignment="CENTER_LEFT" hgap="10.0" prefHeight="614.0" prefWidth="973.0" vgap="10.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <JFXButton fx:id="courseCardCCE107" alignment="CENTER" contentDisplay="CENTER" prefHeight="138.0" prefWidth="363.0" style="-fx-background-color: #d3f36b; -fx-background-radius: 15; -fx-background-radius: 15;" text=" ">
+                                       <graphic>
+                                          <VBox alignment="CENTER" prefHeight="102.0" prefWidth="281.0">
+                                             <children>
+                                                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Label text="CCE107" />
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Label text="PROGRAMMING">
+                                                         <font>
+                                                            <Font size="29.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Label text="10:00 AM - 12:00 PM" />
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                       </graphic>
+                                    </JFXButton>
+                                 </children>
+                              </GridPane>
+                           </content>
+                        </ScrollPane>
+                        <Rectangle arcHeight="35.0" arcWidth="35.0" height="85.0" layoutX="34.0" layoutY="28.0" stroke="BLACK" strokeType="INSIDE" width="967.0" />
+                        <Label layoutX="64.0" layoutY="27.0" prefHeight="91.0" prefWidth="320.0" text="DASHBOARD" textFill="WHITE">
+                           <font>
+                              <Font name="Roboto Black" size="53.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
                </children>
-            </Pane>
-            <Pane fx:id="CalendarPane" prefHeight="660.0" prefWidth="734.0" style="-fx-background-color: #E63946;">
-               <StackPane.margin>
-                  <Insets />
-               </StackPane.margin>
-            </Pane>
-            <Pane fx:id="DashboardPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #1D3557;">
-               <children>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#457b9d" height="74.0" layoutX="83.0" layoutY="20.0" stroke="BLACK" strokeType="INSIDE" width="566.0" />
-                  <Label layoutX="241.0" layoutY="26.0" prefHeight="62.0" prefWidth="372.0" text="Dashboard">
-                     <font>
-                        <Font name="Gill Sans MT Bold" size="53.0" />
-                     </font>
-                  </Label>
-                  <HBox layoutX="26.0" layoutY="190.0" prefHeight="95.0" prefWidth="707.0">
-                     <children>
-                        <HBox prefHeight="299.0" prefWidth="386.0">
-                           <children>
-                              <VBox prefHeight="188.0" prefWidth="206.0">
-                                 <children>
-                                    <GridPane prefWidth="206.0" style="-fx-background-color: #F1FAEE;">
-                                      <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="152.66666666666666" minWidth="10.0" prefWidth="133.33331298828125" />
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.6666463216146" minWidth="10.0" prefWidth="73.33335367838541" />
-                                      </columnConstraints>
-                                      <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                      </rowConstraints>
-                                       <children>
-                                          <Label alignment="CENTER" prefHeight="30.0" prefWidth="153.0" text="CCE107" GridPane.rowIndex="1">
-                                             <font>
-                                                <Font name="Segoe UI Black" size="14.0" />
-                                             </font>
-                                          </Label>
-                                          <Label alignment="CENTER" prefHeight="34.0" prefWidth="133.0" text="9709" GridPane.rowIndex="2">
-                                             <font>
-                                                <Font name="Segoe UI Semibold" size="14.0" />
-                                             </font>
-                                          </Label>
-                                          <JFXButton alignment="CENTER" contentDisplay="TOP" prefHeight="25.0" prefWidth="99.0" text="Open" GridPane.columnIndex="1">
-                                             <font>
-                                                <Font name="Segoe UI Light" size="12.0" />
-                                             </font>
-                                          </JFXButton>
-                                          <Label alignment="CENTER" prefHeight="31.0" prefWidth="142.0" text="Class 1">
-                                             <font>
-                                                <Font name="Segoe UI Historic" size="12.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </GridPane>
-                                 </children>
-                              </VBox>
-                           </children>
-                        </HBox>
-                        <HBox layoutX="10.0" layoutY="10.0" prefHeight="299.0" prefWidth="386.0">
-                           <children>
-                              <VBox prefHeight="188.0" prefWidth="206.0">
-                                 <children>
-                                    <GridPane prefWidth="206.0" style="-fx-background-color: #F1FAEE;">
-                                       <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="152.66666666666666" minWidth="10.0" prefWidth="133.33331298828125" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.6666463216146" minWidth="10.0" prefWidth="73.33335367838541" />
-                                       </columnConstraints>
-                                       <rowConstraints>
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                       </rowConstraints>
-                                       <children>
-                                          <Label alignment="CENTER" prefHeight="30.0" prefWidth="153.0" text="CCE107" GridPane.rowIndex="1">
-                                             <font>
-                                                <Font name="Segoe UI Black" size="14.0" />
-                                             </font>
-                                          </Label>
-                                          <Label alignment="CENTER" prefHeight="34.0" prefWidth="133.0" text="9709" GridPane.rowIndex="2">
-                                             <font>
-                                                <Font name="Segoe UI Semibold" size="14.0" />
-                                             </font>
-                                          </Label>
-                                          <JFXButton alignment="CENTER" contentDisplay="TOP" prefHeight="25.0" prefWidth="99.0" text="Open" GridPane.columnIndex="1">
-                                             <font>
-                                                <Font name="Segoe UI Light" size="12.0" />
-                                             </font>
-                                          </JFXButton>
-                                          <Label alignment="CENTER" prefHeight="31.0" prefWidth="142.0" text="Class 2">
-                                             <font>
-                                                <Font name="Segoe UI Historic" size="12.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </GridPane>
-                                 </children>
-                              </VBox>
-                           </children>
-                        </HBox>
-                        <HBox layoutX="555.0" layoutY="10.0" prefHeight="299.0" prefWidth="386.0">
-                           <children>
-                              <VBox prefHeight="188.0" prefWidth="206.0">
-                                 <children>
-                                    <GridPane prefWidth="206.0" style="-fx-background-color: #F1FAEE;">
-                                       <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="152.66666666666666" minWidth="10.0" prefWidth="133.33331298828125" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.6666463216146" minWidth="10.0" prefWidth="73.33335367838541" />
-                                       </columnConstraints>
-                                       <rowConstraints>
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                       </rowConstraints>
-                                       <children>
-                                          <Label alignment="CENTER" prefHeight="30.0" prefWidth="153.0" text="CCE107" GridPane.rowIndex="1">
-                                             <font>
-                                                <Font name="Segoe UI Black" size="14.0" />
-                                             </font>
-                                          </Label>
-                                          <Label alignment="CENTER" prefHeight="34.0" prefWidth="133.0" text="9709" GridPane.rowIndex="2">
-                                             <font>
-                                                <Font name="Segoe UI Semibold" size="14.0" />
-                                             </font>
-                                          </Label>
-                                          <JFXButton alignment="CENTER" contentDisplay="TOP" prefHeight="25.0" prefWidth="99.0" text="Open" GridPane.columnIndex="1">
-                                             <font>
-                                                <Font name="Segoe UI Light" size="12.0" />
-                                             </font>
-                                          </JFXButton>
-                                          <Label alignment="CENTER" prefHeight="31.0" prefWidth="142.0" text="Class 3">
-                                             <font>
-                                                <Font name="Segoe UI Historic" size="12.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </GridPane>
-                                 </children>
-                              </VBox>
-                           </children>
-                        </HBox>
-                     </children>
-                  </HBox>
-                  <HBox layoutX="26.0" layoutY="331.0" prefHeight="95.0" prefWidth="707.0">
-                     <children>
-                        <HBox prefHeight="299.0" prefWidth="386.0">
-                           <children>
-                              <VBox prefHeight="188.0" prefWidth="206.0">
-                                 <children>
-                                    <GridPane prefWidth="206.0" style="-fx-background-color: #F1FAEE;">
-                                       <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="152.66666666666666" minWidth="10.0" prefWidth="133.33331298828125" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.6666463216146" minWidth="10.0" prefWidth="73.33335367838541" />
-                                       </columnConstraints>
-                                       <rowConstraints>
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                       </rowConstraints>
-                                       <children>
-                                          <Label alignment="CENTER" prefHeight="30.0" prefWidth="153.0" text="CCE107" GridPane.rowIndex="1">
-                                             <font>
-                                                <Font name="Segoe UI Black" size="14.0" />
-                                             </font>
-                                          </Label>
-                                          <Label alignment="CENTER" prefHeight="34.0" prefWidth="133.0" text="9709" GridPane.rowIndex="2">
-                                             <font>
-                                                <Font name="Segoe UI Semibold" size="14.0" />
-                                             </font>
-                                          </Label>
-                                          <JFXButton alignment="CENTER" contentDisplay="TOP" prefHeight="25.0" prefWidth="99.0" text="Open" GridPane.columnIndex="1">
-                                             <font>
-                                                <Font name="Segoe UI Light" size="12.0" />
-                                             </font>
-                                          </JFXButton>
-                                          <Label alignment="CENTER" prefHeight="31.0" prefWidth="142.0" text="Class 4">
-                                             <font>
-                                                <Font name="Segoe UI Historic" size="12.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </GridPane>
-                                 </children>
-                              </VBox>
-                           </children>
-                        </HBox>
-                        <HBox layoutX="10.0" layoutY="10.0" prefHeight="299.0" prefWidth="386.0">
-                           <children>
-                              <VBox prefHeight="188.0" prefWidth="206.0">
-                                 <children>
-                                    <GridPane prefWidth="206.0" style="-fx-background-color: #F1FAEE;">
-                                       <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="152.66666666666666" minWidth="10.0" prefWidth="133.33331298828125" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.6666463216146" minWidth="10.0" prefWidth="73.33335367838541" />
-                                       </columnConstraints>
-                                       <rowConstraints>
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                       </rowConstraints>
-                                       <children>
-                                          <Label alignment="CENTER" prefHeight="30.0" prefWidth="153.0" text="CCE107" GridPane.rowIndex="1">
-                                             <font>
-                                                <Font name="Segoe UI Black" size="14.0" />
-                                             </font>
-                                          </Label>
-                                          <Label alignment="CENTER" prefHeight="34.0" prefWidth="133.0" text="9709" GridPane.rowIndex="2">
-                                             <font>
-                                                <Font name="Segoe UI Semibold" size="14.0" />
-                                             </font>
-                                          </Label>
-                                          <JFXButton alignment="CENTER" contentDisplay="TOP" prefHeight="25.0" prefWidth="99.0" text="Open" GridPane.columnIndex="1">
-                                             <font>
-                                                <Font name="Segoe UI Light" size="12.0" />
-                                             </font>
-                                          </JFXButton>
-                                          <Label alignment="CENTER" prefHeight="31.0" prefWidth="142.0" text="Class 5">
-                                             <font>
-                                                <Font name="Segoe UI Historic" size="12.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </GridPane>
-                                 </children>
-                              </VBox>
-                           </children>
-                        </HBox>
-                        <HBox layoutX="555.0" layoutY="10.0" prefHeight="299.0" prefWidth="386.0">
-                           <children>
-                              <VBox prefHeight="188.0" prefWidth="206.0">
-                                 <children>
-                                    <GridPane prefWidth="206.0" style="-fx-background-color: #F1FAEE;">
-                                       <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="152.66666666666666" minWidth="10.0" prefWidth="133.33331298828125" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.6666463216146" minWidth="10.0" prefWidth="73.33335367838541" />
-                                       </columnConstraints>
-                                       <rowConstraints>
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                       </rowConstraints>
-                                       <children>
-                                          <Label alignment="CENTER" prefHeight="30.0" prefWidth="153.0" text="CCE107" GridPane.rowIndex="1">
-                                             <font>
-                                                <Font name="Segoe UI Black" size="14.0" />
-                                             </font>
-                                          </Label>
-                                          <Label alignment="CENTER" prefHeight="34.0" prefWidth="133.0" text="9709" GridPane.rowIndex="2">
-                                             <font>
-                                                <Font name="Segoe UI Semibold" size="14.0" />
-                                             </font>
-                                          </Label>
-                                          <JFXButton alignment="CENTER" contentDisplay="TOP" prefHeight="25.0" prefWidth="99.0" text="Open" GridPane.columnIndex="1">
-                                             <font>
-                                                <Font name="Segoe UI Light" size="12.0" />
-                                             </font>
-                                          </JFXButton>
-                                          <Label alignment="CENTER" prefHeight="31.0" prefWidth="142.0" text="Class 6">
-                                             <font>
-                                                <Font name="Segoe UI Historic" size="12.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </GridPane>
-                                 </children>
-                              </VBox>
-                           </children>
-                        </HBox>
-                     </children>
-                  </HBox>
-               </children>
-            </Pane>
-         </children>
-      </StackPane>
+            </StackPane>
+         </items>
+      </SplitPane>
    </children>
 </AnchorPane>
