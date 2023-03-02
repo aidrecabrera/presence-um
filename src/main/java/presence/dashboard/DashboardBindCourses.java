@@ -48,27 +48,28 @@ public class DashboardBindCourses {
             if (col == 3) {
                 col = 0;
                 row++;
+                if (row == 3 && col == 2) {
+                    embedContainer.setPrefHeight(embedContainer.getPrefHeight() + 138.75);
+                }
             }
-            System.out.println("Course Code: " + bindCourseCode + "| Course Subject: " + bindCourseName + "| Course Schedule: " + bindCourseSchedule);
+            System.out.println("Course Code: " + bindCourseCode + " | Course Subject: " + bindCourseName + " | Course Schedule: " + bindCourseSchedule);
         }
     }
-    void refreshCourseCard(GridPane courseContainer, JFXButton refreshButton) {
-        refreshButton.setOnAction(event -> {
-            counter += 1;
-            try (BufferedReader ComponentLabelReader = Files.newBufferedReader(Paths.get("src/main/resources/course/courseList.csv"))) {
-                String newLabel = ComponentLabelReader.readLine();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            JFXButton newCourseCard = new JFXButton();
-            utilities.courseCardPropertySetter(newCourseCard, bindCourseCode, bindCourseName, bindCourseSchedule);
-            System.out.println("New Course Generated!");
-            courseContainer.add(newCourseCard, col, row);
-            col++;
-            if (col == 3) {
-                col = 0;
-                row++;
-            }
-        });
+    public void refreshCourseCard(GridPane courseContainer) {
+        counter += 1;
+        try (BufferedReader ComponentLabelReader = Files.newBufferedReader(Paths.get("src/main/resources/course/courseList.csv"))) {
+            String newLabel = ComponentLabelReader.readLine();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        JFXButton newCourseCard = new JFXButton();
+        utilities.courseCardPropertySetter(newCourseCard, bindCourseCode, bindCourseName, bindCourseSchedule);
+        System.out.println("New Course Generated!");
+        courseContainer.add(newCourseCard, col, row);
+        col++;
+        if (col == 3) {
+            col = 0;
+            row++;
+        }
     }
 }

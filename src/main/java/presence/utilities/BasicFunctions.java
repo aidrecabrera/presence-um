@@ -20,8 +20,8 @@ public class BasicFunctions {
     public void courseCardPropertySetter(JFXButton newComponent, String CourseCode, String CourseSubject, String CourseSchedule) {
         newComponent.setAlignment(Pos.CENTER);
         newComponent.setContentDisplay(ContentDisplay.CENTER);
-        newComponent.setPrefHeight(138.0);
-        newComponent.setPrefWidth(363.0);
+        newComponent.setPrefHeight(138.75);
+        newComponent.setPrefWidth(310);
         newComponent.setStyle("-fx-background-color: #d3f36b; -fx-background-radius: 15; -fx-background-radius: 15;");
         newComponent.setText(" ");
 
