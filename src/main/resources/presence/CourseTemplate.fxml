@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="731.0" prefWidth="989.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presence.CourseTemplate">
+   <children>
+      <VBox layoutX="17.0" layoutY="25.0" prefHeight="685.0" prefWidth="953.0" spacing="25.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: black; -fx-background-radius: 25;">
+               <children>
+                  <Label prefHeight="91.0" prefWidth="400.0" text="COURSE_NAME" textFill="WHITE">
+                     <font>
+                        <Font name="Roboto Black" size="53.0" />
+                     </font>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets left="25.0" />
+               </padding>
+            </HBox>
+            <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="563.0" prefWidth="953.0" style="-fx-background-radius: 25; -fx-border-radius: 25; -fx-background-color: 0;">
+               <content>
+                  <GridPane gridLinesVisible="true">
+                    <columnConstraints>
+                      <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="400.0" minWidth="400.0" percentWidth="0.0" prefWidth="400.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="125.0" minWidth="125.0" prefWidth="125.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints maxHeight="35.0" minHeight="35.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="55.0" minHeight="100.0" prefHeight="55.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <HBox fillHeight="false" prefHeight="150.0" prefWidth="405.0">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="307.0">
+                                 <children>
+                                    <Label alignment="CENTER" prefHeight="35.0" prefWidth="300.0" text="Student" />
+                                 </children>
+                                 <padding>
+                                    <Insets left="15.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="83.0" spacing="3.0">
+                                 <children>
+                                    <Label text="Overall">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </HBox>
+                        <HBox fillHeight="false" prefHeight="150.0" prefWidth="405.0" GridPane.rowIndex="1">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="307.0">
+                                 <children>
+                                    <ImageView fx:id="studentImage" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="NEVER">
+                                       <image>
+                                          <Image url="@../../../../../../../Downloads/333073347_1221124838803322_2127164360424282700_n.jpg" />
+                                       </image>
+                                    </ImageView>
+                                    <Label fx:id="student_Name" alignment="CENTER" prefHeight="100.0" prefWidth="243.0" text="STUDENT_NAME" />
+                                 </children>
+                                 <padding>
+                                    <Insets left="15.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="83.0" spacing="3.0">
+                                 <children>
+                                    <Label fx:id="student_Overall" text="100">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="/">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="100">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </HBox>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <children>
+                              <MenuButton fx:id="status_Mark" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Mark">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" text="Present" />
+                                  <MenuItem mnemonicParsing="false" text="Absent" />
+                                    <MenuItem mnemonicParsing="false" text="Excused" />
+                                </items>
+                              </MenuButton>
+                           </children>
+                        </VBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="83.0" spacing="3.0" GridPane.columnIndex="1">
+                           <children>
+                              <Label fx:id="meeting_Date" text="Meeting_Date">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                  </GridPane>
+               </content>
+            </ScrollPane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

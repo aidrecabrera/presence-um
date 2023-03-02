@@ -49,7 +49,7 @@ public class BasicFunctions {
         newHBox3.setAlignment(Pos.CENTER_LEFT);
         newHBox3.setPrefHeight(100.0);
         newHBox3.setPrefWidth(200.0);
-        Label newCourseSched = new Label(CourseSubject);
+        Label newCourseSched = new Label(CourseSchedule);
         newHBox3.getChildren().add(newCourseSched);
 
         newVBox.getChildren().add(newHBox1);
