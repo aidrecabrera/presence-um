@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import presence.Database.Database;
 import presence.dashboard.DashboardLoadCourses;
 import presence.utilities.BasicFunctions;
 
@@ -17,7 +18,7 @@ import java.nio.file.Paths;
 import java.util.ResourceBundle;
 
 public class DashboardPresence implements Initializable {
-
+    Database importData = new Database();
     @FXML
     private Pane AttendancePane;
     @FXML
@@ -67,7 +68,7 @@ public class DashboardPresence implements Initializable {
     String FilePath = "src/main/resources/course/courseList.csv";
     FileWriter File = new FileWriter(FilePath, true);
     BasicFunctions utilities = new BasicFunctions();
-    DashboardLoadCourses CourseInformation = new DashboardLoadCourses();
+    DashboardLoadCourses CourseInformation = new DashboardLoadCourses("Hello", "Hello", "Hello");
     void initializeCourseCards() throws IOException {
         String acquiredLine;
         FileReader fileReader = new FileReader("src/main/resources/course/courseList.csv");
@@ -76,7 +77,7 @@ public class DashboardPresence implements Initializable {
         String newLabel = "TEST";
         while ((acquiredLine = ComponentLabelReader.readLine()) != null) {
             JFXButton generatedButton = new JFXButton(acquiredLine);
-            utilities.loadCourseValues();
+            utilities.loadCourseValues(importData.getDatabaseCourseList());
             utilities.propertyDuplicator(courseCardCCE107, generatedButton, CourseInformation.getCourseCode(), CourseInformation.getCourseName(), CourseInformation.getCourseSched());
             courseContainer.add(generatedButton, col, row);
             ++counter;

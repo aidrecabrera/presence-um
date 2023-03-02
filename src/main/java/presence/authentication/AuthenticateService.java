@@ -78,7 +78,6 @@ public class AuthenticateService {
      @return true if the user exists, false otherwise
      */
     public boolean userExists(String username) {
-        readUsersFromFile(filePath);
         return USER_HASHMAP.containsKey(username);
     }
     /**

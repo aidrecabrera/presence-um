@@ -11,7 +11,7 @@ import java.io.IOException;
 
 import static presence.utilities.BasicFunctions.validateEntry;
 
-public class AuthenticatePresence extends Authenticate {
+public class AuthenticatePresence extends Authenticate{
     static BasicFunctions utilities = new BasicFunctions();
     @FXML
     private Text Description;

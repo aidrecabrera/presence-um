@@ -19,8 +19,8 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 public class BasicFunctions {
-    public void loadCourseValues() throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader("your-file.csv"));
+    public void loadCourseValues(String courseSheet) throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader(courseSheet));
         String line;
         br.readLine();
         while ((line = br.readLine()) != null) {
