@@ -19,9 +19,9 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="777.0" prefWidth="1325.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presence.DashboardPresence">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presence.DashboardPresence">
    <children>
-      <SplitPane dividerPositions="0.21794871794871795" layoutX="-1.0" prefHeight="779.0" prefWidth="1329.0">
+      <SplitPane dividerPositions="0.21794871794871795" layoutX="-1.0" prefHeight="721.0" prefWidth="1289.0">
          <items>
             <VBox alignment="TOP_CENTER" prefHeight="661.0" prefWidth="365.0" style="-fx-background-color: #d3f36b;">
                <children>
@@ -187,9 +187,9 @@
                   </Pane>
                   <Pane fx:id="DashboardPane" prefHeight="660.0" prefWidth="970.0" style="-fx-background-color: #f7f6f0;">
                      <children>
-                        <ScrollPane layoutX="37.0" layoutY="138.0" prefHeight="610.0" prefWidth="969.0">
+                        <ScrollPane layoutX="32.0" layoutY="141.0" prefHeight="554.0" prefWidth="945.0">
                            <content>
-                              <GridPane fx:id="courseContainer" alignment="CENTER_LEFT" hgap="10.0" prefHeight="614.0" prefWidth="973.0" vgap="10.0">
+                              <GridPane fx:id="courseContainer" alignment="CENTER_LEFT" hgap="10.0" prefHeight="554.0" prefWidth="946.0" vgap="10.0">
                                  <columnConstraints>
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -202,18 +202,18 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                                  <children>
-                                    <JFXButton fx:id="courseCardCCE107" alignment="CENTER" contentDisplay="CENTER" prefHeight="138.0" prefWidth="363.0" style="-fx-background-color: #d3f36b; -fx-background-radius: 15; -fx-background-radius: 15;" text=" ">
+                                    <JFXButton fx:id="courseCardCCE107" alignment="CENTER" contentDisplay="CENTER" onAction="#initialize" prefHeight="138.0" prefWidth="363.0" style="-fx-background-color: #d3f36b; -fx-background-radius: 15; -fx-background-radius: 15;" text=" ">
                                        <graphic>
-                                          <VBox alignment="CENTER" prefHeight="102.0" prefWidth="281.0">
+                                          <VBox alignment="CENTER" prefHeight="102.0" prefWidth="267.0">
                                              <children>
                                                 <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                                                    <children>
-                                                      <Label text="CCE107" />
+                                                      <Label fx:id="COURSE_CODE" text="CCE107 - 9079" />
                                                    </children>
                                                 </HBox>
                                                 <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                                                    <children>
-                                                      <Label text="PROGRAMMING">
+                                                      <Label fx:id="COURSE_NAME" text="PROGRAMMING">
                                                          <font>
                                                             <Font size="29.0" />
                                                          </font>
@@ -222,7 +222,7 @@
                                                 </HBox>
                                                 <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                                                    <children>
-                                                      <Label text="10:00 AM - 12:00 PM" />
+                                                      <Label fx:id="COURSE_SCHED" text="10:00 AM - 12:00 PM" />
                                                    </children>
                                                 </HBox>
                                              </children>
@@ -233,8 +233,8 @@
                               </GridPane>
                            </content>
                         </ScrollPane>
-                        <Rectangle arcHeight="35.0" arcWidth="35.0" height="85.0" layoutX="34.0" layoutY="28.0" stroke="BLACK" strokeType="INSIDE" width="967.0" />
-                        <Label layoutX="64.0" layoutY="27.0" prefHeight="91.0" prefWidth="320.0" text="DASHBOARD" textFill="WHITE">
+                        <Rectangle arcHeight="35.0" arcWidth="35.0" height="85.0" layoutX="31.0" layoutY="34.0" stroke="BLACK" strokeType="INSIDE" width="952.0" />
+                        <Label layoutX="65.0" layoutY="32.0" prefHeight="91.0" prefWidth="320.0" text="DASHBOARD" textFill="WHITE">
                            <font>
                               <Font name="Roboto Black" size="53.0" />
                            </font>
