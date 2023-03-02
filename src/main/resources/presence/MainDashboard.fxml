@@ -201,35 +201,6 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
-                                 <children>
-                                    <JFXButton fx:id="courseCardCCE107" alignment="CENTER" contentDisplay="CENTER" onAction="#initialize" prefHeight="138.0" prefWidth="363.0" style="-fx-background-color: #d3f36b; -fx-background-radius: 15; -fx-background-radius: 15;" text=" ">
-                                       <graphic>
-                                          <VBox alignment="CENTER" prefHeight="102.0" prefWidth="267.0">
-                                             <children>
-                                                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
-                                                   <children>
-                                                      <Label fx:id="COURSE_CODE" text="CCE107 - 9079" />
-                                                   </children>
-                                                </HBox>
-                                                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
-                                                   <children>
-                                                      <Label fx:id="COURSE_NAME" text="PROGRAMMING">
-                                                         <font>
-                                                            <Font size="29.0" />
-                                                         </font>
-                                                      </Label>
-                                                   </children>
-                                                </HBox>
-                                                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
-                                                   <children>
-                                                      <Label fx:id="COURSE_SCHED" text="10:00 AM - 12:00 PM" />
-                                                   </children>
-                                                </HBox>
-                                             </children>
-                                          </VBox>
-                                       </graphic>
-                                    </JFXButton>
-                                 </children>
                               </GridPane>
                            </content>
                         </ScrollPane>

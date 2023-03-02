@@ -11,28 +11,13 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import presence.dashboard.DashboardLoadCourses;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 public class BasicFunctions {
-    public void loadCourseValues(String courseSheet) throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader(courseSheet));
-        String line;
-        br.readLine();
-        while ((line = br.readLine()) != null) {
-            String[] values = line.split(",");
-            String courseCode = values[0];
-            String courseName = values[1];
-            String courseSched = values[2];
-            DashboardLoadCourses course = new DashboardLoadCourses(courseCode, courseName, courseSched);
-        }
-        br.close();
-    }
-    public void propertyDuplicator(JFXButton referenceComponent, JFXButton newComponent, String CourseCode, String CourseSubject, String CourseSchedule) {
+
+    public void courseCardPropertySetter(JFXButton newComponent, String CourseCode, String CourseSubject, String CourseSchedule) {
         newComponent.setAlignment(Pos.CENTER);
         newComponent.setContentDisplay(ContentDisplay.CENTER);
         newComponent.setPrefHeight(138.0);
