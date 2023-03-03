@@ -1,6 +1,9 @@
 package presence.dashboard;
 
 import com.jfoenix.controls.JFXButton;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import presence.database.Database;
@@ -35,19 +38,32 @@ public class DashboardBindCourses {
         FileReader fileReader = new FileReader(importData.getDatabaseCourseList());
         BufferedReader ComponentLabelReader = new BufferedReader(fileReader);
         ComponentLabelReader.readLine();
+
         RowConstraints rowConstraints = new RowConstraints(141.25);
         embedContainer.getRowConstraints().add(rowConstraints);
+
         while ((rowCourseInformation = ComponentLabelReader.readLine()) != null) {
             JFXButton newCourseCard = new JFXButton();
             String[] courseInformationArray = rowCourseInformation.split(",");
+
             DashboardLoadCoursesInformation course = new DashboardLoadCoursesInformation(courseInformationArray[0], courseInformationArray[1], courseInformationArray[2]);
             setBindCourseCode(course.getCourseCode());
             setBindCourseName(course.getCourseName());
             setBindCourseSchedule(course.getCourseSched());
             utilities.courseCardPropertySetter(newCourseCard, bindCourseCode, bindCourseName, bindCourseSchedule);
+            newCourseCard.setOnAction(event -> {
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("newView.fxml"));
+                    Parent newView = loader.load();
+                    Node rightSide = splitPane.getItems().get(1);
+                    splitPane.getItems().set(1, newView);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
             embedContainer.add(newCourseCard, col, row);
             ++counter;
-            col++;
+            ++col;
             if (col == 3) {
                 col = 0;
                 row++;

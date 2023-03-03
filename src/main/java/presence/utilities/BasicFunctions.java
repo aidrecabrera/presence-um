@@ -122,7 +122,7 @@ public class BasicFunctions {
         HBox childHBox2 = new HBox();
         childHBox2.setAlignment(Pos.CENTER);
         childHBox2.setPrefHeight(100.0);
-        childHBox2.setPrefWidth(83.0);
+        childHBox2.setPrefWidth(100);
         childHBox2.setSpacing(3.0);
         childHBox2.getStyleClass().add("child-hbox2");
 
@@ -148,6 +148,8 @@ public class BasicFunctions {
     }
 
     public void courseCardPropertySetter(JFXButton newComponent, String CourseCode, String CourseSubject, String CourseSchedule) {
+        newComponent.setId(CourseCode);
+
         newComponent.setAlignment(Pos.CENTER);
         newComponent.setContentDisplay(ContentDisplay.CENTER);
         newComponent.setPrefHeight(141.25);
