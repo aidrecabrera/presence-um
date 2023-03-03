@@ -47,8 +47,8 @@ public class QRScanner extends JFrame implements Runnable {
 
         this.setContentPane(this.panel);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(640, 480); // Set the size to 640x480
-        this.setLocationRelativeTo(null);
+        this.setSize(960, 640); // Set the size to 3840
+        this.setLocationRelativeTo(panel);
         this.setVisible(true);
 
         // Let the user select the webcam
@@ -76,8 +76,7 @@ public class QRScanner extends JFrame implements Runnable {
         Mat mat = new Mat();
         Imgproc.cvtColor(MatUtil.bufferedImageToMat(image), mat, Imgproc.COLOR_BGR2GRAY);
 
-        // Apply Gaussian blur to the image to reduce noise.
-        Imgproc.GaussianBlur(mat, mat, new org.opencv.core.Size(3, 3), 0);
+
 
         try {
             BufferedImage bufferedImage = MatUtil.matToBufferedImage(mat);
