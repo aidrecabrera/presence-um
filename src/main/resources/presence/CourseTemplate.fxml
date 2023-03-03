@@ -6,8 +6,6 @@
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -78,11 +76,6 @@
                                  <children>
                                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="307.0">
                                        <children>
-                                          <ImageView fx:id="STUDENT_IMAGE" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="NEVER">
-                                             <image>
-                                                <Image url="@../../../../../../../Downloads/333073347_1221124838803322_2127164360424282700_n.jpg" />
-                                             </image>
-                                          </ImageView>
                                           <Label fx:id="STUDENT_NAME" alignment="CENTER" prefHeight="100.0" prefWidth="243.0" text="STUDENT_NAME" />
                                        </children>
                                        <padding>
