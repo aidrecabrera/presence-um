@@ -10,6 +10,7 @@ import java.io.*;
 
 public abstract class AttendanceFunction implements AttendanceSheet, AttendanceMeeting, AttendanceCalculate {
     Database importDatabase = new Database();
+
     private static String COURSE_SUBJECT;
     private static String COURSE_CODE;
     private static final String LOCATION_SHEET_FILE_PATH = "src/main/resources/presence/" + COURSE_CODE + "_" + COURSE_SUBJECT + "_ATTENDANCE_SHEET.csv";

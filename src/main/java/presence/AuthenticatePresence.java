@@ -32,7 +32,7 @@ public class AuthenticatePresence extends Authenticate{
         boolean loginValid = validateEntry(userAddress.getText(), userPassword.getText());
         if (loginValid) {
             if (signIn(userAddress.getText(), userPassword.getText())) {
-                utilities.PresenceSwitchScene("/presence/MainDashboard.fxml", Description);
+                utilities.PresenceSwitchScene("/presence/CourseTemplate.fxml", Description);
             }
         }
     }

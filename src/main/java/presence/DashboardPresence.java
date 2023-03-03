@@ -7,8 +7,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import presence.database.Database;
+import javafx.scene.text.Text;
 import presence.dashboard.DashboardBindCourses;
+import presence.database.Database;
 import presence.utilities.BasicFunctions;
 
 import java.io.IOException;
@@ -27,11 +28,15 @@ public class DashboardPresence implements Initializable  {
     @FXML
     private JFXComboBox<String> combobox1;
 
+    @FXML
+    private Text TTT;
+
     public DashboardPresence() throws IOException {
+
     }
 
     @FXML
-    void AttendanceBclicked(ActionEvent event) {
+    void AttendanceBclicked(ActionEvent event) throws IOException {
         AttendancePane.setVisible(true);
         DashboardPane.setVisible(false);
         CalendarPane.setVisible(false);
