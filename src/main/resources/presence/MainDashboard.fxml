@@ -1,31 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXComboBox?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presence.DashboardPresence">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1070.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presence.DashboardPresence">
    <children>
-      <SplitPane fx:id="dashboardSplitContainer" dividerPositions="0.21794871794871795" layoutX="-1.0" prefHeight="721.0" prefWidth="1289.0">
+      <SplitPane fx:id="dashboardSplitContainer" dividerPositions="0.1925133689839572" layoutX="-1.0" prefHeight="721.0" prefWidth="1072.0">
          <items>
-            <VBox alignment="TOP_CENTER" prefHeight="661.0" prefWidth="365.0" style="-fx-background-color: #d3f36b;" SplitPane.resizableWithParent="false">
+            <VBox alignment="TOP_CENTER" prefHeight="721.0" prefWidth="482.0" style="-fx-background-color: #d3f36b;" SplitPane.resizableWithParent="false">
                <children>
-                  <VBox alignment="CENTER" fillWidth="false" prefHeight="200.0" prefWidth="0.0">
+                  <VBox alignment="CENTER" fillWidth="false" prefHeight="200.0" prefWidth="415.0">
                      <children>
                         <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="152.0">
                            <children>
@@ -34,7 +25,7 @@
                                     <Font name="Segoe UI Semibold" size="17.0" />
                                  </font>
                                  <graphic>
-                                    <HBox alignment="CENTER" prefHeight="43.0" prefWidth="152.0" spacing="5.0">
+                                    <HBox fx:id="ButtonDashboard" alignment="CENTER" prefHeight="43.0" prefWidth="152.0" spacing="5.0">
                                        <children>
                                           <ImageView fitHeight="29.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
@@ -96,117 +87,9 @@
                         </VBox>
                      </children>
                   </VBox>
-                  <Text fx:id="TTT" strokeType="OUTSIDE" strokeWidth="0.0" />
                </children>
             </VBox>
-            <StackPane prefHeight="660.0" prefWidth="941.0" SplitPane.resizableWithParent="false">
-               <children>
-                  <Pane fx:id="AttendancePane" prefHeight="661.0" prefWidth="736.0" style="-fx-background-color: A8DADC;">
-                     <children>
-                        <HBox layoutX="31.0" layoutY="133.0" prefHeight="425.0" prefWidth="686.0">
-                           <children>
-                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d3d5d7" height="497.0" stroke="BLACK" strokeType="INSIDE" width="111.0" />
-                              <VBox alignment="TOP_CENTER" prefHeight="497.0" prefWidth="78.0">
-                                 <children>
-                                    <Label prefHeight="28.0" prefWidth="27.0" text="Mon">
-                                       <font>
-                                          <Font name="Segoe UI Black" size="12.0" />
-                                       </font>
-                                    </Label>
-                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d3d5d7" height="468.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
-                                 </children>
-                              </VBox>
-                              <VBox alignment="TOP_CENTER" layoutX="197.0" layoutY="10.0" prefHeight="497.0" prefWidth="78.0">
-                                 <children>
-                                    <Label prefHeight="28.0" prefWidth="27.0" text="Tue">
-                                       <font>
-                                          <Font name="Segoe UI Black" size="12.0" />
-                                       </font>
-                                    </Label>
-                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d3d5d7" height="468.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
-                                 </children>
-                              </VBox>
-                              <VBox alignment="TOP_CENTER" layoutX="277.0" layoutY="10.0" prefHeight="497.0" prefWidth="78.0">
-                                 <children>
-                                    <Label prefHeight="28.0" prefWidth="27.0" text="Wed">
-                                       <font>
-                                          <Font name="Segoe UI Black" size="12.0" />
-                                       </font>
-                                    </Label>
-                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d3d5d7" height="468.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
-                                 </children>
-                              </VBox>
-                              <VBox alignment="TOP_CENTER" layoutX="357.0" layoutY="10.0" prefHeight="497.0" prefWidth="78.0">
-                                 <children>
-                                    <Label prefHeight="28.0" prefWidth="27.0" text="Thu">
-                                       <font>
-                                          <Font name="Segoe UI Black" size="12.0" />
-                                       </font>
-                                    </Label>
-                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d3d5d7" height="468.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
-                                 </children>
-                              </VBox>
-                              <VBox alignment="TOP_CENTER" layoutX="437.0" layoutY="10.0" prefHeight="497.0" prefWidth="78.0">
-                                 <children>
-                                    <Label prefHeight="28.0" prefWidth="27.0" text="Fri">
-                                       <font>
-                                          <Font name="Segoe UI Black" size="12.0" />
-                                       </font>
-                                    </Label>
-                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d3d5d7" height="468.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
-                                 </children>
-                              </VBox>
-                              <VBox alignment="TOP_CENTER" layoutX="437.0" layoutY="10.0" prefHeight="497.0" prefWidth="78.0">
-                                 <children>
-                                    <Label prefHeight="28.0" prefWidth="27.0" text="Sat">
-                                       <font>
-                                          <Font name="Segoe UI Black" size="12.0" />
-                                       </font>
-                                    </Label>
-                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d3d5d7" height="468.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
-                                 </children>
-                              </VBox>
-                              <VBox alignment="TOP_CENTER" layoutX="597.0" layoutY="10.0" prefHeight="497.0" prefWidth="78.0">
-                                 <children>
-                                    <Label prefHeight="28.0" prefWidth="27.0" text="Sun">
-                                       <font>
-                                          <Font name="Segoe UI Black" size="12.0" />
-                                       </font>
-                                    </Label>
-                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d3d5d7" height="468.0" stroke="BLACK" strokeType="INSIDE" width="80.0" />
-                                 </children>
-                              </VBox>
-                           </children>
-                        </HBox>
-                        <JFXComboBox fx:id="combobox1" layoutX="530.0" layoutY="43.0" prefHeight="25.0" prefWidth="118.0" unFocusColor="#457b9d" viewOrder="3.0" />
-                     </children>
-                  </Pane>
-                  <Pane fx:id="CalendarPane" prefHeight="660.0" prefWidth="734.0" style="-fx-background-color: #E63946;">
-                     <StackPane.margin>
-                        <Insets />
-                     </StackPane.margin>
-                  </Pane>
-                  <Pane fx:id="DashboardPane" prefHeight="660.0" prefWidth="970.0" style="-fx-background-color: #f7f6f0;">
-                     <children>
-                        <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="20.0" layoutY="141.0" prefHeight="565.0" prefWidth="964.0" style="-fx-border-color: #f7f6f0;">
-                           <content>
-                              <GridPane fx:id="courseContainer" hgap="10.0" vgap="10.0">
-                                 <columnConstraints>
-                                    <ColumnConstraints hgrow="ALWAYS" minWidth="310.0" percentWidth="33.0" prefWidth="310.0" />
-                                 </columnConstraints>
-                              </GridPane>
-                           </content>
-                        </ScrollPane>
-                        <Rectangle arcHeight="35.0" arcWidth="35.0" height="85.0" layoutX="25.0" layoutY="34.0" stroke="BLACK" strokeType="INSIDE" width="952.0" />
-                        <Label layoutX="65.0" layoutY="32.0" prefHeight="91.0" prefWidth="320.0" text="DASHBOARD" textFill="WHITE">
-                           <font>
-                              <Font name="Roboto Black" size="53.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </Pane>
-               </children>
-            </StackPane>
+            <AnchorPane prefWidth="1000.0" style="-fx-background-color: gray;" />
          </items>
       </SplitPane>
    </children>

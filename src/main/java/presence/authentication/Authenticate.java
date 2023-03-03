@@ -1,6 +1,6 @@
 package presence.authentication;
 
-import presence.database.Database;
+import presence.Database;
 
 import java.io.BufferedWriter;
 import java.io.File;

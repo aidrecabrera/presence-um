@@ -146,7 +146,6 @@ public class BasicFunctions {
 
         hbox.getChildren().addAll(childHBox1, childHBox2);
     }
-
     public void courseCardPropertySetter(JFXButton newComponent, String CourseCode, String CourseSubject, String CourseSchedule) {
         newComponent.setId(CourseCode);
 

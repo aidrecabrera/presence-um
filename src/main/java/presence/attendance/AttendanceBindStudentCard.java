@@ -3,7 +3,7 @@ package presence.attendance;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import presence.database.Database;
+import presence.Database;
 import presence.utilities.BasicFunctions;
 
 import java.io.BufferedReader;

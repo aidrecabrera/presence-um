@@ -1,9 +1,11 @@
-package presence.dashboard;
+package presence;
 
 import com.jfoenix.controls.JFXButton;
+import javafx.scene.Node;
+import javafx.scene.control.SplitPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
-import presence.database.Database;
+import presence.dashboard.DashboardLoadCoursesInformation;
 import presence.utilities.BasicFunctions;
 
 import java.io.BufferedReader;
@@ -30,7 +32,7 @@ public class DashboardBindCourses {
     public void setBindCourseSchedule(String bindCourseSchedule) {
         this.bindCourseSchedule = bindCourseSchedule;
     }
-    public void bindCourseCard(GridPane embedContainer) throws IOException {
+    public void bindCourseCard(GridPane embedContainer, SplitPane dashboardSplitContainer) throws IOException {
         String rowCourseInformation;
         FileReader fileReader = new FileReader(importData.getDatabaseCourseList());
         BufferedReader ComponentLabelReader = new BufferedReader(fileReader);
@@ -49,12 +51,11 @@ public class DashboardBindCourses {
             setBindCourseSchedule(course.getCourseSched());
             utilities.courseCardPropertySetter(newCourseCard, bindCourseCode, bindCourseName, bindCourseSchedule);
             newCourseCard.setOnAction(event -> {
-                System.out.println("Hello! I am Course " + courseInformationArray[1]);
+                System.out.println("Course: " + courseInformationArray[1]);
                 try {
-//                    FXMLLoader loader = new FXMLLoader(getClass().getResource("CourseTemplate.fxml"));
-//                    Parent newView = loader.load();
-//                    Node rightSide = dashboardSplitPane.getItems().get(1);
-//                    dashboardSplitPane.getItems().set(1, newView);
+                    importData.setDatabaseGetFXML("CourseTemplate.fxml");
+                    Node rightSide = dashboardSplitContainer.getItems().get(1);
+                    dashboardSplitContainer.getItems().set(1, importData.getDatabaseGetFXML());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
