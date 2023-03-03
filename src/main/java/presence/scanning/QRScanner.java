@@ -25,20 +25,16 @@ import java.util.concurrent.TimeUnit;
 public class QRScanner extends JFrame implements Runnable {
 
     private static final long serialVersionUID = 1L;
-
     private final MultiFormatReader reader = new MultiFormatReader();
     private final ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
-
     private final JPanel panel = new JPanel();
     private final JLabel label = new JLabel();
-
-    private Webcam webcam = Webcam.getDefault();
+    private Webcam webcam;
     private final Dimension size = WebcamResolution.VGA.getSize();
 
     static {
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
     }
-
     public QRScanner() {
         super("UM Presence | Initiate Attendance");
 
@@ -47,11 +43,10 @@ public class QRScanner extends JFrame implements Runnable {
 
         this.setContentPane(this.panel);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(960, 640); // Set the size to 3840
+        this.setSize(960, 640);
         this.setLocationRelativeTo(panel);
         this.setVisible(true);
 
-        // Let the user select the webcam
         List<Webcam> webcams = Webcam.getWebcams();
         String[] options = webcams.stream().map(Webcam::getName).toArray(String[]::new);
         String selectedOption = (String) JOptionPane.showInputDialog(null, "Select a webcam", "Webcam selection", JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
@@ -71,13 +66,8 @@ public class QRScanner extends JFrame implements Runnable {
         if (image == null) {
             return;
         }
-
-        // Convert the image to grayscale.
         Mat mat = new Mat();
         Imgproc.cvtColor(MatUtil.bufferedImageToMat(image), mat, Imgproc.COLOR_BGR2GRAY);
-
-
-
         try {
             BufferedImage bufferedImage = MatUtil.matToBufferedImage(mat);
             BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(new BufferedImageLuminanceSource(bufferedImage)));
@@ -86,7 +76,6 @@ public class QRScanner extends JFrame implements Runnable {
                 System.out.println(result.getText());
                 this.label.setText(result.getText());
 
-                // Get the location and size of the detected QR code
                 int qrCodeX = (int) result.getResultPoints()[0].getX();
                 int qrCodeY = (int) result.getResultPoints()[0].getY();
                 int qrCodeSize = (int) (result.getResultPoints()[2].getX() - result.getResultPoints()[0].getX());
@@ -98,7 +87,6 @@ public class QRScanner extends JFrame implements Runnable {
                 g2d.drawRect(qrCodeX, qrCodeY, width, height);
                 g2d.dispose();
 
-                // Draw the barcode text in the top left corner of the image.
                 g2d.setFont(new Font("Arial", Font.BOLD, 20));
                 g2d.setColor(Color.BLACK);
                 g2d.drawString(result.getText(), 10, 30);
@@ -108,15 +96,12 @@ public class QRScanner extends JFrame implements Runnable {
                 g2d.drawRect(qrCodeX, qrCodeY, qrCodeSize, qrCodeSize);
                 g2d.dispose();
 
-                // Overlay the scanned data below the QR code
                 this.label.setText("<html><div style='text-align: center;'>" + result.getText() + "</div></html>");
-
             }
         } catch (Exception e) {
-            // No QR code found in the image.
+            System.out.println("No QR Detected");
         }
 
-        // Convert the grayscale image back to a BufferedImage.
         BufferedImage outputImage = MatUtil.matToBufferedImage(mat);
         this.label.setIcon(new ImageIcon(outputImage));
     }
@@ -147,5 +132,4 @@ public class QRScanner extends JFrame implements Runnable {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new QRScanner());
     }
-
 }

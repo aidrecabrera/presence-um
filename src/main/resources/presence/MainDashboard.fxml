@@ -188,9 +188,9 @@
                   </Pane>
                   <Pane fx:id="DashboardPane" prefHeight="660.0" prefWidth="970.0" style="-fx-background-color: #f7f6f0;">
                      <children>
-                        <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="20.0" layoutY="141.0" prefHeight="565.0" prefWidth="959.0" style="-fx-border-color: #f7f6f0;">
+                        <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="20.0" layoutY="141.0" prefHeight="565.0" prefWidth="964.0" style="-fx-border-color: #f7f6f0;">
                            <content>
-                              <GridPane fx:id="courseContainer" hgap="10.0" prefHeight="555.0" prefWidth="930.0" vgap="10.0">
+                              <GridPane fx:id="courseContainer" hgap="10.0" vgap="10.0">
                                  <columnConstraints>
                                     <ColumnConstraints hgrow="ALWAYS" minWidth="310.0" percentWidth="33.0" prefWidth="310.0" />
                                  </columnConstraints>

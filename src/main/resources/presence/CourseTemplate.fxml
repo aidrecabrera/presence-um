@@ -42,11 +42,11 @@
                      <content>
                         <GridPane fx:id="STUDENT_CONTAINER" gridLinesVisible="true" prefHeight="535.0" prefWidth="408.0">
                            <columnConstraints>
-                              <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="350.0" minWidth="350.0" percentWidth="0.0" prefWidth="350.0" />
-                              <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="125.0" minWidth="125.0" percentWidth="0.0" prefWidth="125.0" />
+                              <ColumnConstraints fillWidth="false" hgrow="ALWAYS" maxWidth="350.0" minWidth="350.0" percentWidth="0.0" prefWidth="350.0" />
+                              <ColumnConstraints fillWidth="false" hgrow="ALWAYS" maxWidth="125.0" minWidth="125.0" percentWidth="0.0" prefWidth="125.0" />
                            </columnConstraints>
                            <rowConstraints>
-                              <RowConstraints maxHeight="35.0" minHeight="35.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="35.0" minHeight="35.0" prefHeight="35.0" vgrow="ALWAYS" />
                            </rowConstraints>
                            <children>
                               <HBox fx:id="STUDENT_HEADER" fillHeight="false" prefHeight="35.0" prefWidth="402.0">

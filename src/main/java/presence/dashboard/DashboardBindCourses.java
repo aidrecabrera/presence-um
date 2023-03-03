@@ -2,6 +2,7 @@ package presence.dashboard;
 
 import com.jfoenix.controls.JFXButton;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.RowConstraints;
 import presence.database.Database;
 import presence.utilities.BasicFunctions;
 
@@ -34,6 +35,8 @@ public class DashboardBindCourses {
         FileReader fileReader = new FileReader(importData.getDatabaseCourseList());
         BufferedReader ComponentLabelReader = new BufferedReader(fileReader);
         ComponentLabelReader.readLine();
+        RowConstraints rowConstraints = new RowConstraints(141.25);
+        embedContainer.getRowConstraints().add(rowConstraints);
         while ((rowCourseInformation = ComponentLabelReader.readLine()) != null) {
             JFXButton newCourseCard = new JFXButton();
             String[] courseInformationArray = rowCourseInformation.split(",");
@@ -48,9 +51,7 @@ public class DashboardBindCourses {
             if (col == 3) {
                 col = 0;
                 row++;
-                if (row < 2 && col < 2) {
-                    embedContainer.setPrefHeight(embedContainer.getPrefHeight() + 138.75);
-                }
+                embedContainer.getRowConstraints().add(rowConstraints);
             }
             System.out.println("Course Code: " + bindCourseCode + " | Course Subject: " + bindCourseName + " | Course Schedule: " + bindCourseSchedule);
         }
