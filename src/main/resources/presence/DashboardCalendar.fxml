@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.Pane?>
+
+<Pane fx:id="AttendancePane" prefHeight="661.0" prefWidth="736.0" style="-fx-background-color: A8DADC;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" />

@@ -17,14 +17,32 @@ import java.util.ResourceBundle;
 public class DashboardPresence implements Initializable  {
     Database importData = new Database();
     BasicFunctions utilities = new BasicFunctions();
-
     @FXML
     private JFXButton ButtonCalendar;
     @FXML
     private HBox ButtonDashboard;
-
     @FXML
     private JFXButton ButtonSignout;
+    @FXML
+    private JFXButton courseCardCCE107;
+    @FXML
+    private GridPane courseContainer;
+    @FXML
+    private SplitPane dashboardSplitContainer;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        dashboardSplitContainer.setPrefHeight(720);
+        dashboardSplitContainer.setDividerPositions(0.167);
+        try {
+            importData.setDatabaseGetFXML("DashboardHome.fxml");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Node rightSide = dashboardSplitContainer.getItems().get(1);
+        dashboardSplitContainer.getItems().set(1, importData.getDatabaseGetFXML());
+
+    }
 
     public DashboardPresence() throws IOException {
 
@@ -43,29 +61,5 @@ public class DashboardPresence implements Initializable  {
     @FXML
     void DashboardBclicked(ActionEvent event) {
 
-    }
-
-    @FXML
-    private JFXButton courseCardCCE107;
-    @FXML
-    private GridPane courseContainer;
-    @FXML
-    private SplitPane dashboardSplitContainer;
-
-    public void loadDashboardCourses() throws IOException {
-//        String FilePath = importData.getDatabaseCourseList();
-//        DashboardBindCourses courseBinder = new DashboardBindCourses();
-//        courseBinder.bindCourseCard(courseContainer, dashboardSplitContainer);
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        try {
-            importData.setDatabaseGetFXML("DashboardHome.fxml");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        Node rightSide = dashboardSplitContainer.getItems().get(1);
-        dashboardSplitContainer.getItems().set(1, importData.getDatabaseGetFXML());
     }
 }

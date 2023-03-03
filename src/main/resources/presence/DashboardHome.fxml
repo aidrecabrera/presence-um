@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<Pane fx:id="DashboardPane" prefHeight="706.0" prefWidth="1047.0" style="-fx-background-color: #f7f6f0;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presence.DashboardHome">
+   <children>
+      <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="22.0" layoutY="129.0" prefHeight="558.0" prefWidth="1003.0" style="-fx-border-color: #f7f6f0;">
+         <content>
+            <GridPane fx:id="courseContainer" hgap="10.0" prefWidth="1000.0" vgap="10.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="ALWAYS" minWidth="310.0" percentWidth="33.0" prefWidth="310.0" />
+               </columnConstraints>
+            </GridPane>
+         </content>
+      </ScrollPane>
+      <Rectangle arcHeight="35.0" arcWidth="35.0" height="91.0" layoutX="22.0" layoutY="19.0" stroke="BLACK" strokeType="INSIDE" width="1003.0" />
+      <Label layoutX="62.0" layoutY="19.0" prefHeight="91.0" prefWidth="320.0" text="DASHBOARD" textFill="WHITE">
+         <font>
+            <Font name="Roboto Black" size="53.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>
