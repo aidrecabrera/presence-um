@@ -1,13 +1,9 @@
 COURSE_CODE,COURSE_SUBJECT,COURSE_SCHEDULE
 CCE101,Introduction,10:00-12:00
-CCE109,Intermediate,10:00-12:01
-CCE107,Advanced,10:00-12:02
-CCE101,Introduction,10:00-12:00
-CCE109,Intermediate,10:00-12:01
-CCE107,Advanced,10:00-12:02
-CCE107,Advanced,10:00-12:02
-CCE107,Advanced,10:00-12:02
-CCE107,Advanced,10:00-12:02
+CCE109,Purposive Comms,10:00-12:01
+CCE107,Advanced Programming,10:00-12:02
+CCE101,Phyiscal Education,10:00-12:00
+CCE109,Intermediate Programming,10:00-12:01
 CCE107,Advanced,10:00-12:02
 CCE107,Advanced,10:00-12:02
 CCE107,Advanced,10:00-12:02

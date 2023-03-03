@@ -18,10 +18,23 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 public class BasicFunctions {
+    public void generateMeetingHeader(GridPane gridPane, HBox hBox) {
+        hBox.setAlignment(Pos.CENTER);
+        hBox.setPrefHeight(100.0);
+        hBox.setPrefWidth(83.0);
+        hBox.setSpacing(3.0);
+
+        Label meetingDate = new Label();
+        meetingDate.setId("MEETING_DATE");
+        meetingDate.setText("Meeting_Date");
+        Font font = new Font("System Bold", 12.0);
+        meetingDate.setFont(font);
+        hBox.getChildren().add(meetingDate);
+    }
     public void setPropertyNewMeetingCell(VBox vBox) {
         vBox.setAlignment(Pos.CENTER);
-        vBox.setPrefHeight(200.0);
-        vBox.setPrefWidth(100.0);
+        vBox.setPrefHeight(100.0);
+        vBox.setPrefWidth(125);
         GridPane.setRowIndex(vBox, 1);
 
         MenuButton statusMark = new MenuButton();
@@ -29,19 +42,21 @@ public class BasicFunctions {
         statusMark.setAlignment(Pos.CENTER);
         statusMark.setContentDisplay(ContentDisplay.CENTER);
         statusMark.setText("Mark");
+
         MenuItem presentItem = new MenuItem("Present");
         MenuItem absentItem = new MenuItem("Absent");
         MenuItem excusedItem = new MenuItem("Excused");
         statusMark.getItems().addAll(presentItem, absentItem, excusedItem);
         vBox.getChildren().add(statusMark);
     }
+
     public void setPropertyNewBindMeetingColumn(VBox meetingColumn) {
-        meetingColumn.setPrefHeight(200.0);
+        meetingColumn.setPrefHeight(200);
         meetingColumn.setPrefWidth(100.0);
 
         GridPane attendanceMeetingColumn = new GridPane();
         attendanceMeetingColumn.setGridLinesVisible(true);
-        attendanceMeetingColumn.setPrefWidth(110.0);
+        attendanceMeetingColumn.setPrefWidth(100);
 
         ColumnConstraints columnConstraints = new ColumnConstraints();
         columnConstraints.setHgrow(Priority.SOMETIMES);
@@ -51,15 +66,15 @@ public class BasicFunctions {
         attendanceMeetingColumn.getColumnConstraints().add(columnConstraints);
 
         RowConstraints rowConstraints1 = new RowConstraints();
-        rowConstraints1.setMaxHeight(150.0);
-        rowConstraints1.setMinHeight(150.0);
-        rowConstraints1.setPrefHeight(150.0);
-        rowConstraints1.setVgrow(Priority.SOMETIMES);
+        rowConstraints1.setMaxHeight(200);
+        rowConstraints1.setMinHeight(200);
+        rowConstraints1.setPrefHeight(200);
+        rowConstraints1.setVgrow(Priority.ALWAYS);
         RowConstraints rowConstraints2 = new RowConstraints();
-        rowConstraints2.setMaxHeight(150.0);
-        rowConstraints2.setMinHeight(150.0);
-        rowConstraints2.setPrefHeight(150.0);
-        rowConstraints2.setVgrow(Priority.SOMETIMES);
+        rowConstraints2.setMaxHeight(200);
+        rowConstraints2.setMinHeight(200);
+        rowConstraints2.setPrefHeight(200);
+        rowConstraints2.setVgrow(Priority.ALWAYS);
         attendanceMeetingColumn.getRowConstraints().addAll(rowConstraints1, rowConstraints2);
 
         HBox hBox = new HBox();
@@ -78,11 +93,12 @@ public class BasicFunctions {
 
         meetingColumn.getChildren().add(attendanceMeetingColumn);
     }
+    String[] sampleArray = {"Student 1", "Student 2", "Student 3", "Student 4", "Student 5", "Student 6"};
     public void createStudentHBox(HBox hbox, String studentName, String studentOverall, String studentTotal) {
         hbox.setId("STUDENT_REFERENCE");
         hbox.setFillHeight(false);
-        hbox.setPrefHeight(150.0);
-        hbox.setPrefWidth(405.0);
+        hbox.setPrefHeight(100);
+        hbox.setPrefWidth(300);
         hbox.setPadding(new Insets(0, 0, 0, 0));
         hbox.getStyleClass().add("student-hbox");
 
@@ -94,12 +110,12 @@ public class BasicFunctions {
         childHBox1.setPadding(new Insets(0, 0, 0, 15.0));
 
         Label label = new Label();
-        label.setId("STUDENT_NAME");
+        label.setId(studentName);
         label.setAlignment(Pos.CENTER);
         label.setPrefHeight(100.0);
-        label.setPrefWidth(243.0);
-        label.setText("STUDENT_NAME");
-        label.getStyleClass().add("student-name");
+        label.setPrefWidth(187);
+        label.setText(studentName);
+        label.getStyleClass().add(studentName);
 
         childHBox1.getChildren().addAll(label);
 
@@ -122,7 +138,7 @@ public class BasicFunctions {
         slashLabel.getStyleClass().add("student-slash");
 
         Label totalLabel = new Label();
-        totalLabel.setText("100");
+        totalLabel.setText(studentTotal);
         totalLabel.setFont(new Font("System Bold", 12.0));
         totalLabel.getStyleClass().add("student-total");
 
@@ -134,7 +150,7 @@ public class BasicFunctions {
     public void courseCardPropertySetter(JFXButton newComponent, String CourseCode, String CourseSubject, String CourseSchedule) {
         newComponent.setAlignment(Pos.CENTER);
         newComponent.setContentDisplay(ContentDisplay.CENTER);
-        newComponent.setPrefHeight(138.75);
+        newComponent.setPrefHeight(141.25);
         newComponent.setPrefWidth(310);
         newComponent.setStyle("-fx-background-color: #d3f36b; -fx-background-radius: 15; -fx-background-radius: 15;");
         newComponent.setText(" ");
@@ -172,6 +188,8 @@ public class BasicFunctions {
 
         newComponent.setGraphic(newVBox);
     }
+
+
     public void PresenceSwitchScene(String fxmlLocation, Text sceneComponent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlLocation));
         Parent dashboardRoot = fxmlLoader.load();

@@ -3,8 +3,6 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -40,28 +38,28 @@
             </HBox>
             <HBox prefHeight="562.0" prefWidth="953.0">
                <children>
-                  <ScrollPane prefHeight="562.0" prefWidth="810.0" style="-fx-background-color: white;">
+                  <ScrollPane fx:id="STUDENT_SP" prefHeight="562.0" prefWidth="1017.0" style="-fx-background-color: white;">
                      <content>
-                        <GridPane fx:id="STUDENT_CONTAINER" gridLinesVisible="true">
+                        <GridPane fx:id="STUDENT_CONTAINER" gridLinesVisible="true" prefHeight="535.0" prefWidth="408.0">
                            <columnConstraints>
-                              <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="400.0" minWidth="400.0" percentWidth="0.0" prefWidth="400.0" />
+                              <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="350.0" minWidth="350.0" percentWidth="0.0" prefWidth="350.0" />
+                              <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="125.0" minWidth="125.0" percentWidth="0.0" prefWidth="125.0" />
                            </columnConstraints>
                            <rowConstraints>
                               <RowConstraints maxHeight="35.0" minHeight="35.0" prefHeight="35.0" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="100.0" minHeight="100.0" prefHeight="100.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <HBox fillHeight="false" prefHeight="150.0" prefWidth="405.0">
+                              <HBox fx:id="STUDENT_HEADER" fillHeight="false" prefHeight="35.0" prefWidth="402.0">
                                  <children>
-                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="307.0">
+                                    <HBox alignment="CENTER" prefHeight="35.0" prefWidth="256.0">
                                        <children>
-                                          <Label alignment="CENTER" prefHeight="35.0" prefWidth="300.0" text="Student" />
+                                          <Label alignment="CENTER" prefHeight="35.0" prefWidth="102.0" text="Student" />
                                        </children>
                                        <padding>
                                           <Insets left="15.0" />
                                        </padding>
                                     </HBox>
-                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="83.0" spacing="3.0">
+                                    <HBox alignment="CENTER" prefHeight="35.0" prefWidth="57.0" spacing="3.0">
                                        <children>
                                           <Label text="Overall">
                                              <font>
@@ -72,78 +70,17 @@
                                     </HBox>
                                  </children>
                               </HBox>
-                              <HBox fx:id="STUDENT_REFERENCE" fillHeight="false" prefHeight="150.0" prefWidth="405.0" GridPane.rowIndex="1">
+                              <HBox alignment="CENTER" prefHeight="35.0" prefWidth="125.0" spacing="3.0" GridPane.columnIndex="1">
                                  <children>
-                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="307.0">
-                                       <children>
-                                          <Label fx:id="STUDENT_NAME" alignment="CENTER" prefHeight="100.0" prefWidth="243.0" text="STUDENT_NAME" />
-                                       </children>
-                                       <padding>
-                                          <Insets left="15.0" />
-                                       </padding>
-                                    </HBox>
-                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="83.0" spacing="3.0">
-                                       <children>
-                                          <Label fx:id="STUDENT_OVERALL" text="100">
-                                             <font>
-                                                <Font name="System Bold" size="12.0" />
-                                             </font>
-                                          </Label>
-                                          <Label text="/">
-                                             <font>
-                                                <Font name="System Bold" size="12.0" />
-                                             </font>
-                                          </Label>
-                                          <Label text="100">
-                                             <font>
-                                                <Font name="System Bold" size="12.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </HBox>
+                                    <Label fx:id="MEETING_DATE" alignment="CENTER" contentDisplay="CENTER" prefWidth="322.0" text="Meeting_Date">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
                                  </children>
                               </HBox>
                            </children>
                         </GridPane>
-                     </content>
-                  </ScrollPane>
-                  <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="563.0" prefWidth="953.0" style="-fx-background-radius: 25; -fx-border-radius: 25; -fx-background-color: 0;">
-                     <content>
-                        <HBox prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <GridPane gridLinesVisible="true" prefWidth="110.0">
-                                 <columnConstraints>
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="125.0" minWidth="125.0" prefWidth="125.0" />
-                                 </columnConstraints>
-                                 <rowConstraints>
-                                    <RowConstraints maxHeight="35.0" minHeight="35.0" prefHeight="35.0" vgrow="SOMETIMES" />
-                                    <RowConstraints maxHeight="55.0" minHeight="100.0" prefHeight="55.0" vgrow="SOMETIMES" />
-                                 </rowConstraints>
-                                 <children>
-                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
-                                       <children>
-                                          <MenuButton fx:id="STATUS_MARK" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Mark">
-                                             <items>
-                                                <MenuItem mnemonicParsing="false" text="Present" />
-                                                <MenuItem mnemonicParsing="false" text="Absent" />
-                                                <MenuItem mnemonicParsing="false" text="Excused" />
-                                             </items>
-                                          </MenuButton>
-                                       </children>
-                                    </VBox>
-                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="83.0" spacing="3.0">
-                                       <children>
-                                          <Label fx:id="MEETING_DATE" text="Meeting_Date">
-                                             <font>
-                                                <Font name="System Bold" size="12.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </HBox>
-                                 </children>
-                              </GridPane>
-                           </children>
-                        </HBox>
                      </content>
                   </ScrollPane>
                </children>

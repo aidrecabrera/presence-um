@@ -3,7 +3,7 @@ package presence;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
-import javafx.scene.image.ImageView;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -21,36 +21,29 @@ public class AttendancePresence extends AttendanceFunction {
     BasicFunctions utilities = new BasicFunctions();
     @FXML
     private Label COURSE;
-
     @FXML
     private Label MEETING_DATE;
-
     @FXML
     private MenuButton STATUS_MARK;
-
     @FXML
     private GridPane STUDENT_CONTAINER;
-
-    @FXML
-    private ImageView STUDENT_IMAGE;
-
     @FXML
     private Label STUDENT_NAME;
-
     @FXML
     private Label STUDENT_OVERALL;
-
     @FXML
     private HBox STUDENT_REFERENCE;
-
+    @FXML
+    private ScrollPane MEETING_SP;
+    @FXML
+    private ScrollPane STUDENT_SP;
     @FXML
     void initialize() throws IOException {
         AttendanceBindStudentCard bindStudentCard = new AttendanceBindStudentCard();
         bindStudentCard.bindStudentCard(STUDENT_CONTAINER);
         AttendanceBindStudentCard attendanceBindStudentCard = new AttendanceBindStudentCard();
-        attendanceBindStudentCard.bindStudentAttendanceCell(ATTENDANCE_MEETING_COLUMN);
+        attendanceBindStudentCard.bindStudentAttendanceCell(STUDENT_CONTAINER);
     }
-
     @FXML
     private GridPane ATTENDANCE_MEETING_COLUMN;
     @FXML

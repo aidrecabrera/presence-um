@@ -13,7 +13,6 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
@@ -189,20 +188,12 @@
                   </Pane>
                   <Pane fx:id="DashboardPane" prefHeight="660.0" prefWidth="970.0" style="-fx-background-color: #f7f6f0;">
                      <children>
-                        <ScrollPane layoutX="20.0" layoutY="141.0" prefHeight="565.0" prefWidth="959.0" style="-fx-border-color: #f7f6f0;">
+                        <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="20.0" layoutY="141.0" prefHeight="565.0" prefWidth="959.0" style="-fx-border-color: #f7f6f0;">
                            <content>
-                              <GridPane fx:id="courseContainer" alignment="CENTER_LEFT" hgap="10.0" prefHeight="555.0" prefWidth="930.0" vgap="10.0">
+                              <GridPane fx:id="courseContainer" hgap="10.0" prefHeight="555.0" prefWidth="930.0" vgap="10.0">
                                  <columnConstraints>
-                                    <ColumnConstraints hgrow="NEVER" minWidth="310.0" percentWidth="33.0" prefWidth="310.0" />
-                                    <ColumnConstraints hgrow="NEVER" minWidth="310.0" prefWidth="310.0" />
-                                    <ColumnConstraints hgrow="NEVER" minWidth="310.0" prefWidth="310.0" />
+                                    <ColumnConstraints hgrow="ALWAYS" minWidth="310.0" percentWidth="33.0" prefWidth="310.0" />
                                  </columnConstraints>
-                                 <rowConstraints>
-                                    <RowConstraints maxHeight="138.75" minHeight="138.75" percentHeight="25.0" prefHeight="138.75" vgrow="NEVER" />
-                                    <RowConstraints minHeight="30.0" percentHeight="25.0" prefHeight="138.75" vgrow="NEVER" />
-                                    <RowConstraints minHeight="30.0" percentHeight="25.0" prefHeight="138.75" vgrow="NEVER" />
-                                    <RowConstraints minHeight="100.0" percentHeight="25.0" prefHeight="138.75" vgrow="NEVER" />
-                                 </rowConstraints>
                               </GridPane>
                            </content>
                         </ScrollPane>

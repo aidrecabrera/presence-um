@@ -48,7 +48,7 @@ public class DashboardBindCourses {
             if (col == 3) {
                 col = 0;
                 row++;
-                if (row == 3 && col == 2) {
+                if (row < 2 && col < 2) {
                     embedContainer.setPrefHeight(embedContainer.getPrefHeight() + 138.75);
                 }
             }
