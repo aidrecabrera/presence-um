@@ -12,19 +12,20 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="731.0" prefWidth="989.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presence.AttendancePresence">
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presence.AttendancePresence">
    <children>
-      <VBox layoutX="17.0" layoutY="25.0" prefHeight="685.0" prefWidth="953.0" spacing="25.0">
+      <VBox layoutX="20.0" layoutY="16.0" prefHeight="679.0" prefWidth="1239.0" spacing="25.0">
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="99.0" prefWidth="855.0" style="-fx-background-color: black; -fx-background-radius: 25;">
                <children>
-                  <Label fx:id="COURSE" prefHeight="91.0" prefWidth="400.0" text="COURSE_NAME" textFill="WHITE">
+                  <Label fx:id="COURSE" prefHeight="91.0" prefWidth="548.0" text="COURSE_NAME" textFill="WHITE">
                      <font>
                         <Font name="Roboto Black" size="53.0" />
                      </font>
                   </Label>
-                  <HBox alignment="CENTER_RIGHT" prefHeight="98.0" prefWidth="537.0">
+                  <HBox alignment="CENTER_RIGHT" prefHeight="96.0" prefWidth="933.0">
                      <children>
+                        <JFXButton onAction="#backToDashboard" text="Back" />
                         <JFXButton onAction="#COURSE_NEW_MEETING" prefHeight="41.0" prefWidth="129.0" style="-fx-background-radius: 10;" text="New Meeting" />
                      </children>
                      <padding>
@@ -38,7 +39,7 @@
             </HBox>
             <HBox prefHeight="562.0" prefWidth="953.0">
                <children>
-                  <ScrollPane fx:id="STUDENT_SP" prefHeight="562.0" prefWidth="1017.0" style="-fx-background-color: white;">
+                  <ScrollPane fx:id="STUDENT_SP" prefHeight="559.0" prefWidth="1401.0" style="-fx-background-color: white;">
                      <content>
                         <GridPane fx:id="STUDENT_CONTAINER" gridLinesVisible="true" prefHeight="535.0" prefWidth="408.0">
                            <columnConstraints>

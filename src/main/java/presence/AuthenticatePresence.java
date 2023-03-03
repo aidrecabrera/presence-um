@@ -5,11 +5,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import presence.authentication.Authenticate;
-import presence.utilities.BasicFunctions;
 
 import java.io.IOException;
 
-import static presence.utilities.BasicFunctions.validateEntry;
+import static presence.BasicFunctions.validateEntry;
 
 public class AuthenticatePresence extends Authenticate{
     static BasicFunctions utilities = new BasicFunctions();

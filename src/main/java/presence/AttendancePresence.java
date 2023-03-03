@@ -1,5 +1,6 @@
 package presence;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
@@ -7,10 +8,10 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import presence.attendance.AttendanceBindStudentCard;
 import presence.attendance.AttendanceFunction;
 import presence.scanning.QuickReadPresence;
-import presence.utilities.BasicFunctions;
 
 import java.io.IOException;
 
@@ -37,8 +38,18 @@ public class AttendancePresence extends AttendanceFunction {
     private ScrollPane MEETING_SP;
     @FXML
     private ScrollPane STUDENT_SP;
+
     @FXML
     void initialize() throws IOException {
+        Stage stage = null;
+        if (COURSE.getScene() != null) {
+            stage = (Stage) COURSE.getScene().getWindow();
+        }
+        if (stage != null) {
+            stage.setOnCloseRequest(we -> {
+                System.out.println("Stage is closing");
+            });
+        }
         AttendanceBindStudentCard bindStudentCard = new AttendanceBindStudentCard();
         bindStudentCard.bindStudentCard(STUDENT_CONTAINER);
         AttendanceBindStudentCard attendanceBindStudentCard = new AttendanceBindStudentCard();
@@ -49,9 +60,14 @@ public class AttendancePresence extends AttendanceFunction {
     @FXML
     private HBox MEETING_COLUMN_CONTAINER;
 
+    @FXML
     public void COURSE_NEW_MEETING(javafx.event.ActionEvent actionEvent) throws IOException {
         VBox newMeetingColumn = new VBox();
         utilities.setPropertyNewBindMeetingColumn(newMeetingColumn);
         MEETING_COLUMN_CONTAINER.getChildren().add(newMeetingColumn);
+    }
+
+    public void backToDashboard(ActionEvent actionEvent) throws IOException {
+
     }
 }

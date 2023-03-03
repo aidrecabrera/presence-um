@@ -4,7 +4,7 @@ import presence.attendance.Calculate.AttendanceCalculate;
 import presence.attendance.Meeting.AttendanceMeeting;
 import presence.attendance.Sheet.AttendanceSheet;
 import presence.Database;
-import presence.utilities.BasicFunctions;
+import presence.BasicFunctions;
 
 import java.io.*;
 

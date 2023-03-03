@@ -4,7 +4,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import presence.Database;
-import presence.utilities.BasicFunctions;
+import presence.BasicFunctions;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

@@ -20,7 +20,7 @@
          </content>
       </ScrollPane>
       <Rectangle arcHeight="35.0" arcWidth="35.0" height="91.0" layoutX="22.0" layoutY="19.0" stroke="BLACK" strokeType="INSIDE" width="1003.0" />
-      <Label layoutX="62.0" layoutY="19.0" prefHeight="91.0" prefWidth="320.0" text="DASHBOARD" textFill="WHITE">
+      <Label fx:id="DashboardHeader" layoutX="62.0" layoutY="19.0" prefHeight="91.0" prefWidth="320.0" text="DASHBOARD" textFill="WHITE">
          <font>
             <Font name="Roboto Black" size="53.0" />
          </font>

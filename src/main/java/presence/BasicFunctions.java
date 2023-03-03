@@ -1,4 +1,4 @@
-package presence.utilities;
+package presence;
 
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXMLLoader;
@@ -190,8 +190,19 @@ public class BasicFunctions {
         newComponent.setGraphic(newVBox);
     }
 
-
     public void PresenceSwitchScene(String fxmlLocation, Text sceneComponent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlLocation));
+        Parent dashboardRoot = fxmlLoader.load();
+        Scene currentScene = sceneComponent.getScene();
+        currentScene.setRoot(dashboardRoot);
+    }
+    public void PresenceSwitchScene(String fxmlLocation, Label sceneComponent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlLocation));
+        Parent dashboardRoot = fxmlLoader.load();
+        Scene currentScene = sceneComponent.getScene();
+        currentScene.setRoot(dashboardRoot);
+    }
+    public void PresenceSwitchScene(String fxmlLocation, GridPane sceneComponent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlLocation));
         Parent dashboardRoot = fxmlLoader.load();
         Scene currentScene = sceneComponent.getScene();
