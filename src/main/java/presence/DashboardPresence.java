@@ -5,7 +5,9 @@ import com.jfoenix.controls.JFXComboBox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.layout.*;
+import javafx.scene.control.SplitPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import presence.dashboard.DashboardBindCourses;
 import presence.database.Database;
@@ -59,6 +61,8 @@ public class DashboardPresence implements Initializable  {
     private JFXButton courseCardCCE107;
     @FXML
     private GridPane courseContainer;
+    @FXML
+    private SplitPane dashboardSplitContainer;
 
     public void loadDashboardCourses() throws IOException {
         String FilePath = importData.getDatabaseCourseList();

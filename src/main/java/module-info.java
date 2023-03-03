@@ -7,8 +7,6 @@ module presence.presenceum {
     requires com.google.zxing.javase;
     requires opencv;
     requires webcam.capture;
-    requires javafx.graphics;
-
 
     opens presence to javafx.fxml;
     exports presence;

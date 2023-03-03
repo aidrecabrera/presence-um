@@ -1,9 +1,6 @@
 package presence.dashboard;
 
 import com.jfoenix.controls.JFXButton;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import presence.database.Database;
@@ -52,11 +49,12 @@ public class DashboardBindCourses {
             setBindCourseSchedule(course.getCourseSched());
             utilities.courseCardPropertySetter(newCourseCard, bindCourseCode, bindCourseName, bindCourseSchedule);
             newCourseCard.setOnAction(event -> {
+                System.out.println("Hello! I am Course " + courseInformationArray[1]);
                 try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("newView.fxml"));
-                    Parent newView = loader.load();
-                    Node rightSide = splitPane.getItems().get(1);
-                    splitPane.getItems().set(1, newView);
+//                    FXMLLoader loader = new FXMLLoader(getClass().getResource("CourseTemplate.fxml"));
+//                    Parent newView = loader.load();
+//                    Node rightSide = dashboardSplitPane.getItems().get(1);
+//                    dashboardSplitPane.getItems().set(1, newView);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
