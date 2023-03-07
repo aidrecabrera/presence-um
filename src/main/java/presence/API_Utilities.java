@@ -18,10 +18,11 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 public class API_Utilities {
-    public void generateMeetingHeader(GridPane gridPane, HBox hBox) {
+    public HBox generateMeetingHeader(GridPane gridPane) {
+        HBox hBox = new HBox();
         hBox.setAlignment(Pos.CENTER);
         hBox.setPrefHeight(100.0);
-        hBox.setPrefWidth(83.0);
+        hBox.setPrefWidth(125);
         hBox.setSpacing(3.0);
 
         Label meetingDate = new Label();
@@ -30,8 +31,10 @@ public class API_Utilities {
         Font font = new Font("System Bold", 12.0);
         meetingDate.setFont(font);
         hBox.getChildren().add(meetingDate);
+        return hBox;
     }
     public void setPropertyNewMeetingCell(VBox vBox) {
+        System.out.println("New Cell Generated!");
         vBox.setAlignment(Pos.CENTER);
         vBox.setPrefHeight(100.0);
         vBox.setPrefWidth(125);

@@ -42,7 +42,6 @@ public class DashboardPresence implements Initializable  {
         }
         Node rightSide = dashboardSplitContainer.getItems().get(1);
         dashboardSplitContainer.getItems().set(1, importData.getDatabaseGetFXML());
-
     }
 
     public DashboardPresence() throws IOException {

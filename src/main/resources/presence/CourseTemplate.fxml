@@ -41,10 +41,9 @@
                <children>
                   <ScrollPane fx:id="STUDENT_SP" prefHeight="559.0" prefWidth="1401.0" style="-fx-background-color: white;">
                      <content>
-                        <GridPane fx:id="STUDENT_CONTAINER" gridLinesVisible="true" prefHeight="535.0" prefWidth="408.0">
+                        <GridPane fx:id="STUDENT_CONTAINER" gridLinesVisible="true" prefHeight="535.0" prefWidth="336.0">
                            <columnConstraints>
                               <ColumnConstraints fillWidth="false" hgrow="ALWAYS" maxWidth="350.0" minWidth="350.0" percentWidth="0.0" prefWidth="350.0" />
-                              <ColumnConstraints fillWidth="false" hgrow="ALWAYS" maxWidth="125.0" minWidth="125.0" percentWidth="0.0" prefWidth="125.0" />
                            </columnConstraints>
                            <rowConstraints>
                               <RowConstraints maxHeight="35.0" minHeight="35.0" prefHeight="35.0" vgrow="ALWAYS" />
@@ -69,15 +68,6 @@
                                           </Label>
                                        </children>
                                     </HBox>
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER" prefHeight="35.0" prefWidth="125.0" spacing="3.0" GridPane.columnIndex="1">
-                                 <children>
-                                    <Label fx:id="MEETING_DATE" alignment="CENTER" contentDisplay="CENTER" prefWidth="322.0" text="Meeting_Date">
-                                       <font>
-                                          <Font name="System Bold" size="12.0" />
-                                       </font>
-                                    </Label>
                                  </children>
                               </HBox>
                            </children>

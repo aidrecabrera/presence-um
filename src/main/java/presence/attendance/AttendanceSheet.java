@@ -11,7 +11,6 @@ public interface AttendanceSheet {
     API_Utilities util = new API_Utilities();
     API_Utilities DateAPI = new API_Utilities();
     API_Utilities utilities = new API_Utilities();
-
     void initializeAttendanceSheetHeader();
     void attendanceEditor(String paramFile, String paramStudentID, String paramAttendanceStatus) throws IOException;
 

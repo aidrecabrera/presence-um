@@ -11,7 +11,7 @@ public class MainPresence extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         Application.setUserAgentStylesheet(Application.STYLESHEET_MODENA);
-        FXMLLoader fxmlLoader = new FXMLLoader(MainPresence.class.getResource("MainPresenceUI.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainPresence.class.getResource("MainDashboard.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setResizable(false);
         stage.setTitle("UM Presence");
