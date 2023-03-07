@@ -3,7 +3,7 @@ package presence.authentication;
 import java.io.*;
 import java.util.HashMap;
 
-public class AuthenticateService {
+public abstract class AuthenticateFunction implements SignIn, Register {
     /**
      * @Description This class provides methods for managing and authenticating user accounts. It has a private field 'USER_HASHMAP'
      * that stores the registered users as key-value pairs, with the username as the key and the password as the value.
@@ -28,7 +28,7 @@ public class AuthenticateService {
 
     private final HashMap<String, String> USER_HASHMAP = new HashMap<>();
     private final String filePath;
-    public AuthenticateService(String userFilePath) {
+    public AuthenticateFunction(String userFilePath) {
         this.filePath = userFilePath;
     }
 
@@ -37,6 +37,7 @@ public class AuthenticateService {
      Reads user information from a file and stores it in the users map.
      @param filePath the path to the file containing USER_HASHMAP information
      */
+    @Override
     public void readUsersFromFile(String filePath) {
         File file = new File(filePath);
         if (file.length() == 0) {
@@ -60,6 +61,7 @@ public class AuthenticateService {
      Writes user information from the USER_HASHMAP map to a file.
      @param filePath the path to the file to write USER_HASHMAP information to
      */
+    @Override
     public void saveUsersToFile(String filePath) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath, true))) {
             for (String username : USER_HASHMAP.keySet()) {
@@ -77,6 +79,7 @@ public class AuthenticateService {
      @param username the username to check for
      @return true if the user exists, false otherwise
      */
+    @Override
     public boolean userExists(String username) {
         return USER_HASHMAP.containsKey(username);
     }
@@ -85,7 +88,8 @@ public class AuthenticateService {
      Registers a new user with the given username and password.
      @param user an AuthenticateUserRetrieval object containing the user's information
      */
-    public void registerUser(AuthenticateUserRetrieval user) {
+    @Override
+    public void registerUser(AuthenticateProfessorRetrieve user) {
         USER_HASHMAP.put(user.getUsername(), user.getPassword());
     }
     /**
@@ -95,9 +99,28 @@ public class AuthenticateService {
      @param password the password of the user to authenticate
      @return true if the user is authenticated, false otherwise
      */
+    @Override
     public boolean authenticateUser(String username, String password) {
         String storedPassword = USER_HASHMAP.get(username);
         return storedPassword != null && storedPassword.equals(password);
+    }
+
+    public static void createFileIfNotExists(String filePath) {
+        File file = new File(filePath);
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+                System.out.println("File created: " + filePath);
+                try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+                    writer.write("ADMIN EMAIL,ADMIN PASSWORD\n");
+                    writer.flush();
+                }
+
+            } catch (IOException e) {
+                System.out.println("Failed to create file: " + filePath);
+                e.printStackTrace();
+            }
+        }
     }
 }
 

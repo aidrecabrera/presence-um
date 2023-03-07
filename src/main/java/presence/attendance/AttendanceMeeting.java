@@ -1,4 +1,4 @@
-package presence.attendance.Meeting;
+package presence.attendance;
 
 public interface AttendanceMeeting {
 

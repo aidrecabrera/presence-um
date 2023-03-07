@@ -4,7 +4,7 @@ package presence.authentication;
  The AuthenticateUserRetrieval class encapsulates the
  username and password for authenticating a user.
  */
-public class AuthenticateUserRetrieval {
+public class AuthenticateProfessorRetrieve {
     /**
      * @username Private field to store the username
      * @password Private field to store the password
@@ -16,7 +16,7 @@ public class AuthenticateUserRetrieval {
      @param username the username for the authentication request
      @param password the password for the authentication request
      */
-    public AuthenticateUserRetrieval(String username, String password) {
+    public AuthenticateProfessorRetrieve(String username, String password) {
         this.username = username;
         this.password = password;
     }

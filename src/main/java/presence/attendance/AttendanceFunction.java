@@ -1,19 +1,18 @@
 package presence.attendance;
 
-import presence.attendance.Calculate.AttendanceCalculate;
-import presence.attendance.Meeting.AttendanceMeeting;
-import presence.attendance.Sheet.AttendanceSheet;
-import presence.Database;
-import presence.BasicFunctions;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 import java.io.*;
 
-public abstract class AttendanceFunction implements AttendanceSheet, AttendanceMeeting, AttendanceCalculate {
-    Database importDatabase = new Database();
-
+public abstract class AttendanceFunction implements AttendanceSheet, AttendanceMeeting, AttendanceCalculate, AttendanceBinder {
     private static String COURSE_SUBJECT;
     private static String COURSE_CODE;
     private static final String LOCATION_SHEET_FILE_PATH = "src/main/resources/presence/" + COURSE_CODE + "_" + COURSE_SUBJECT + "_ATTENDANCE_SHEET.csv";
+
+    public AttendanceFunction() throws FileNotFoundException {
+    }
 
     public static void setCourseSubject(String courseSubject) {
         COURSE_SUBJECT = courseSubject;
@@ -57,8 +56,9 @@ public abstract class AttendanceFunction implements AttendanceSheet, AttendanceM
             }
         }
     }
+
+    @Override
     public void initializeAttendanceSheetHeader() {
-        BasicFunctions DateAPI = new BasicFunctions();
         try {
             FileReader fileReader = new FileReader(LOCATION_SHEET_FILE_PATH);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
@@ -87,9 +87,8 @@ public abstract class AttendanceFunction implements AttendanceSheet, AttendanceM
             e.printStackTrace();
         }
     }
-
-    public static void attendanceEditor(String paramFile, String paramStudentID, String paramAttendanceStatus) throws IOException {
-        BasicFunctions util = new BasicFunctions();
+    @Override
+    public void attendanceEditor(String paramFile, String paramStudentID, String paramAttendanceStatus) throws IOException {
         String filePath = paramFile;
         String searchString = util.removeFirstChar(paramStudentID);
         String headerName = util.getCurrentDate();
@@ -142,5 +141,47 @@ public abstract class AttendanceFunction implements AttendanceSheet, AttendanceM
         writer.close();
 
         System.out.println("Data edited in the matching row and column in the CSV file");
+    }
+
+    int row = 1;
+    int col = 0;
+    int counter = 0;
+
+
+    FileReader fileReader = new FileReader("src/main/resources/attendance/9709_CCE107_ATTENDANCE_SHEET.csv");
+    BufferedReader ComponentLabelReader = new BufferedReader(fileReader);
+    String rowStudentInformation;
+
+    @Override
+    public void bindStudentCard(GridPane embedContainer) throws IOException {
+        ComponentLabelReader.readLine();
+        int counter = 0;
+        while ((rowStudentInformation = ComponentLabelReader.readLine()) != null && !(counter == 100)) {
+            HBox newStudentCard = new HBox();
+            String[] courseInformationArray = rowStudentInformation.split(",");
+            utilities.createStudentHBox(newStudentCard, courseInformationArray[2], "100", "500");
+            embedContainer.add(newStudentCard, 0, row);
+            ++counter;
+            row++;
+            if (row >= 6) {
+                embedContainer.setPrefHeight(embedContainer.getPrefHeight() + 100);
+            }
+            System.out.println("Bounded!");
+        }
+    }
+    @Override
+    public void bindStudentAttendanceCell(GridPane embedContainer) throws IOException {
+        while ((rowStudentInformation = ComponentLabelReader.readLine()) != null) {
+            VBox newMeetingCell = new VBox();
+            utilities.setPropertyNewMeetingCell(newMeetingCell);
+            embedContainer.add(newMeetingCell, 1, row);
+            ++counter;
+            row++;
+            if (row == 0 && col < 20) {
+                embedContainer.setPrefHeight(embedContainer.getPrefHeight() + 138.75);
+                embedContainer.addRow(1);
+            }
+            System.out.println("Cell!");
+        }
     }
 }

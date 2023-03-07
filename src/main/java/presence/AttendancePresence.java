@@ -13,6 +13,7 @@ import presence.attendance.AttendanceBindStudentCard;
 import presence.attendance.AttendanceFunction;
 import presence.scanning.QuickReadPresence;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class AttendancePresence extends AttendanceFunction {
@@ -38,6 +39,9 @@ public class AttendancePresence extends AttendanceFunction {
     private ScrollPane MEETING_SP;
     @FXML
     private ScrollPane STUDENT_SP;
+
+    public AttendancePresence() throws FileNotFoundException {
+    }
 
     @FXML
     void initialize() throws IOException {

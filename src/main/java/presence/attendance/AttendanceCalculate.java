@@ -1,4 +1,4 @@
-package presence.attendance.Calculate;
+package presence.attendance;
 
 public interface AttendanceCalculate {
     void calculateOverallCourseAttendance();
