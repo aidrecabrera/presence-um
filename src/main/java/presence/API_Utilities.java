@@ -17,7 +17,7 @@ import javafx.scene.text.Text;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-public class BasicFunctions {
+public class API_Utilities {
     public void generateMeetingHeader(GridPane gridPane, HBox hBox) {
         hBox.setAlignment(Pos.CENTER);
         hBox.setPrefHeight(100.0);

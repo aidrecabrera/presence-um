@@ -1,4 +1,4 @@
-package presence;
+package presence.backend;
 
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
@@ -8,14 +8,16 @@ import javafx.scene.Node;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import presence.API_Utilities;
+import presence.API_Database;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class DashboardPresence implements Initializable  {
-    Database importData = new Database();
-    BasicFunctions utilities = new BasicFunctions();
+    API_Database importData = new API_Database();
+    API_Utilities utilities = new API_Utilities();
     @FXML
     private JFXButton ButtonCalendar;
     @FXML

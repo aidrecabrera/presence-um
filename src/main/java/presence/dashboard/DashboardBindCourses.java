@@ -1,4 +1,4 @@
-package presence;
+package presence.dashboard;
 
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXMLLoader;
@@ -9,7 +9,8 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.stage.Stage;
-import presence.dashboard.DashboardLoadCoursesInformation;
+import presence.API_Utilities;
+import presence.API_Database;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -17,9 +18,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public class DashboardBindCourses {
-    Database importData = new Database();
-    BasicFunctions utilities = new BasicFunctions();
+public abstract class DashboardBindCourses {
+    public API_Database importData = new API_Database();
+    API_Utilities utilities = new API_Utilities();
     private String bindCourseCode;
     private String bindCourseName;
     private String bindCourseSchedule;
@@ -48,7 +49,7 @@ public class DashboardBindCourses {
             JFXButton newCourseCard = new JFXButton();
             String[] courseInformationArray = rowCourseInformation.split(",");
 
-            DashboardLoadCoursesInformation course = new DashboardLoadCoursesInformation(courseInformationArray[0], courseInformationArray[1], courseInformationArray[2]);
+            DashboardLoadCourses course = new DashboardLoadCourses(courseInformationArray[0], courseInformationArray[1], courseInformationArray[2]);
             setBindCourseCode(course.getCourseCode());
             setBindCourseName(course.getCourseName());
             setBindCourseSchedule(course.getCourseSched());

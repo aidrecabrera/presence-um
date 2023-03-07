@@ -22,6 +22,14 @@ public abstract class AttendanceFunction implements AttendanceSheet, AttendanceM
         COURSE_CODE = courseCode;
     }
 
+    public static String getCourseSubject() {
+        return COURSE_SUBJECT;
+    }
+
+    public static String getCourseCode() {
+        return COURSE_CODE;
+    }
+
     @Override
     public void createNewMeeting() {
 
@@ -147,7 +155,6 @@ public abstract class AttendanceFunction implements AttendanceSheet, AttendanceM
     int col = 0;
     int counter = 0;
 
-
     FileReader fileReader = new FileReader("src/main/resources/attendance/9709_CCE107_ATTENDANCE_SHEET.csv");
     BufferedReader ComponentLabelReader = new BufferedReader(fileReader);
     String rowStudentInformation;
@@ -166,7 +173,6 @@ public abstract class AttendanceFunction implements AttendanceSheet, AttendanceM
             if (row >= 6) {
                 embedContainer.setPrefHeight(embedContainer.getPrefHeight() + 100);
             }
-            System.out.println("Bounded!");
         }
     }
     @Override

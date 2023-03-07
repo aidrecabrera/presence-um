@@ -1,17 +1,18 @@
-package presence;
+package presence.backend;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import presence.API_Utilities;
 import presence.authentication.Authenticate;
 
 import java.io.IOException;
 
-import static presence.BasicFunctions.validateEntry;
+import static presence.API_Utilities.validateEntry;
 
 public class AuthenticatePresence extends Authenticate{
-    static BasicFunctions utilities = new BasicFunctions();
+    static API_Utilities utilities = new API_Utilities();
     @FXML
     private Text Description;
     @FXML

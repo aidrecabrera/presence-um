@@ -1,16 +1,16 @@
 package presence.attendance;
 
-import presence.BasicFunctions;
-import presence.Database;
+import presence.API_Utilities;
+import presence.API_Database;
 
 import java.io.IOException;
 
 public interface AttendanceSheet {
-    Database importDatabase = new Database();
-    Database importData = new Database();
-    BasicFunctions util = new BasicFunctions();
-    BasicFunctions DateAPI = new BasicFunctions();
-    BasicFunctions utilities = new BasicFunctions();
+    API_Database importDatabase = new API_Database();
+    API_Database importData = new API_Database();
+    API_Utilities util = new API_Utilities();
+    API_Utilities DateAPI = new API_Utilities();
+    API_Utilities utilities = new API_Utilities();
 
     void initializeAttendanceSheetHeader();
     void attendanceEditor(String paramFile, String paramStudentID, String paramAttendanceStatus) throws IOException;

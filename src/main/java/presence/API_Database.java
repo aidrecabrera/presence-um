@@ -5,14 +5,14 @@ import javafx.scene.Parent;
 
 import java.io.IOException;
 
-public class Database {
+public class API_Database {
     private String DatabaseAuthentication = "src/main/resources/database/DB_PRESENCE_USER_AUTH.csv";
     private String DatabaseCourseList = "src/main/resources/course/courseList.csv";
     private String DatabaseRequestLogs = "src/main/resources/database/PRESENCE_ACTIVITY_LOGS.csv";
 
     private Parent DatabaseGetFXML;
 
-    public Database() {
+    public API_Database() {
     }
 
     public Parent getDatabaseGetFXML() {

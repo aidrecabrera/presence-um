@@ -12,4 +12,8 @@ module presence.presenceum {
     exports presence;
     exports presence.scanning;
     opens presence.scanning to javafx.fxml;
+    exports presence.backend;
+    opens presence.backend to javafx.fxml;
+    exports presence.dashboard;
+    opens presence.dashboard to javafx.fxml;
 }

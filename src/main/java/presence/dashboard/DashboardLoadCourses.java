@@ -1,14 +1,14 @@
 package presence.dashboard;
 
-public class DashboardLoadCoursesInformation {
+public class DashboardLoadCourses {
     private String courseCode;
     private String courseName;
     private String courseSched;
 
-    public DashboardLoadCoursesInformation() {
+    public DashboardLoadCourses() {
     }
 
-    public DashboardLoadCoursesInformation(String courseCode, String courseName, String courseSched) {
+    public DashboardLoadCourses(String courseCode, String courseName, String courseSched) {
         this.courseCode = courseCode;
         this.courseName = courseName;
         this.courseSched = courseSched;

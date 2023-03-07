@@ -1,11 +1,11 @@
 package presence.authentication;
 
-import presence.Database;
+import presence.API_Database;
 
 import java.util.HashMap;
 
 public interface SignIn {
-    Database importData = new Database();
+    API_Database importData = new API_Database();
     HashMap<String, String> USER_HASHMAP = new HashMap<>();
     void readUsersFromFile(String filePath);
 
