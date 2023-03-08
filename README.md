@@ -29,74 +29,6 @@
 - JFoenix 9.0.10 or higher
 - JavaFX 11.0.2 or higher
 
-```
-<dependencies>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>1.2.6</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-nop</artifactId>
-            <version>2.0.0-alpha2</version>
-        </dependency>
-        <dependency>
-            <groupId>com.github.sarxos</groupId>
-            <artifactId>webcam-capture</artifactId>
-            <version>0.3.12</version>
-        </dependency>
-        <dependency>
-            <groupId>org.openpnp</groupId>
-            <artifactId>opencv</artifactId>
-            <version>4.6.0-0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.zxing</groupId>
-            <artifactId>core</artifactId>
-            <version>3.4.1</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.zxing</groupId>
-            <artifactId>javase</artifactId>
-            <version>3.4.1</version>
-        </dependency>
-        <dependency>
-            <groupId>com.jfoenix</groupId>
-            <artifactId>jfoenix</artifactId>
-            <version>9.0.10</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-controls</artifactId>
-            <version>11.0.2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-fxml</artifactId>
-            <version>11.0.2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-graphics</artifactId>
-            <version>11</version>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
-```
-
 ## Installation
 
 1. Clone the repository
@@ -217,6 +149,78 @@ In the program that uses CSV files, the BufferedWriter class can be used to writ
 In the context of a Student Attendance Tracking System that uses CSV files, the BufferedReader class can be used to read attendance data from the file in CSV format. This can be done by creating a BufferedReader object and calling its readLine() method to read attendance data from the file. The use of buffering ensures that the data is read from the file efficiently and in a timely manner, allowing for fast and reliable retrieval of the attendance records.
 
 The BufferedFileWriter and BufferedReader classes are important components in the program since it uses CSV files. They improve the efficiency and performance of the system by reducing I/O overhead and providing efficient buffering mechanisms for writing and reading data to and from files. By using these classes, the system can reliably and efficiently track student attendance records, providing accurate and up-to-date information to teachers, administrators, and other stakeholders.
+
+## Dependencies
+```
+```
+<dependencies>
+<dependency>
+    <groupId>ch.qos.logback</groupId>
+    <artifactId>logback-classic</artifactId>
+    <version>1.2.6</version>
+</dependency>
+<dependency>
+    <groupId>org.slf4j</groupId>
+    <artifactId>slf4j-nop</artifactId>
+    <version>2.0.0-alpha2</version>
+</dependency>
+<dependency>
+    <groupId>com.github.sarxos</groupId>
+    <artifactId>webcam-capture</artifactId>
+    <version>0.3.12</version>
+</dependency>
+<dependency>
+    <groupId>org.openpnp</groupId>
+    <artifactId>opencv</artifactId>
+    <version>4.6.0-0</version>
+</dependency>
+<dependency>
+    <groupId>com.google.zxing</groupId>
+    <artifactId>core</artifactId>
+    <version>3.4.1</version>
+</dependency>
+<dependency>
+    <groupId>com.google.zxing</groupId>
+    <artifactId>javase</artifactId>
+    <version>3.4.1</version>
+</dependency>
+<dependency>
+    <groupId>com.jfoenix</groupId>
+    <artifactId>jfoenix</artifactId>
+    <version>9.0.10</version>
+</dependency>
+
+<dependency>
+    <groupId>org.openjfx</groupId>
+    <artifactId>javafx-controls</artifactId>
+    <version>11.0.2</version>
+</dependency>
+<dependency>
+    <groupId>org.openjfx</groupId>
+    <artifactId>javafx-fxml</artifactId>
+    <version>11.0.2</version>
+</dependency>
+<dependency>
+    <groupId>org.openjfx</groupId>
+    <artifactId>javafx-graphics</artifactId>
+    <version>11</version>
+</dependency>
+<dependency>
+    <groupId>org.junit.jupiter</groupId>
+    <artifactId>junit-jupiter-api</artifactId>
+    <version>${junit.version}</version>
+    <scope>test</scope>
+</dependency>
+<dependency>
+    <groupId>org.junit.jupiter</groupId>
+    <artifactId>junit-jupiter-engine</artifactId>
+    <version>${junit.version}</version>
+    <scope>test</scope>
+</dependency>
+</dependencies>
+```
+
+```
 
 ## License
 
