@@ -73,8 +73,9 @@ public class AttendanceBindAndCell implements AttendanceBinder {
         ComponentLabelReader.readLine();
         while ((rowStudentInformation = ComponentLabelReader.readLine()) != null) {
             String[] courseInformationArray = rowStudentInformation.split(",");
+            String MeetingStatus = courseInformationArray[col+3];
             VBox newMeetingCell = new VBox();
-            utilities.setPropertyNewMeetingCell(newMeetingCell, MeetingDateID, courseInformationArray[2]);
+            utilities.setPropertyNewMeetingCell(newMeetingCell, MeetingDateID, courseInformationArray[2], MeetingStatus);
             embedContainer.add(newMeetingCell, col, row);
             row++;
             if (row == 0 && col < 20) {
