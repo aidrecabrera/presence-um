@@ -197,7 +197,7 @@ public class API_Utilities {
         newComponent.setContentDisplay(ContentDisplay.CENTER);
         newComponent.setPrefHeight(141.25);
         newComponent.setPrefWidth(310);
-        newComponent.setStyle("-fx-background-color: #d3f36b; -fx-background-radius: 15; -fx-background-radius: 15;");
+        newComponent.setStyle("-fx-background-color: #ADE8F4; -fx-background-radius: 15; -fx-background-radius: 15;");
         newComponent.setText(" ");
 
         VBox newVBox = new VBox();

@@ -16,17 +16,17 @@
    <children>
       <VBox layoutX="20.0" layoutY="16.0" prefHeight="679.0" prefWidth="1239.0" spacing="25.0">
          <children>
-            <HBox alignment="CENTER_LEFT" prefHeight="99.0" prefWidth="855.0" style="-fx-background-color: black; -fx-background-radius: 25;">
+            <HBox alignment="CENTER_LEFT" prefHeight="99.0" prefWidth="855.0" style="-fx-background-color: #0077b6; -fx-background-radius: 25;">
                <children>
-                  <Label fx:id="COURSE" prefHeight="91.0" prefWidth="548.0" text="COURSE_NAME" textFill="WHITE">
+                  <Label fx:id="COURSE" prefHeight="91.0" prefWidth="681.0" text="COURSE_NAME">
                      <font>
-                        <Font name="Roboto Black" size="53.0" />
+                        <Font name="Gill Sans MT" size="53.0" />
                      </font>
                   </Label>
-                  <HBox alignment="CENTER_RIGHT" prefHeight="96.0" prefWidth="933.0" spacing="5.0">
+                  <HBox alignment="CENTER_RIGHT" prefHeight="96.0" prefWidth="933.0" spacing="5.0" style="-fx-background-color: #0077b6; -fx-background-radius: 25;">
                      <children>
-                        <JFXButton onAction="#COURSE_NEW_MEETING" prefHeight="30.0" prefWidth="110.0" style="-fx-background-radius: 10; -fx-background-color: white;" text="New Meeting" />
-                        <JFXButton onAction="#backToDashboard" prefHeight="30.0" prefWidth="73.0" style="-fx-background-color: white; -fx-background-radius: 10;" text="Back" />
+                        <JFXButton buttonType="RAISED" onAction="#COURSE_NEW_MEETING" prefHeight="30.0" prefWidth="110.0" style="-fx-background-radius: 50; -fx-background-color: #023e8a;" text="New Meeting" textFill="WHITE" />
+                        <JFXButton buttonType="RAISED" onAction="#backToDashboard" prefHeight="30.0" prefWidth="73.0" style="-fx-background-color: #023e8a; -fx-background-radius: 50;" text="Back" textFill="WHITE" />
                      </children>
                      <padding>
                         <Insets right="25.0" />

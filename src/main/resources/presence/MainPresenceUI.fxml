@@ -5,29 +5,36 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presence.backend.AuthenticatePresence">
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: White;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presence.backend.AuthenticatePresence">
    <children>
-      <JFXButton layoutX="525.0" layoutY="482.0" onAction="#loginAuthenticate" prefHeight="34.0" prefWidth="110.0" style="-fx-background-color: black;" text="Login" textFill="WHITE" />
-      <VBox alignment="CENTER" layoutX="457.0" layoutY="205.0" prefHeight="91.0" prefWidth="367.0">
+      <JFXButton layoutX="525.0" layoutY="482.0" onAction="#loginAuthenticate" prefHeight="34.0" prefWidth="110.0" style="-fx-background-color: #023e8a;" text="Login" textFill="WHITE" />
+      <VBox alignment="CENTER" layoutX="434.0" layoutY="67.0" prefHeight="287.0" prefWidth="414.0">
          <children>
-            <Text fx:id="Headline" strokeType="OUTSIDE" strokeWidth="0.0" text="Presence">
+            <ImageView fitHeight="118.0" fitWidth="132.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Officiallogo.png" />
+               </image>
+            </ImageView>
+            <Text fx:id="Headline" strokeType="OUTSIDE" strokeWidth="0.0" text="Presence" wrappingWidth="213.21893310546875">
                <font>
-                  <Font size="77.0" />
+                  <Font name="Lucida Sans Unicode" size="49.0" />
                </font>
             </Text>
-            <Text fx:id="Description" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter your information to sign in to your account">
+            <Text fx:id="Description" strokeType="OUTSIDE" strokeWidth="0.0">
                <font>
                   <Font size="17.0" />
                </font>
             </Text>
          </children>
       </VBox>
-      <JFXButton layoutX="647.0" layoutY="482.0" onAction="#registerAuthenticate" prefHeight="34.0" prefWidth="110.0" style="-fx-background-color: Black;" text="Register" textFill="WHITE" />
+      <JFXButton layoutX="647.0" layoutY="482.0" onAction="#registerAuthenticate" prefHeight="34.0" prefWidth="110.0" style="-fx-background-color: #023e8a;" text="Register" textFill="WHITE" />
       <VBox layoutX="525.0" layoutY="355.0" prefHeight="115.0" prefWidth="232.0" spacing="10.0">
          <children>
             <VBox prefHeight="48.0" prefWidth="284.0">
@@ -36,7 +43,7 @@
                      <padding>
                         <Insets bottom="5.0" />
                      </padding></Label>
-                  <TextField fx:id="userAddress" prefHeight="36.0" prefWidth="212.0" />
+                  <TextField fx:id="userAddress" prefHeight="36.0" prefWidth="212.0" style="-fx-background-color: #ADE8F4;" />
                </children>
             </VBox>
             <VBox prefHeight="50.0" prefWidth="284.0">
@@ -45,7 +52,7 @@
                      <padding>
                         <Insets bottom="5.0" />
                      </padding></Label>
-                  <PasswordField fx:id="userPassword" prefHeight="40.0" prefWidth="284.0" />
+                  <PasswordField fx:id="userPassword" prefHeight="40.0" prefWidth="284.0" style="-fx-background-color: #ADE8F4;" />
                </children>
             </VBox>
          </children>

@@ -19,10 +19,10 @@
             </GridPane>
          </content>
       </ScrollPane>
-      <Rectangle arcHeight="35.0" arcWidth="35.0" height="91.0" layoutX="22.0" layoutY="19.0" stroke="BLACK" strokeType="INSIDE" width="1003.0" />
-      <Label fx:id="DashboardHeader" layoutX="62.0" layoutY="19.0" prefHeight="91.0" prefWidth="320.0" text="DASHBOARD" textFill="WHITE">
+      <Rectangle arcHeight="35.0" arcWidth="35.0" fill="#0077b6" height="91.0" layoutX="22.0" layoutY="19.0" stroke="#0077b6" strokeType="INSIDE" width="1003.0" />
+      <Label fx:id="DashboardHeader" layoutX="62.0" layoutY="19.0" prefHeight="91.0" prefWidth="372.0" text="DASHBOARD">
          <font>
-            <Font name="Roboto Black" size="53.0" />
+            <Font name="Gill Sans MT" size="53.0" />
          </font>
       </Label>
    </children>
