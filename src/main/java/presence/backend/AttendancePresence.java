@@ -15,6 +15,7 @@ import presence.attendance.AttendanceBindAndCell;
 import presence.attendance.AttendanceFunction;
 
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -56,9 +57,7 @@ public class AttendancePresence extends AttendanceFunction {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("DashboardHome.fxml"));
         HomeTab homeTab = loader.getController();
         bind.bindStudentCard(STUDENT_CONTAINER, row, col, counter);
-        System.out.println(getCourseCode());
-        System.out.println(getCourseSubject());
-        COURSE.setText(bind.setAttendanceLabel());
+        COURSE.setText(bind.setAttendanceLabel()[1]);
         for (String existingHeaders : bind.getAttendanceHeaders()) {
             ++col;
             generateAttendanceSheet();

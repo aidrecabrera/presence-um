@@ -19,13 +19,16 @@ public class AttendanceBindAndCell implements AttendanceBinder {
     }
 
     @Override
-    public String setAttendanceLabel() throws IOException {
+    public String[] setAttendanceLabel() throws IOException {
         FileReader fileReader = new FileReader("src/main/resources/attendance/9709_CCE107_ATTENDANCE_SHEET.csv");
         BufferedReader getCourse = new BufferedReader(fileReader);
         getCourse.readLine();
         String getCurrentCourse = getCourse.readLine();
         String[] rowToArray = getCurrentCourse.split(",");
-        return rowToArray[0];
+        System.out.println("COURSES" + Arrays.asList(rowToArray));
+        System.out.println(AttendanceFunction.getCourseCode());
+        System.out.println(AttendanceFunction.getCourseSubject());
+        return rowToArray;
     }
 
     @Override
@@ -69,9 +72,9 @@ public class AttendanceBindAndCell implements AttendanceBinder {
         embedContainer.add(hBox, col, 0);
         ColumnConstraints columnConstraints = new ColumnConstraints();
         columnConstraints.setHgrow(Priority.SOMETIMES);
-        columnConstraints.setMaxWidth(125.0);
-        columnConstraints.setMinWidth(125.0);
-        columnConstraints.setPrefWidth(125.0);
+        columnConstraints.setMaxWidth(175.0);
+        columnConstraints.setMinWidth(175.0);
+        columnConstraints.setPrefWidth(175.0);
         embedContainer.getColumnConstraints().add(columnConstraints);
         ComponentLabelReader.readLine();
         while ((rowStudentInformation = ComponentLabelReader.readLine()) != null) {
@@ -81,8 +84,6 @@ public class AttendanceBindAndCell implements AttendanceBinder {
             statusRow.remove(0);
             statusRow.remove(0);
             statusRow.remove(0);
-            System.out.println("STATUS ROW: " + statusRow);
-            System.out.println(col);
             String MeetingStatus = statusRow.get(col-1);
             VBox newMeetingCell = new VBox();
             utilities.setPropertyNewMeetingCell(newMeetingCell, MeetingDateID, courseInformationArray[2], MeetingStatus, col);

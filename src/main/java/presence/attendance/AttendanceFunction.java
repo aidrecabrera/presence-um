@@ -9,9 +9,14 @@ import java.util.Arrays;
 public class AttendanceFunction implements AttendanceSheet, AttendanceMeeting, AttendanceCalculate {
     private static String COURSE_SUBJECT;
     private static String COURSE_CODE;
-    private static final String LOCATION_SHEET_FILE_PATH = "src/main/resources/presence/" + COURSE_CODE + "_" + COURSE_SUBJECT + "_ATTENDANCE_SHEET.csv";
+    private static String LOCATION_SHEET_FILE_PATH = "src/main/resources/attendance/" + COURSE_CODE + "_" + COURSE_SUBJECT + "_ATTENDANCE_SHEET.csv";
 
-    public AttendanceFunction() throws FileNotFoundException {
+    public AttendanceFunction() {
+    }
+
+    public AttendanceFunction(String subject, String code) {
+        this.COURSE_SUBJECT = subject;
+        this.COURSE_CODE = code;
     }
 
     public static void setCourseSubject(String courseSubject) {
@@ -28,6 +33,10 @@ public class AttendanceFunction implements AttendanceSheet, AttendanceMeeting, A
 
     public static String getCourseCode() {
         return COURSE_CODE;
+    }
+
+    public static String getLocationSheetFilePath() {
+        return LOCATION_SHEET_FILE_PATH;
     }
 
     @Override

@@ -9,7 +9,7 @@ import java.util.List;
 public interface AttendanceBinder {
     API_Utilities utilities = new API_Utilities();
 
-    String setAttendanceLabel() throws IOException;
+    String[] setAttendanceLabel() throws IOException;
 
     void bindStudentCard(GridPane embedContainer, int row, int col, int counter) throws IOException;
 

@@ -15,6 +15,7 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import presence.attendance.AttendanceFunction;
 
+import java.beans.Statement;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -25,7 +26,6 @@ public class API_Utilities {
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM dd yyyy - (hh:mm a)");
         String today = now.format(formatter);
-        System.out.println(today);
         return today;
     }
     public Node generateMeetingHeader(GridPane gridPan, String MeetingDateID) {
@@ -54,16 +54,16 @@ public class API_Utilities {
         statusMark.setAlignment(Pos.CENTER);
         statusMark.setContentDisplay(ContentDisplay.CENTER);
 
-        statusMark.setText(MeetingStatus);
+        if (MeetingStatus != "NULL") {
+            if (MeetingStatus == "NULL") {
+                MeetingStatus = "Mark";
+            }
+            statusMark.setText(MeetingStatus);
+        }
 
         MenuItem presentItem = new MenuItem("Present");
         MenuItem absentItem = new MenuItem("Absent");
         MenuItem excusedItem = new MenuItem("Excused");
-
-        System.out.println("MarkID: " + MarkID);
-        System.out.println("MarkStudent: " + MarkStudent);
-        System.out.println("MeetingStatus: " + MeetingStatus);
-        System.out.println("ColumnHeader: " + ColumnHeader);
 
         AttendanceFunction attendanceFunction = new AttendanceFunction();
         presentItem.setOnAction(event -> {
