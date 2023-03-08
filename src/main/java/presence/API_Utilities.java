@@ -1,6 +1,7 @@
 package presence;
 
 import com.jfoenix.controls.JFXButton;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -13,16 +14,17 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
+import presence.attendance.AttendanceFunction;
 
+import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 public class API_Utilities {
     public String generateDate() {
-
         LocalDateTime now = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, MMMM dd, yyyy hh:mm a");
-        String today = now.format(formatter);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM dd, yyyy - (hh:mm a)");
+        String today = ",\"" + now.format(formatter) + "\"";
         System.out.println(today);
         return today;
     }
@@ -35,7 +37,7 @@ public class API_Utilities {
 
         Label meetingDate = new Label();
         meetingDate.setId("MEETING_DATE");
-        meetingDate.setText("Meeting_Date");
+        meetingDate.setText(getCurrentDate());
         Font font = new Font("System Bold", 12.0);
         meetingDate.setFont(font);
         hBox.getChildren().add(meetingDate);
@@ -57,6 +59,22 @@ public class API_Utilities {
         MenuItem presentItem = new MenuItem("Present");
         MenuItem absentItem = new MenuItem("Absent");
         MenuItem excusedItem = new MenuItem("Excused");
+
+        presentItem.setOnAction(event -> {
+            statusMark.setText("Present");
+            String statusStudent = "Present";
+        });
+
+        absentItem.setOnAction(event -> {
+            statusMark.setText("Absent");
+            String statusStudent = "Absent";
+        });
+
+        excusedItem.setOnAction(event -> {
+            statusMark.setText("Excused");
+            String statusStudent = "Excused";
+        });
+
         statusMark.getItems().addAll(presentItem, absentItem, excusedItem);
         vBox.getChildren().add(statusMark);
     }

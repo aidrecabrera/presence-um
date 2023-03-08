@@ -45,7 +45,7 @@ public class AttendanceBindAndCell implements AttendanceBinder {
         while ((rowStudentInformation = ComponentLabelReader.readLine()) != null) {
             HBox newStudentCard = new HBox();
             String[] courseInformationArray = rowStudentInformation.split(",");
-            utilities.createStudentHBox(newStudentCard, courseInformationArray[2], "100", "500");
+            utilities.createStudentHBox(newStudentCard, courseInformationArray[3], "100", "500");
             embedContainer.add(newStudentCard, 0, row);
             ++counter;
             row++;
