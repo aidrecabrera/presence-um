@@ -16,6 +16,34 @@
 - [JFoenix](https://github.com/sshahine/JFoenix)
 - [ZXing](https://github.com/zxing/zxing)
 
+# Build
+To build the program, execute the following command:
+
+## Maven
+### How to Include In Maven Project
+* Java 9+
+    ```xml
+    <dependency>
+        <groupId>com.jfoenix</groupId>
+        <artifactId>jfoenix</artifactId>
+        <version>9.0.10</version>
+    </dependency>
+    ```
+* Java 8
+    ```xml
+    <dependency>
+        <groupId>com.jfoenix</groupId>
+        <artifactId>jfoenix</artifactId>
+        <version>8.0.10</version>
+    </dependency>
+    ```
+    
+**NOTE** : This project requires **Java 19** SDK and above.
+**NOTE** : This project requires **Java jdk-8.0.345.1** and above.
+
+```
+git clone https://github.com/aidrecabrera/presence-um.git
+```
 
 # Introduction
 The attendance tracking system is an essential aspect of managing university school operations. Currently, many universities rely on manual attendance tracking systems, which are time-consuming, inefficient, and prone to errors. This inefficiency is due to the time it takes to mark attendance, the potential for human error, and the difficulty of tracking attendance records for a large number of students. In response to this issue, we aim to develop an attendance tracking system for a university school that will automate attendance tracking, eliminate the need for manual record-keeping, and provide a more efficient and reliable way to manage attendance records. Our proposed system will utilize modern technology to improve the efficiency of attendance tracking and provide a more accurate record of student attendance.
