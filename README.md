@@ -152,7 +152,6 @@ The BufferedFileWriter and BufferedReader classes are important components in th
 
 ## Dependencies
 ```
-```
 <dependencies>
 <dependency>
     <groupId>ch.qos.logback</groupId>
@@ -218,8 +217,6 @@ The BufferedFileWriter and BufferedReader classes are important components in th
     <scope>test</scope>
 </dependency>
 </dependencies>
-```
-
 ```
 
 ## License
