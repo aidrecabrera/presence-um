@@ -1,5 +1,5 @@
 
-<p align="center"><a href="https://vuejs.org" target="_blank" rel="noopener noreferrer"><img width="100" src="https://user-images.githubusercontent.com/61798731/223683827-3df81494-dd05-4186-a9dd-8c08a0d6095f.png" alt="Vue logo"></a></p>
+<p align="center"><a href="https://github.com/aidrecabrera/presence-um/edit/master/README.md" target="_blank" rel="noopener noreferrer"><img width="100" src="https://user-images.githubusercontent.com/61798731/223683827-3df81494-dd05-4186-a9dd-8c08a0d6095f.png" alt="Vue logo"></a></p>
 
 <p align="center">
   <h1 align="center">Presence</h3>
