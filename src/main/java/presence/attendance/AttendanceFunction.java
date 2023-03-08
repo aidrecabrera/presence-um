@@ -3,6 +3,7 @@ package presence.attendance;
 import presence.API_Utilities;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class AttendanceFunction implements AttendanceSheet, AttendanceMeeting, AttendanceCalculate {
@@ -118,7 +119,7 @@ public class AttendanceFunction implements AttendanceSheet, AttendanceMeeting, A
     }
 
     @Override
-    public void attendanceEditor(String meetingReference, String paramStudentID, String paramAttendanceStatus) throws IOException {
+    public void attendanceEditor(String meetingReference, String paramStudentID, String paramAttendanceStatus, int ColumnHeader) throws IOException {
         String filePath = "src/main/resources/attendance/9709_CCE107_ATTENDANCE_SHEET.csv";
         String searchString = paramStudentID;
         String headerName = meetingReference;
@@ -153,7 +154,10 @@ public class AttendanceFunction implements AttendanceSheet, AttendanceMeeting, A
 
         while ((line = br.readLine()) != null) {
             String[] values = line.split(",");
-            if (values.length >= 4 && Arrays.asList(values).contains(searchString)) {
+            ArrayList<String> statusValuesList = new ArrayList<>(Arrays.asList(values));
+            System.out.println("VALUES! " + statusValuesList);
+            System.out.println("INDEX IN EDITOR! " + colIndex);
+            if (values.length >= 4 && statusValuesList.contains(searchString)) {
                 if ((values.length == header.length) && !values[colIndex].isBlank() || !values[colIndex].isEmpty()) {
                     values[colIndex] = newData;
                     line = String.join(",", values);

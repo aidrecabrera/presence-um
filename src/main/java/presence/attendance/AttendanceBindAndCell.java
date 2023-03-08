@@ -29,14 +29,17 @@ public class AttendanceBindAndCell implements AttendanceBinder {
     }
 
     @Override
-    public List<String> getAttendanceMeetings() throws IOException {
+    public List<String> getAttendanceHeaders() throws IOException {
         FileReader fileReader = new FileReader("src/main/resources/attendance/9709_CCE107_ATTENDANCE_SHEET.csv");
         BufferedReader getCourse = new BufferedReader(fileReader);
-        getCourse.readLine();
         String getCurrentCourse = getCourse.readLine();
-        List<String> rowToArrayList = new ArrayList<>(Arrays.asList(getCurrentCourse.split(",")));
-        System.out.println(rowToArrayList);
-        return rowToArrayList;
+        List<String> attendanceHeaders = new ArrayList<>(Arrays.asList(getCurrentCourse.split(",")));
+        attendanceHeaders.remove(0);
+        attendanceHeaders.remove(0);
+        attendanceHeaders.remove(0);
+        attendanceHeaders.remove(0);
+        System.out.println(attendanceHeaders);
+        return attendanceHeaders;
     }
 
     @Override
@@ -61,7 +64,7 @@ public class AttendanceBindAndCell implements AttendanceBinder {
 
     @Override
     public void newStudentCell(GridPane embedContainer, int row, int col, int counter) throws IOException {
-        String MeetingDateID = utilities.generateDate();
+        String MeetingDateID = getAttendanceHeaders().get(col-1);
         HBox hBox = (HBox) utilities.generateMeetingHeader(embedContainer, MeetingDateID);
         embedContainer.add(hBox, col, 0);
         ColumnConstraints columnConstraints = new ColumnConstraints();
@@ -73,9 +76,16 @@ public class AttendanceBindAndCell implements AttendanceBinder {
         ComponentLabelReader.readLine();
         while ((rowStudentInformation = ComponentLabelReader.readLine()) != null) {
             String[] courseInformationArray = rowStudentInformation.split(",");
-            String MeetingStatus = courseInformationArray[col+3];
+            ArrayList<String> statusRow = new ArrayList<>(Arrays.asList(courseInformationArray));
+            statusRow.remove(0);
+            statusRow.remove(0);
+            statusRow.remove(0);
+            statusRow.remove(0);
+            System.out.println("STATUS ROW: " + statusRow);
+            System.out.println(col);
+            String MeetingStatus = statusRow.get(col-1);
             VBox newMeetingCell = new VBox();
-            utilities.setPropertyNewMeetingCell(newMeetingCell, MeetingDateID, courseInformationArray[2], MeetingStatus);
+            utilities.setPropertyNewMeetingCell(newMeetingCell, MeetingDateID, courseInformationArray[2], MeetingStatus, col);
             embedContainer.add(newMeetingCell, col, row);
             row++;
             if (row == 0 && col < 20) {

@@ -43,7 +43,7 @@ public class API_Utilities {
         hBox.getChildren().add(meetingDate);
         return hBox;
     }
-    public void setPropertyNewMeetingCell(VBox vBox, String MarkID, String MarkStudent, String MeetingStatus) throws FileNotFoundException {
+    public void setPropertyNewMeetingCell(VBox vBox, String MarkID, String MarkStudent, String MeetingStatus, int ColumnHeader) throws FileNotFoundException {
         vBox.setAlignment(Pos.CENTER);
         vBox.setPrefHeight(100.0);
         vBox.setPrefWidth(125);
@@ -53,18 +53,24 @@ public class API_Utilities {
         statusMark.setId(MarkStudent);
         statusMark.setAlignment(Pos.CENTER);
         statusMark.setContentDisplay(ContentDisplay.CENTER);
+
         statusMark.setText(MeetingStatus);
 
         MenuItem presentItem = new MenuItem("Present");
         MenuItem absentItem = new MenuItem("Absent");
         MenuItem excusedItem = new MenuItem("Excused");
 
+        System.out.println("MarkID: " + MarkID);
+        System.out.println("MarkStudent: " + MarkStudent);
+        System.out.println("MeetingStatus: " + MeetingStatus);
+        System.out.println("ColumnHeader: " + ColumnHeader);
+
         AttendanceFunction attendanceFunction = new AttendanceFunction();
         presentItem.setOnAction(event -> {
             statusMark.setText("Present");
             String statusStudent = "Present";
             try {
-                attendanceFunction.attendanceEditor(MarkID, MarkStudent, statusStudent);
+                attendanceFunction.attendanceEditor(MarkID, MarkStudent, statusStudent, ColumnHeader);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -74,7 +80,7 @@ public class API_Utilities {
             statusMark.setText("Absent");
             String statusStudent = "Absent";
             try {
-                attendanceFunction.attendanceEditor(MarkID, MarkStudent, statusStudent);
+                attendanceFunction.attendanceEditor(MarkID, MarkStudent, statusStudent, ColumnHeader);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -84,7 +90,7 @@ public class API_Utilities {
             statusMark.setText("Excused");
             String statusStudent = "Excused";
             try {
-                attendanceFunction.attendanceEditor(MarkID, MarkStudent, statusStudent);
+                attendanceFunction.attendanceEditor(MarkID, MarkStudent, statusStudent, ColumnHeader);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

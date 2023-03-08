@@ -15,5 +15,5 @@ public interface AttendanceBinder {
 
     void newStudentCell(GridPane embedContainer, int row, int col, int counter) throws IOException;
 
-    List<String> getAttendanceMeetings() throws IOException;
+    List<String> getAttendanceHeaders() throws IOException;
 }

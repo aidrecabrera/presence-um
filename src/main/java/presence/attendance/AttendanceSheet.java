@@ -16,5 +16,5 @@ public interface AttendanceSheet {
 
     void generateAttendanceSheet();
 
-    void attendanceEditor(String meetingReference, String paramStudentID, String paramAttendanceStatus) throws IOException;
+    void attendanceEditor(String meetingReference, String paramStudentID, String paramAttendanceStatus, int ColumnHeader) throws IOException;
 }

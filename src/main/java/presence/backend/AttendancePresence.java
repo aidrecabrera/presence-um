@@ -59,28 +59,26 @@ public class AttendancePresence extends AttendanceFunction {
         System.out.println(getCourseCode());
         System.out.println(getCourseSubject());
         COURSE.setText(bind.setAttendanceLabel());
-        ArrayList<String> Meetings = (ArrayList<String>) bind.getAttendanceMeetings();
-        Meetings.remove(0);
-        Meetings.remove(0);
-        Meetings.remove(0);
-        Meetings.remove(0);
-        System.out.println(Meetings);
-        for (String meetings : Meetings) {
-            GENERATE_NEW_COLUMN();
+        for (String existingHeaders : bind.getAttendanceHeaders()) {
+            ++col;
+            generateAttendanceSheet();
+            AttendanceBindAndCell bind = new AttendanceBindAndCell();
+            bind.newStudentCell(STUDENT_CONTAINER, row, col, counter);
         }
-    }
-    @FXML
-    public void COURSE_NEW_MEETING() throws IOException {
-        GENERATE_NEW_COLUMN();
-        addNewColumnSheet();
     }
 
     @FXML
     public void GENERATE_NEW_COLUMN() throws IOException {
-        generateAttendanceSheet();
         ++col;
+        generateAttendanceSheet();
         AttendanceBindAndCell bind = new AttendanceBindAndCell();
         bind.newStudentCell(STUDENT_CONTAINER, row, col, counter);
+    }
+
+    @FXML
+    public void COURSE_NEW_MEETING() throws IOException {
+        addNewColumnSheet();
+        GENERATE_NEW_COLUMN();
     }
 
     public void backToDashboard(ActionEvent actionEvent) throws IOException {
