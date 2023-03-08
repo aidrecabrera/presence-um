@@ -61,16 +61,20 @@ public class AttendanceBindAndCell implements AttendanceBinder {
 
     @Override
     public void newStudentCell(GridPane embedContainer, int row, int col, int counter) throws IOException {
-        embedContainer.add(utilities.generateMeetingHeader(embedContainer), col, 0);
+        String MeetingDateID = utilities.generateDate();
+        HBox hBox = (HBox) utilities.generateMeetingHeader(embedContainer, MeetingDateID);
+        embedContainer.add(hBox, col, 0);
         ColumnConstraints columnConstraints = new ColumnConstraints();
         columnConstraints.setHgrow(Priority.SOMETIMES);
         columnConstraints.setMaxWidth(125.0);
         columnConstraints.setMinWidth(125.0);
         columnConstraints.setPrefWidth(125.0);
         embedContainer.getColumnConstraints().add(columnConstraints);
+        ComponentLabelReader.readLine();
         while ((rowStudentInformation = ComponentLabelReader.readLine()) != null) {
+            String[] courseInformationArray = rowStudentInformation.split(",");
             VBox newMeetingCell = new VBox();
-            utilities.setPropertyNewMeetingCell(newMeetingCell);
+            utilities.setPropertyNewMeetingCell(newMeetingCell, MeetingDateID, courseInformationArray[2]);
             embedContainer.add(newMeetingCell, col, row);
             row++;
             if (row == 0 && col < 20) {

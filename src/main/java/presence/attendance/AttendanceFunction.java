@@ -4,7 +4,7 @@ import presence.API_Utilities;
 
 import java.io.*;
 
-public abstract class AttendanceFunction implements AttendanceSheet, AttendanceMeeting, AttendanceCalculate {
+public class AttendanceFunction implements AttendanceSheet, AttendanceMeeting, AttendanceCalculate {
     private static String COURSE_SUBJECT;
     private static String COURSE_CODE;
     private static final String LOCATION_SHEET_FILE_PATH = "src/main/resources/presence/" + COURSE_CODE + "_" + COURSE_SUBJECT + "_ATTENDANCE_SHEET.csv";
@@ -102,7 +102,7 @@ public abstract class AttendanceFunction implements AttendanceSheet, AttendanceM
         StringBuffer sb = new StringBuffer();
         line = getCourse.readLine();
         sb.append(line);
-        sb.append(utilities.generateDate());
+        sb.append("," + utilities.generateDate());
         sb.append("\n");
         while ((line = getCourse.readLine()) != null) {
             sb.append(line);
@@ -117,11 +117,15 @@ public abstract class AttendanceFunction implements AttendanceSheet, AttendanceM
     }
 
     @Override
-    public void attendanceEditor(String paramFile, String paramStudentID, String paramAttendanceStatus) throws IOException {
-        String filePath = paramFile;
-        String searchString = util.removeFirstChar(paramStudentID);
-        String headerName = API_Utilities.getCurrentDate();
+    public void attendanceEditor(String meetingReference, String paramStudentID, String paramAttendanceStatus) throws IOException {
+        String filePath = "src/main/resources/attendance/9709_CCE107_ATTENDANCE_SHEET.csv";
+        String searchString = paramStudentID;
+        String headerName = meetingReference;
         String newData = paramAttendanceStatus; // the new data to replace the old data with
+
+        System.out.println(searchString);
+        System.out.println(headerName);
+        System.out.println(newData);
 
         BufferedReader br = new BufferedReader(new FileReader(filePath));
         String line;
@@ -131,6 +135,7 @@ public abstract class AttendanceFunction implements AttendanceSheet, AttendanceM
         // read the header row and get the index of the column to edit
         String headerRow = br.readLine();
         String[] header = headerRow.split(",");
+        System.out.println("READ: " + headerRow);
         int colIndex = -1;
         for (int i = 0; i < header.length; i++) {
             if (header[i].equals(headerName)) {

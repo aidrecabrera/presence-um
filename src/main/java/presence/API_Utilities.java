@@ -1,7 +1,6 @@
 package presence;
 
 import com.jfoenix.controls.JFXButton;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -16,19 +15,20 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import presence.attendance.AttendanceFunction;
 
-import java.awt.event.ActionEvent;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+
 public class API_Utilities {
     public String generateDate() {
         LocalDateTime now = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM dd, yyyy - (hh:mm a)");
-        String today = ",\"" + now.format(formatter) + "\"";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM dd yyyy - (hh:mm a)");
+        String today = now.format(formatter);
         System.out.println(today);
         return today;
     }
-    public HBox generateMeetingHeader(GridPane gridPane) {
+    public Node generateMeetingHeader(GridPane gridPan, String MeetingDateID) {
         HBox hBox = new HBox();
         hBox.setAlignment(Pos.CENTER);
         hBox.setPrefHeight(100.0);
@@ -36,22 +36,21 @@ public class API_Utilities {
         hBox.setSpacing(3.0);
 
         Label meetingDate = new Label();
-        meetingDate.setId("MEETING_DATE");
-        meetingDate.setText(getCurrentDate());
+        meetingDate.setId(MeetingDateID);
+        meetingDate.setText(MeetingDateID);
         Font font = new Font("System Bold", 12.0);
         meetingDate.setFont(font);
         hBox.getChildren().add(meetingDate);
         return hBox;
     }
-    public void setPropertyNewMeetingCell(VBox vBox) {
-        System.out.println("New Cell Generated!");
+    public void setPropertyNewMeetingCell(VBox vBox, String MarkID, String MarkStudent) throws FileNotFoundException {
         vBox.setAlignment(Pos.CENTER);
         vBox.setPrefHeight(100.0);
         vBox.setPrefWidth(125);
         GridPane.setRowIndex(vBox, 1);
 
         MenuButton statusMark = new MenuButton();
-        statusMark.setId("STATUS_MARK");
+        statusMark.setId(MarkStudent);
         statusMark.setAlignment(Pos.CENTER);
         statusMark.setContentDisplay(ContentDisplay.CENTER);
         statusMark.setText("Mark");
@@ -60,19 +59,35 @@ public class API_Utilities {
         MenuItem absentItem = new MenuItem("Absent");
         MenuItem excusedItem = new MenuItem("Excused");
 
+        AttendanceFunction attendanceFunction = new AttendanceFunction();
         presentItem.setOnAction(event -> {
             statusMark.setText("Present");
             String statusStudent = "Present";
+            try {
+                attendanceFunction.attendanceEditor(MarkID, MarkStudent, statusStudent);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         });
 
         absentItem.setOnAction(event -> {
             statusMark.setText("Absent");
             String statusStudent = "Absent";
+            try {
+                attendanceFunction.attendanceEditor(MarkID, MarkStudent, statusStudent);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         });
 
         excusedItem.setOnAction(event -> {
             statusMark.setText("Excused");
             String statusStudent = "Excused";
+            try {
+                attendanceFunction.attendanceEditor(MarkID, MarkStudent, statusStudent);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         });
 
         statusMark.getItems().addAll(presentItem, absentItem, excusedItem);
