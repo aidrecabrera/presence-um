@@ -3,6 +3,7 @@ package presence.attendance;
 import presence.API_Utilities;
 
 import java.io.*;
+import java.util.Arrays;
 
 public class AttendanceFunction implements AttendanceSheet, AttendanceMeeting, AttendanceCalculate {
     private static String COURSE_SUBJECT;
@@ -152,7 +153,7 @@ public class AttendanceFunction implements AttendanceSheet, AttendanceMeeting, A
 
         while ((line = br.readLine()) != null) {
             String[] values = line.split(",");
-            if (values.length >= 3 && values[1].equals(searchString)) {
+            if (values.length >= 4 && Arrays.asList(values).contains(searchString)) {
                 if ((values.length == header.length) && !values[colIndex].isBlank() || !values[colIndex].isEmpty()) {
                     values[colIndex] = newData;
                     line = String.join(",", values);
