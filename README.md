@@ -16,33 +16,118 @@
 - [JFoenix](https://github.com/sshahine/JFoenix)
 - [ZXing](https://github.com/zxing/zxing)
 
-# Clone
-To acquire the Presence project Java files, execute the following command in git version control:
+## Prerequisites
+
+- Java 8 or higher
+- Apache Maven 3.9.0 or higher
+- Logback Classic 1.2.6 or higher
+- SLF4J-nop 2.0.0-alpha2 or higher
+- Webcam Capture 0.3.12 or higher
+- OpenCV 4.6.0-0 or higher
+- ZXing Core 3.4.1 or higher
+- ZXing JavaSE 3.4.1 or higher
+- JFoenix 9.0.10 or higher
+- JavaFX 11.0.2 or higher
+
+```
+<dependencies>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.2.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-nop</artifactId>
+            <version>2.0.0-alpha2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.sarxos</groupId>
+            <artifactId>webcam-capture</artifactId>
+            <version>0.3.12</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openpnp</groupId>
+            <artifactId>opencv</artifactId>
+            <version>4.6.0-0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>core</artifactId>
+            <version>3.4.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>javase</artifactId>
+            <version>3.4.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.jfoenix</groupId>
+            <artifactId>jfoenix</artifactId>
+            <version>9.0.10</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>11.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>11.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics</artifactId>
+            <version>11</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+```
+
+## Installation
+
+1. Clone the repository
 ```
 git clone https://github.com/aidrecabrera/presence-um.git
 ```
 
-# Build
-To build the program, execute the following command:
+2. Install the dependencies
+```
+mvn clean install
+```
 
-## Maven
-### How to Include In Maven Project
-* Java 9+
-    ```xml
-    <dependency>
-        <groupId>com.jfoenix</groupId>
-        <artifactId>jfoenix</artifactId>
-        <version>9.0.10</version>
-    </dependency>
-    ```
-* Java 8
-    ```xml
-    <dependency>
-        <groupId>com.jfoenix</groupId>
-        <artifactId>jfoenix</artifactId>
-        <version>8.0.10</version>
-    </dependency>
-    ```
+3. Compile the application
+```
+mvn compile
+```
+
+4. Run the application
+```
+mvn javafx:run
+```
+
+## Usage
+
+The application can be used to detect and identify people in a given area. It will capture images from the web camera and process them to detect and identify people who are present in the area.
+
+## Contributing
+
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
     
 **NOTE** : This project requires **Java 19** SDK and above.
 **NOTE** : This project requires **Java jdk-8.0.345.1** and above.
