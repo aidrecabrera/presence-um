@@ -6,6 +6,9 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class AttendanceBindAndCell implements AttendanceBinder {
     FileReader fileReader = new FileReader("src/main/resources/attendance/9709_CCE107_ATTENDANCE_SHEET.csv");
@@ -13,6 +16,27 @@ public class AttendanceBindAndCell implements AttendanceBinder {
     String rowStudentInformation;
 
     public AttendanceBindAndCell() throws FileNotFoundException {
+    }
+
+    @Override
+    public String setAttendanceLabel() throws IOException {
+        FileReader fileReader = new FileReader("src/main/resources/attendance/9709_CCE107_ATTENDANCE_SHEET.csv");
+        BufferedReader getCourse = new BufferedReader(fileReader);
+        getCourse.readLine();
+        String getCurrentCourse = getCourse.readLine();
+        String[] rowToArray = getCurrentCourse.split(",");
+        return rowToArray[0];
+    }
+
+    @Override
+    public List<String> getAttendanceMeetings() throws IOException {
+        FileReader fileReader = new FileReader("src/main/resources/attendance/9709_CCE107_ATTENDANCE_SHEET.csv");
+        BufferedReader getCourse = new BufferedReader(fileReader);
+        getCourse.readLine();
+        String getCurrentCourse = getCourse.readLine();
+        List<String> rowToArrayList = new ArrayList<>(Arrays.asList(getCurrentCourse.split(",")));
+        System.out.println(rowToArrayList);
+        return rowToArrayList;
     }
 
     @Override

@@ -12,8 +12,8 @@ public class Authenticate extends AuthenticateFunction implements Logs {
 
     public Authenticate() {
         super(PRESENCE_USER_INFORMATION_DATABASE);
-        this.PRESENCE_USER_LOG_SHEET = importData.getDatabaseRequestLogs();
-        this.PRESENCE_USER_INFORMATION_DATABASE = importData.getDatabaseAuthentication();
+        PRESENCE_USER_LOG_SHEET = importData.getDatabaseRequestLogs();
+        PRESENCE_USER_INFORMATION_DATABASE = importData.getDatabaseAuthentication();
     }
 
     public static void DatabaseValidation() {

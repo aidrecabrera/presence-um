@@ -50,7 +50,7 @@ public class DashboardPresence implements Initializable  {
 
     @FXML
     void AttendanceBclicked(ActionEvent event) throws IOException {
-
+        utilities.PresenceSwitchScene("MainPresenceUI.fxml", dashboardSplitContainer);
     }
 
     @FXML

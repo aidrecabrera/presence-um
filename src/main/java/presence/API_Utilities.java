@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ContentDisplay;
@@ -12,12 +13,19 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 public class API_Utilities {
+    public String generateDate() {
+
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, MMMM dd, yyyy hh:mm a");
+        String today = now.format(formatter);
+        System.out.println(today);
+        return today;
+    }
     public HBox generateMeetingHeader(GridPane gridPane) {
         HBox hBox = new HBox();
         hBox.setAlignment(Pos.CENTER);
@@ -193,24 +201,14 @@ public class API_Utilities {
         newComponent.setGraphic(newVBox);
     }
 
-    public void PresenceSwitchScene(String fxmlLocation, Text sceneComponent) throws IOException {
+
+    public void PresenceSwitchScene(String fxmlLocation, Node sceneComponent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlLocation));
         Parent dashboardRoot = fxmlLoader.load();
         Scene currentScene = sceneComponent.getScene();
         currentScene.setRoot(dashboardRoot);
     }
-    public void PresenceSwitchScene(String fxmlLocation, Label sceneComponent) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlLocation));
-        Parent dashboardRoot = fxmlLoader.load();
-        Scene currentScene = sceneComponent.getScene();
-        currentScene.setRoot(dashboardRoot);
-    }
-    public void PresenceSwitchScene(String fxmlLocation, GridPane sceneComponent) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlLocation));
-        Parent dashboardRoot = fxmlLoader.load();
-        Scene currentScene = sceneComponent.getScene();
-        currentScene.setRoot(dashboardRoot);
-    }
+
     public static boolean validateEntry(String userAddress, String userPassword) {
         boolean valid = false;
         if (userAddress.isBlank() && userPassword.isBlank()) {
@@ -234,4 +232,6 @@ public class API_Utilities {
     public String removeFirstChar(String s){
         return s.substring(1);
     }
-}    
+
+
+}

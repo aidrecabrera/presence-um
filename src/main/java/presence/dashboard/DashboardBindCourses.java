@@ -9,6 +9,7 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import presence.API_Database;
 import presence.API_Utilities;
 import presence.HomeTab;
@@ -39,7 +40,7 @@ public abstract class DashboardBindCourses {
     public void setBindCourseSchedule(String bindCourseSchedule) {
         this.bindCourseSchedule = bindCourseSchedule;
     }
-    private HashMap<String, String> CourseList = new HashMap<>();
+    private final HashMap<String, String> CourseList = new HashMap<>();
 
     public HashMap<String, String> getCourseList() {
         return CourseList;
@@ -56,7 +57,7 @@ public abstract class DashboardBindCourses {
         while ((rowCourseInformation = ComponentLabelReader.readLine()) != null) {
             JFXButton newCourseCard = new JFXButton();
             String[] courseInformationArray = rowCourseInformation.split(",");
-            DashboardLoadCourses course = new DashboardLoadCourses(courseInformationArray[0], courseInformationArray[1], courseInformationArray[2]);
+            DashboardLoadCourses course = new DashboardLoadCourses(courseInformationArray[1], courseInformationArray[2], courseInformationArray[3]);
             setBindCourseCode(course.getCourseCode());
             setBindCourseName(course.getCourseName());
             setBindCourseSchedule(course.getCourseSched());
@@ -72,10 +73,6 @@ public abstract class DashboardBindCourses {
                     popupStage.show();
                     newCourseCard.setUserData(course.getCourseCode() + course.getCourseName() + course.getCourseSched());
                     System.out.println("Button ID: " + newCourseCard.getId());
-                    Label newLabel = new Label(newCourseCard.getId());
-                    AttendancePresence attendancePresence = new AttendancePresence();
-                    attendancePresence.setCOURSE(newLabel);
-                    attendancePresence.setCourse(newCourseCard.getId());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

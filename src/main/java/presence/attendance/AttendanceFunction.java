@@ -1,5 +1,7 @@
 package presence.attendance;
 
+import presence.API_Utilities;
+
 import java.io.*;
 
 public abstract class AttendanceFunction implements AttendanceSheet, AttendanceMeeting, AttendanceCalculate {
@@ -68,7 +70,7 @@ public abstract class AttendanceFunction implements AttendanceSheet, AttendanceM
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 
             String firstLine = bufferedReader.readLine();
-            String DateNowForMeetingSession = DateAPI.getCurrentDate();
+            String DateNowForMeetingSession = API_Utilities.getCurrentDate();
             String modifiedFirstLine = firstLine + "," + DateNowForMeetingSession;
 
             FileWriter fileWriter = new FileWriter(LOCATION_SHEET_FILE_PATH);
@@ -91,11 +93,34 @@ public abstract class AttendanceFunction implements AttendanceSheet, AttendanceM
             e.printStackTrace();
         }
     }
+
+    public void addNewColumnSheet() throws IOException {
+        utilities.generateDate();
+        FileReader fileReader = new FileReader("src/main/resources/attendance/9709_CCE107_ATTENDANCE_SHEET.csv");
+        BufferedReader getCourse = new BufferedReader(fileReader);
+        String line;
+        StringBuffer sb = new StringBuffer();
+        line = getCourse.readLine();
+        sb.append(line);
+        sb.append(utilities.generateDate());
+        sb.append("\n");
+        while ((line = getCourse.readLine()) != null) {
+            sb.append(line);
+            sb.append(",NULL");
+            sb.append("\n");
+        }
+        getCourse.close();
+        FileWriter fw = new FileWriter("src/main/resources/attendance/9709_CCE107_ATTENDANCE_SHEET.csv");
+        BufferedWriter bw = new BufferedWriter(fw);
+        bw.write(sb.toString());
+        bw.close();
+    }
+
     @Override
     public void attendanceEditor(String paramFile, String paramStudentID, String paramAttendanceStatus) throws IOException {
         String filePath = paramFile;
         String searchString = util.removeFirstChar(paramStudentID);
-        String headerName = util.getCurrentDate();
+        String headerName = API_Utilities.getCurrentDate();
         String newData = paramAttendanceStatus; // the new data to replace the old data with
 
         BufferedReader br = new BufferedReader(new FileReader(filePath));

@@ -8,20 +8,21 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 import presence.API_Utilities;
 import presence.HomeTab;
 import presence.attendance.AttendanceBindAndCell;
 import presence.attendance.AttendanceFunction;
-import presence.scanning.QuickReadPresence;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class AttendancePresence extends AttendanceFunction {
+    API_Utilities utilities = new API_Utilities();
     int row = 1;
     int col = 0;
     int counter = 0;
-    API_Utilities utilities = new API_Utilities();
     @FXML
     private Label COURSE;
     @FXML
@@ -44,36 +45,38 @@ public class AttendancePresence extends AttendanceFunction {
     private GridPane ATTENDANCE_MEETING_COLUMN;
     @FXML
     private HBox MEETING_COLUMN_CONTAINER;
-
-    private String AttendanceCSVLocation;
-    private String AttendanceStatus = "PRESENT"; // STATUS FROM COMBOBOX
-    private String CURRENT_STUDENT_ID = QuickReadPresence.QR_Read("src/main/resources/presence/test.png");
-
-    public AttendancePresence() throws FileNotFoundException {
-        this.AttendanceCSVLocation = "src/main/resources/presence/" + getCourseCode() + "_" + getCourseSubject() + "_ATTENDANCE_SHEET.csv";
-    }
-    AttendanceBindAndCell bind = new AttendanceBindAndCell();
-
-    public void setCOURSE(Label COURSE) {
-        this.COURSE = COURSE;
-    }
-
     private String Course;
-
-    public void setCourse(String course) {
-        Course = course;
+    private String AttendanceCSVLocation;
+    private final String AttendanceStatus = "PRESENT"; // STATUS FROM COMBOBOX
+    AttendanceBindAndCell bind = new AttendanceBindAndCell();
+    public AttendancePresence() throws FileNotFoundException {
     }
-
     @FXML
     void initialize() throws IOException {
-        COURSE.setText(Course);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("DashboardHome.fxml"));
         HomeTab homeTab = loader.getController();
         bind.bindStudentCard(STUDENT_CONTAINER, row, col, counter);
+        System.out.println(getCourseCode());
+        System.out.println(getCourseSubject());
+        COURSE.setText(bind.setAttendanceLabel());
+        ArrayList<String> Meetings = (ArrayList<String>) bind.getAttendanceMeetings();
+        Meetings.remove(0);
+        Meetings.remove(0);
+        Meetings.remove(0);
+        Meetings.remove(0);
+        System.out.println(Meetings);
+        for (String meetings : Meetings) {
+            GENERATE_NEW_COLUMN();
+        }
+    }
+    @FXML
+    public void COURSE_NEW_MEETING() throws IOException {
+        GENERATE_NEW_COLUMN();
+        addNewColumnSheet();
     }
 
     @FXML
-    public void COURSE_NEW_MEETING(javafx.event.ActionEvent actionEvent) throws IOException {
+    public void GENERATE_NEW_COLUMN() throws IOException {
         generateAttendanceSheet();
         ++col;
         AttendanceBindAndCell bind = new AttendanceBindAndCell();
@@ -81,6 +84,8 @@ public class AttendancePresence extends AttendanceFunction {
     }
 
     public void backToDashboard(ActionEvent actionEvent) throws IOException {
-
+        Stage stage = (Stage) COURSE.getScene().getWindow();
+        stage.close();
     }
+
 }

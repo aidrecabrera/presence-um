@@ -29,7 +29,7 @@ public class QRScanner extends JFrame implements Runnable {
     private final ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
     private final JPanel panel = new JPanel();
     private final JLabel label = new JLabel();
-    private Webcam webcam;
+    private final Webcam webcam;
     private final Dimension size = WebcamResolution.VGA.getSize();
 
     static {
