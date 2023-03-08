@@ -1,11 +1,13 @@
 
 <p align="center"><a href="https://vuejs.org" target="_blank" rel="noopener noreferrer"><img width="100" src="https://user-images.githubusercontent.com/61798731/223683827-3df81494-dd05-4186-a9dd-8c08a0d6095f.png" alt="Vue logo"></a></p>
 
-
 <p align="center">
   <h1 align="center">Presence</h3>
 	<h3 align="center">Automating the Attendance Tracking Through Design and Implementation of a Smart Attendance System Using Java Programming Language</h3>
 </p>
+
+![auth](https://user-images.githubusercontent.com/61798731/223685998-d936c303-9d91-450d-81f1-180921d6d306.png)
+
 
 # Libraries and Framework
 
