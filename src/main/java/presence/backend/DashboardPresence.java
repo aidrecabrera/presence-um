@@ -8,8 +8,8 @@ import javafx.scene.Node;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import presence.API_Utilities;
 import presence.API_Database;
+import presence.API_Utilities;
 
 import java.io.IOException;
 import java.net.URL;

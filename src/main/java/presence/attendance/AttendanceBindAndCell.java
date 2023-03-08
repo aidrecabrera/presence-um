@@ -1,8 +1,6 @@
 package presence.attendance;
 
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -19,6 +17,7 @@ public class AttendanceBindAndCell implements AttendanceBinder {
 
     @Override
     public void bindStudentCard(GridPane embedContainer, int row, int col, int counter) throws IOException {
+        ComponentLabelReader.readLine();
         while ((rowStudentInformation = ComponentLabelReader.readLine()) != null) {
             HBox newStudentCard = new HBox();
             String[] courseInformationArray = rowStudentInformation.split(",");
@@ -39,7 +38,12 @@ public class AttendanceBindAndCell implements AttendanceBinder {
     @Override
     public void newStudentCell(GridPane embedContainer, int row, int col, int counter) throws IOException {
         embedContainer.add(utilities.generateMeetingHeader(embedContainer), col, 0);
-
+        ColumnConstraints columnConstraints = new ColumnConstraints();
+        columnConstraints.setHgrow(Priority.SOMETIMES);
+        columnConstraints.setMaxWidth(125.0);
+        columnConstraints.setMinWidth(125.0);
+        columnConstraints.setPrefWidth(125.0);
+        embedContainer.getColumnConstraints().add(columnConstraints);
         while ((rowStudentInformation = ComponentLabelReader.readLine()) != null) {
             VBox newMeetingCell = new VBox();
             utilities.setPropertyNewMeetingCell(newMeetingCell);

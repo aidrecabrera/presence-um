@@ -41,7 +41,7 @@
                <children>
                   <ScrollPane fx:id="STUDENT_SP" prefHeight="559.0" prefWidth="1401.0" style="-fx-background-color: white;">
                      <content>
-                        <GridPane fx:id="STUDENT_CONTAINER" gridLinesVisible="true" prefHeight="535.0" prefWidth="336.0">
+                        <GridPane fx:id="STUDENT_CONTAINER" gridLinesVisible="true" prefHeight="535.0" prefWidth="251.0">
                            <columnConstraints>
                               <ColumnConstraints fillWidth="false" hgrow="ALWAYS" maxWidth="350.0" minWidth="350.0" percentWidth="0.0" prefWidth="350.0" />
                            </columnConstraints>

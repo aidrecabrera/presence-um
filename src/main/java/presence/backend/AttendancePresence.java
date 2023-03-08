@@ -8,17 +8,13 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import presence.API_Utilities;
 import presence.HomeTab;
 import presence.attendance.AttendanceBindAndCell;
 import presence.attendance.AttendanceFunction;
-import presence.dashboard.DashboardBindCourses;
 import presence.scanning.QuickReadPresence;
 
-import java.io.BufferedReader;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 
 public class AttendancePresence extends AttendanceFunction {
@@ -58,11 +54,21 @@ public class AttendancePresence extends AttendanceFunction {
     }
     AttendanceBindAndCell bind = new AttendanceBindAndCell();
 
+    public void setCOURSE(Label COURSE) {
+        this.COURSE = COURSE;
+    }
+
+    private String Course;
+
+    public void setCourse(String course) {
+        Course = course;
+    }
+
     @FXML
     void initialize() throws IOException {
+        COURSE.setText(Course);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("DashboardHome.fxml"));
         HomeTab homeTab = loader.getController();
-
         bind.bindStudentCard(STUDENT_CONTAINER, row, col, counter);
     }
 

@@ -43,7 +43,7 @@ public class QRScanner extends JFrame implements Runnable {
 
         this.setContentPane(this.panel);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(960, 640);
+        this.setSize(1280 , 720);
         this.setLocationRelativeTo(panel);
         this.setVisible(true);
 

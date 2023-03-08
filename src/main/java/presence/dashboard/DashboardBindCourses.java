@@ -4,14 +4,14 @@ import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.stage.Stage;
-import presence.API_Utilities;
 import presence.API_Database;
+import presence.API_Utilities;
+import presence.HomeTab;
 import presence.backend.AttendancePresence;
 
 import java.io.BufferedReader;
@@ -19,7 +19,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public abstract class DashboardBindCourses {
@@ -73,6 +72,10 @@ public abstract class DashboardBindCourses {
                     popupStage.show();
                     newCourseCard.setUserData(course.getCourseCode() + course.getCourseName() + course.getCourseSched());
                     System.out.println("Button ID: " + newCourseCard.getId());
+                    Label newLabel = new Label(newCourseCard.getId());
+                    AttendancePresence attendancePresence = new AttendancePresence();
+                    attendancePresence.setCOURSE(newLabel);
+                    attendancePresence.setCourse(newCourseCard.getId());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
