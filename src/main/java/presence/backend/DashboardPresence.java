@@ -10,6 +10,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import presence.API_Database;
 import presence.API_Utilities;
+import presence.HomeTab;
 
 import java.io.IOException;
 import java.net.URL;
@@ -30,6 +31,9 @@ public class DashboardPresence implements Initializable  {
     private GridPane courseContainer;
     @FXML
     private SplitPane dashboardSplitContainer;
+
+    AttendancePresence attendancePresence = new AttendancePresence();
+    HomeTab homeTab = new HomeTab();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

@@ -22,6 +22,11 @@ public class AuthenticatePresence extends Authenticate{
     @FXML
     private TextField userPassword;
 
+    DashboardPresence dashboardPresence = new DashboardPresence();
+
+    public AuthenticatePresence() throws IOException {
+    }
+
     @FXML
     public void initialize() {
         System.out.println("UM Presence by Cabrera, Aidre Love");

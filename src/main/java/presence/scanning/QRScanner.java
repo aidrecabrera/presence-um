@@ -32,6 +32,8 @@ public class QRScanner extends JFrame implements Runnable {
     private final Webcam webcam;
     private final Dimension size = WebcamResolution.VGA.getSize();
 
+    private String StudentID;
+
     static {
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
     }
@@ -43,7 +45,7 @@ public class QRScanner extends JFrame implements Runnable {
 
         this.setContentPane(this.panel);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(1280 , 720);
+        this.setSize(1280, 960);
         this.setLocationRelativeTo(panel);
         this.setVisible(true);
 
@@ -73,6 +75,14 @@ public class QRScanner extends JFrame implements Runnable {
             BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(new BufferedImageLuminanceSource(bufferedImage)));
             Result result = this.reader.decode(bitmap);
             if (result != null) {
+                if (result.getText() == getStudentID()) {
+                    System.out.println("Scanned Already");
+                } else {
+                    setStudentID(result.getText());
+                    JOptionPane.showConfirmDialog((Component) null, "STUDENT ID: " + getStudentID(),
+                            "alert", JOptionPane.OK_CANCEL_OPTION);
+                }
+                System.out.println("STUDENT ID: " + getStudentID());
                 System.out.println(result.getText());
                 this.label.setText(result.getText());
 
@@ -97,11 +107,12 @@ public class QRScanner extends JFrame implements Runnable {
                 g2d.dispose();
 
                 this.label.setText("<html><div style='text-align: center;'>" + result.getText() + "</div></html>");
+
+
             }
         } catch (Exception e) {
-            System.out.println("No QR Detected");
-        }
 
+        }
         BufferedImage outputImage = MatUtil.matToBufferedImage(mat);
         this.label.setIcon(new ImageIcon(outputImage));
     }
@@ -128,6 +139,13 @@ public class QRScanner extends JFrame implements Runnable {
         }
     }
 
+    public String getStudentID() {
+        return StudentID;
+    }
+
+    public void setStudentID(String studentID) {
+        StudentID = studentID;
+    }
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new QRScanner());
