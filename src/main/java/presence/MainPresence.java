@@ -22,9 +22,7 @@ public class MainPresence extends Application {
     }
 
     public static void main(String[] args) throws IOException {
-        AttendanceAutomationQR qr = new AttendanceAutomationQR();
         AuthenticatePresence authenticatePresence = new AuthenticatePresence();
-//        qr.apiQQ();
         launch();
     }
 }

@@ -1,27 +1,27 @@
-UNIQUE_CODE,COURSE_CODE,STUDENT_ID,STUDENT_NAME,March 09 2023 - (09:25 PM)
-9709,CCE107,234567,Maxine Hart Adlawan,Present
-9709,CCE107,345678,Alber Kleint Aguilar,Present
-9709,CCE107,456789,Christine Jade Avila,Absent
-9709,CCE107,567890,Genesis Bastasa,Absent
-9709,CCE107,678901,Japeth Bingtan,Present
-9709,CCE107,536215,Aidre Love Cabrera,Present
-9709,CCE107,890123,Febraine Candia,Absent
-9709,CCE107,901234,Carl Justin Cimagala,Absent
-9709,CCE107,12345,Renz Bernard Cuison,NULL
-9709,CCE107,123456,Kent Henley Del Castillo,NULL
-9709,CCE107,234567,Crystal Kyle Delute,Present
-9709,CCE107,345678,Paul Tristan Dujali,Present
-9709,CCE107,456789,Ryan Dave Estanislao,Absent
-9709,CCE107,567890,Shem Fanilag,Absent
-9709,CCE107,678901,Prince Simon Feliscouso,Present
-9709,CCE107,789012,Andre John Llerin,NULL
-9709,CCE107,890123,Breane John Loable,Absent
-9709,CCE107,901234,Adrian Roge Magaso,Absent
-9709,CCE107,12345,Lovely Minoza,NULL
-9709,CCE107,123456,Christine Jane Modio,NULL
-9709,CCE107,234567,Leonyl Jan Morante,Present
-9709,CCE107,345678,Francis Joseph Pareja,Present
-9709,CCE107,456789,James Harry Ponteras,Absent
-9709,CCE107,567890,Tarn Nicolette Querubin,Absent
-9709,CCE107,678901,Martin John Salado,Present
-9709,CCE107,789012,Rianne Chardae Salise,NULL
+UNIQUE_CODE,COURSE_CODE,STUDENT_ID,STUDENT_NAME,March 09 2023 - (09:25 PM),March 10 2023 - (01:27 AM)
+9709,CCE107,234567,Maxine Hart Adlawan,Present,Present
+9709,CCE107,345678,Alber Kleint Aguilar,Present,Present
+9709,CCE107,456789,Christine Jade Avila,Absent,NULL
+9709,CCE107,567890,Genesis Bastasa,Absent,NULL
+9709,CCE107,678901,Japeth Bingtan,Present,NULL
+9709,CCE107,536215,Aidre Love Cabrera,Present,NULL
+9709,CCE107,890123,Febraine Candia,Absent,NULL
+9709,CCE107,901234,Carl Justin Cimagala,Absent,NULL
+9709,CCE107,12345,Renz Bernard Cuison,NULL,NULL
+9709,CCE107,123456,Kent Henley Del Castillo,NULL,NULL
+9709,CCE107,234567,Crystal Kyle Delute,Present,Present
+9709,CCE107,345678,Paul Tristan Dujali,Present,Present
+9709,CCE107,456789,Ryan Dave Estanislao,Absent,NULL
+9709,CCE107,567890,Shem Fanilag,Absent,NULL
+9709,CCE107,678901,Prince Simon Feliscouso,Present,NULL
+9709,CCE107,789012,Andre John Llerin,NULL,NULL
+9709,CCE107,890123,Breane John Loable,Absent,NULL
+9709,CCE107,901234,Adrian Roge Magaso,Absent,NULL
+9709,CCE107,12345,Lovely Minoza,NULL,NULL
+9709,CCE107,123456,Christine Jane Modio,NULL,NULL
+9709,CCE107,234567,Leonyl Jan Morante,Present,Present
+9709,CCE107,345678,Francis Joseph Pareja,Present,Present
+9709,CCE107,456789,James Harry Ponteras,Absent,NULL
+9709,CCE107,567890,Tarn Nicolette Querubin,Absent,NULL
+9709,CCE107,678901,Martin John Salado,Present,NULL
+9709,CCE107,789012,Rianne Chardae Salise,NULL,NULL

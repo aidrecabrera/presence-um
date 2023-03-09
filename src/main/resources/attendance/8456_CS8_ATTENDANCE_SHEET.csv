@@ -1,48 +1,49 @@
-"6102,CS8,530301,Jefferson Adlawan,Present"
-"6102,CS8,526664,Karl Andoque,Present"
-"6102,CS8,541584,Samantha Gwyneth Arsua,Absent"
-"6102,CS8,524704,Krizmelh Bacus,Absent"
-"6102,CS8,52324,Mark Baes,Absent"
-"6102,CS8,518010,James Paul Balagat,Absent"
-"6102,CS8,542146,Genesis Bastasa,Present"
-"6102,CS8,523456,Kenneth Joshua Becaro,Absent"
-"6102,CS8,538816,Renor Benito,Absent"
-"6102,CS8,529225,Von Keanu Campana,Present"
-"6102,CS8,527294,Jovian Charles Canedo,Present"
-"6102,CS8,482520,Carl Justin Cimagala,Present"
-"6102,CS8,524377,Maria Teressa Conde,Absent"
-"6102,CS8,525651,Kenneth James De Guzman,Absent"
-"6102,CS8,526255,Denrei Keith De Jesus,Absent"
-"6102,CS8,486996,Paul Tristan Dujali,Absent"
-"6102,CS8,525454,Reyan Esquirdo,Present"
-"6102,CS8,524642,Dec Marse Estepa,Present"
-"6102,CS8,488016,Christian Jayson Juerba,Present"
-"6102,CS8,523353,David Aljun Lapiz,Present"
-"6102,CS8,529601,Kim Noel Leones,Absent"
-"6102,CS8,525015Andre John Llerin,Present"
-"6102,CS8,529147,Reagan James Mabawad,Present"
-"6102,CS8,525548,Samantha Nicholai Malibiran,Present"
-"6102,CS8,523376,Louise Joseph Mallo,Present"
-"6102,CS8,520281,Arjay Manacap,Present"
-"6102,CS8,526860,Franco Lou Megallos,Present"
-"6102,CS8,524221,Nathaniel Moral,Present"
-"6102,CS8,526181,Mariel Moreno,Present"
-"6102,CS8,517970,Axel Sebasthian Narciso,Present"
-"6102,CS8,523625,Joshua Roi Nomus,Present"
-"6102,CS8,520216,Kenneth Jhon Ong,Absent"
-"6102,CS8,525312,Altheae Owe,Absent"
-"6102,CS8,526878,Stephanie Palero,Present"
-"6102,CS8,531046,Carl John Paluga,Present"
-"6102,CS8,532288,Earl Jan Pantaleta,Present"
-"6102,CS8,523674,Jorgery Partosa Ii,Present"
-"6102,CS8,524226,Lanz Sedrick Pascua,Present"
-"6102,CS8,526727,Bob Kyneth Ruizo,Present"
-"6102,CS8,523460,Jephunneh Deniel Santiago,Present"
-"6102,CS8,525404,Nickler Sarana,Present"
-"6102,CS8,489115,Arlene Mae Sayson,Present"
-"6102,CS8,526504,Kristhel Simon,Absent"
-"6102,CS8,528138,Danica Gabriel Siton,Present"
-"6102,CS8,541166,Jeric Rommel Tapusok,Present"
-"6102,CS8,526032,Jan Dale Topacio,Absent"
-"6102,CS8,402637,Clark Villanueva,Present"
-"6102,CS8,474386,Mark Petersen Ycong,Present"
+UNIQUE_CODE,COURSE_CODE,STUDENT_ID,STUDENT_NAME,March 10 2023 - (01:27 AM),March 10 2023 - (01:27 AM)
+6102,CS8,530301,Jefferson Adlawan,Present,NULL,NULL
+6102,CS8,526664,Karl Andoque,Present,NULL,NULL
+6102,CS8,541584,Samantha Gwyneth Arsua,Absent,NULL,NULL
+6102,CS8,524704,Krizmelh Bacus,Absent,NULL,NULL
+6102,CS8,52324,Mark Baes,Absent,NULL,NULL
+6102,CS8,518010,James Paul Balagat,Absent,NULL,NULL
+6102,CS8,542146,Genesis Bastasa,Present,NULL,NULL
+6102,CS8,523456,Kenneth Joshua Becaro,Absent,NULL,NULL
+6102,CS8,538816,Renor Benito,Absent,NULL,NULL
+6102,CS8,529225,Von Keanu Campana,Present,NULL,NULL
+6102,CS8,527294,Jovian Charles Canedo,Present,NULL,NULL
+6102,CS8,482520,Carl Justin Cimagala,Present,NULL,NULL
+6102,CS8,524377,Maria Teressa Conde,Absent,NULL,NULL
+6102,CS8,525651,Kenneth James De Guzman,Absent,NULL,NULL
+6102,CS8,526255,Denrei Keith De Jesus,Absent,NULL,NULL
+6102,CS8,486996,Paul Tristan Dujali,Absent,NULL,NULL
+6102,CS8,525454,Reyan Esquirdo,Present,NULL,NULL
+6102,CS8,524642,Dec Marse Estepa,Present,NULL,NULL
+6102,CS8,488016,Christian Jayson Juerba,Present,NULL,NULL
+6102,CS8,523353,David Aljun Lapiz,Present,NULL,NULL
+6102,CS8,529601,Kim Noel Leones,Absent,NULL,NULL
+6102,CS8,525015,Andre John Llerin,Present,NULL,NULL
+6102,CS8,529147,Reagan James Mabawad,Present,NULL,NULL
+6102,CS8,525548,Samantha Nicholai Malibiran,Present,NULL,NULL
+6102,CS8,523376,Louise Joseph Mallo,Present,NULL,NULL
+6102,CS8,520281,Arjay Manacap,Present,NULL,NULL
+6102,CS8,526860,Franco Lou Megallos,Present,NULL,NULL
+6102,CS8,524221,Nathaniel Moral,Present,NULL,NULL
+6102,CS8,526181,Mariel Moreno,Present,NULL,NULL
+6102,CS8,517970,Axel Sebasthian Narciso,Present,NULL,NULL
+6102,CS8,523625,Joshua Roi Nomus,Present,NULL,NULL
+6102,CS8,520216,Kenneth Jhon Ong,Absent,NULL,NULL
+6102,CS8,525312,Altheae Owe,Absent,NULL,NULL
+6102,CS8,526878,Stephanie Palero,Present,NULL,NULL
+6102,CS8,531046,Carl John Paluga,Present,NULL,NULL
+6102,CS8,532288,Earl Jan Pantaleta,Present,NULL,NULL
+6102,CS8,523674,Jorgery Partosa Ii,Present,NULL,NULL
+6102,CS8,524226,Lanz Sedrick Pascua,Present,NULL,NULL
+6102,CS8,526727,Bob Kyneth Ruizo,Present,NULL,NULL
+6102,CS8,523460,Jephunneh Deniel Santiago,Present,NULL,NULL
+6102,CS8,525404,Nickler Sarana,Present,NULL,NULL
+6102,CS8,489115,Arlene Mae Sayson,Present,NULL,NULL
+6102,CS8,526504,Kristhel Simon,Absent,NULL,NULL
+6102,CS8,528138,Danica Gabriel Siton,Present,NULL,NULL
+6102,CS8,541166,Jeric Rommel Tapusok,Present,NULL,NULL
+6102,CS8,526032,Jan Dale Topacio,Absent,NULL,NULL
+6102,CS8,402637,Clark Villanueva,Present,NULL,NULL
+6102,CS8,474386,Mark Petersen Ycong,Present,NULL,NULL

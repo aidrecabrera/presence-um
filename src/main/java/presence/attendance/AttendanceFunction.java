@@ -1,42 +1,16 @@
 package presence.attendance;
 
 import presence.API_Utilities;
+import presence.API_CourseSheet;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class AttendanceFunction implements AttendanceSheet, AttendanceMeeting, AttendanceCalculate {
-    private static String COURSE_SUBJECT;
-    private static String COURSE_CODE;
-    private static String LOCATION_SHEET_FILE_PATH = "src/main/resources/attendance/" + COURSE_CODE + "_" + COURSE_SUBJECT + "_ATTENDANCE_SHEET.csv";
+public class AttendanceFunction implements AttendanceSheet, AttendanceMeeting {
+    private final String LOCATION_SHEET_FILE_PATH = API_CourseSheet.getInstance().getCourseSheet();
 
-    public AttendanceFunction() {
-    }
-
-    public AttendanceFunction(String subject, String code) {
-        this.COURSE_SUBJECT = subject;
-        this.COURSE_CODE = code;
-    }
-
-    public static void setCourseSubject(String courseSubject) {
-        COURSE_SUBJECT = courseSubject;
-    }
-
-    public static void setCourseCode(String courseCode) {
-        COURSE_CODE = courseCode;
-    }
-
-    public static String getCourseSubject() {
-        return COURSE_SUBJECT;
-    }
-
-    public static String getCourseCode() {
-        return COURSE_CODE;
-    }
-
-    public static String getLocationSheetFilePath() {
-        return LOCATION_SHEET_FILE_PATH;
+    public AttendanceFunction() throws FileNotFoundException {
     }
 
     @Override
@@ -45,15 +19,6 @@ public class AttendanceFunction implements AttendanceSheet, AttendanceMeeting, A
     }
     @Override
     public void markStudentMeetingStatus() {
-
-    }
-
-    @Override
-    public void calculateOverallCourseAttendance() {
-
-    }
-    @Override
-    public void calculateOverallStudentAttendance() {
 
     }
 

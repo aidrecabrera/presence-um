@@ -1,50 +1,51 @@
-"9919,GPE3,525983,Lyka Dion Aclon,Absent"
-"9919,GPE3,512543,Melea Heli Agman,Present"
-"9919,GPE3,486846,Angel Mae Aquino,Absent"
-"9919,GPE3,523830,Grant Van Asparo,Present"
-"9919,GPE3,474836,Joebannie Bandao,Absent"
-"9919,GPE3,524791,Tamara Bernardo,Absent"
-"9919,GPE3,523234,Kenneth Jay Buladaco,Present"
-"9919,GPE3,520744,Hannah Desiree Casurra,Present"
-"9919,GPE3,52999,Gevan Datolayta,Present"
-"9919,GPE3,528829,Shanen Diolagan,Absent"
-"9919,GPE3,512885,Farhana Dumagandar,Present"
-"9919,GPE3,525879,Trishia Marie Elicot,Present"
-"9919,GPE3,523593,Kent Adrian Faigao,Present"
-"9919,GPE3,521133,Charlene Mae Fortuna,Absent"
-"9919,GPE3,529589,Julia Earl Franco,Present"
-"9919,GPE3,519303,Francis Fuertes,Present"
-"9919,GPE3,530345,Eduardo Jr Galgo,Present"
-"9919,GPE3,524890,Stephen Neil Garde,Absent"
-"9919,GPE3,541648,Sitti Ayesha Hasiman,Absent"
-"9919,GPE3,530418,Shernaiza Ibnosali,Present"
-"9919,GPE3,526724,Junaisa Ismael,Present"
-"9919,GPE3,531051,Baidido Kadato,Present"
-"9919,GPE3,532484,Pamela Jun Labra,Present"
-"9919,GPE3,532693,Jonathan Lafuente,Present"
-"9919,GPE3,528922,Kemuel Lagdameo,Present"
-"9919,GPE3,541054,Alynna Mae Laput,Present"
-"9919,GPE3,525015,Andre John Llerin,Absent"
-"9919,GPE3,488103,Marlou Madanlo,Present"
-"9919,GPE3,527515,Louis Francis Madriaga,Present"
-"9919,GPE3,520088,Jhaya Mae Mamparo,Absent"
-"9919,GPE3,527703,Anna Mae Manacap,Absent"
-"9919,GPE3,474875,Jinky Monleon,Absent"
-"9919,GPE3,522199,Donnabel Rose Montero,Present"
-"9919,GPE3,532426,Gil Jr Ortega,Absent"
-"9919,GPE3,537911,Kim Palomero,Present"
-"9919,GPE3,530943,Joellian Pantinople,Present"
-"9919,GPE3,530884,Thessa Parilla,Present"
-"9919,GPE3,530884,Jeric Pasay,Absent"
-"9919,GPE3,480005,Karven Ray Pirote,Absent"
-"9919,GPE3,478248,Joedel Gheo Poliquit,Present"
-"9919,GPE3,478668,Paula Monique Potestas,Present"
-"9919,GPE3,.525929,Crystal Quiamson,Present"
-"9919,GPE3,500139,Michelle Reston,Present"
-"9919,GPE3,468632,Dovie Ann Rosaupan,Absent"
-"9919,GPE3,532545,Christian Clint Salgado,Present"
-"9919,GPE3,526475,Alexandra Kaith Sumilhig,Present"
-"9919,GPE3,523107,David Carl Tabalan,Present"
-"9919,GPE3,532042,Via Tagaunsod,Absent"
-"9919,GPE3,.538029,Charlize Torres,Present"
-"9919,GPE3,541126,Mariz Carmelle Tropico,Present"
+UNIQUE_CODE,COURSE_CODE,STUDENT_ID,STUDENT_NAME
+9919,GPE3,525983,Lyka Dion Aclon,Absent
+9919,GPE3,512543,Melea Heli Agman,Present
+9919,GPE3,486846,Angel Mae Aquino,Absent
+9919,GPE3,523830,Grant Van Asparo,Present
+9919,GPE3,474836,Joebannie Bandao,Absent
+9919,GPE3,524791,Tamara Bernardo,Absent
+9919,GPE3,523234,Kenneth Jay Buladaco,Present
+9919,GPE3,520744,Hannah Desiree Casurra,Present
+9919,GPE3,52999,Gevan Datolayta,Present
+9919,GPE3,528829,Shanen Diolagan,Absent
+9919,GPE3,512885,Farhana Dumagandar,Present
+9919,GPE3,525879,Trishia Marie Elicot,Present
+9919,GPE3,523593,Kent Adrian Faigao,Present
+9919,GPE3,521133,Charlene Mae Fortuna,Absent
+9919,GPE3,529589,Julia Earl Franco,Present
+9919,GPE3,519303,Francis Fuertes,Present
+9919,GPE3,530345,Eduardo Jr Galgo,Present
+9919,GPE3,524890,Stephen Neil Garde,Absent
+9919,GPE3,541648,Sitti Ayesha Hasiman,Absent
+9919,GPE3,530418,Shernaiza Ibnosali,Present
+9919,GPE3,526724,Junaisa Ismael,Present
+9919,GPE3,531051,Baidido Kadato,Present
+9919,GPE3,532484,Pamela Jun Labra,Present
+9919,GPE3,532693,Jonathan Lafuente,Present
+9919,GPE3,528922,Kemuel Lagdameo,Present
+9919,GPE3,541054,Alynna Mae Laput,Present
+9919,GPE3,525015,Andre John Llerin,Absent
+9919,GPE3,488103,Marlou Madanlo,Present
+9919,GPE3,527515,Louis Francis Madriaga,Present
+9919,GPE3,520088,Jhaya Mae Mamparo,Absent
+9919,GPE3,527703,Anna Mae Manacap,Absent
+9919,GPE3,474875,Jinky Monleon,Absent
+9919,GPE3,522199,Donnabel Rose Montero,Present
+9919,GPE3,532426,Gil Jr Ortega,Absent
+9919,GPE3,537911,Kim Palomero,Present
+9919,GPE3,530943,Joellian Pantinople,Present
+9919,GPE3,530884,Thessa Parilla,Present
+9919,GPE3,530884,Jeric Pasay,Absent
+9919,GPE3,480005,Karven Ray Pirote,Absent
+9919,GPE3,478248,Joedel Gheo Poliquit,Present
+9919,GPE3,478668,Paula Monique Potestas,Present
+9919,GPE3,.525929,Crystal Quiamson,Present
+9919,GPE3,500139,Michelle Reston,Present
+9919,GPE3,468632,Dovie Ann Rosaupan,Absent
+9919,GPE3,532545,Christian Clint Salgado,Present
+9919,GPE3,526475,Alexandra Kaith Sumilhig,Present
+9919,GPE3,523107,David Carl Tabalan,Present
+9919,GPE3,532042,Via Tagaunsod,Absent
+9919,GPE3,.538029,Charlize Torres,Present
+9919,GPE3,541126,Mariz Carmelle Tropico,Present

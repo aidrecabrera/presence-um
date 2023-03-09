@@ -1,39 +1,40 @@
-"4567,CCE109,537237,Kim Brian Abucay,Present"
-"4567,CCE109,538181,Schann Jorson Alves,Present"
-"4567,CCE109,535940,Francisco III Avena,Present"
-"4567,CCE109,537375,John Paul Ayop,Present"
-"4567,CCE109,538306,James Nathaniel Baguio,Present"
-"4567,CCE109,541419,Prinz Andrei Basalo,Present"
-"4567,CCE109,53802,Justine Bayron,Present"
-"4567,CCE109,537122,Japeth Bingtan,Present"
-"4567,CCE109,536215,Aidre Cabrera,Present"
-"4567,CCE109,537218,Kesheen Aerriane Cabrera,Present"
-"4567,CCE109,530871,Charmelle John Cahucom,Present"
-"4567,CCE109,534103,Febraine Candia,Present"
-"4567,CCE109,537196,Arljason Canillo,Present"
-"4567,CCE109,537723,Chris John Castillon,Present"
-"4567,CCE109,538616,Jerry Ian Cellona,Present"
-"4567,CCE109,536970,Neziel Mae Claveria,Present"
-"4567,CCE109,537525,John Kenneth Contridas,Present"
-"4567,CCE109,538234,Justine Paul Dalumpines,Present"
-"4567,CCE109,535773,Joebert Del Rosario,Present"
-"4567,CCE109,486996,Paul Tristan Dujali,Present"
-"4567,CCE109,537153,Jazryl Mae Exentos,Present"
-"4567,CCE109,537717,Cyver Waynne Gamorot,Present"
-"4567,CCE109,537347,Marcus Johann Garcia,Present"
-"4567,CCE109,538381,Joseph Jamero,Present"
-"4567,CCE109,541431,Roxanne Jardin,Present"
-"4567,CCE109,538374,John Carlo Ledesma,Present"
-"4567,CCE109,538499,John Gabriel Lenares,Present"
-"4567,CCE109,531746,John Marlo Liu,Present"
-"4567,CCE109,525015,Andre John Llerin,Present"
-"4567,CCE109,538542,Erronn John Madelo,Present"
-"4567,CCE109,538613,Christopher Pond Maquidato,Present"
-"4567,CCE109,538401,Joross Pacturan,Present"
-"4567,CCE109,538555,Hafeez Palis,Present"
-"4567,CCE109,532288,Earl Jan Pantaleta,Present"
-"4567,CCE109,538474,Ann Pedregosa,Present"
-"4567,CCE109,537492,Martin John Salado,Present"
-"4567,CCE109,538101,Ben Alexandre Tagud,Present"
-"4567,CCE109,538102,Quennie Grace Utal,Present"
-"4567,CCE109,537753,Alexis Ariel Zanoria,Present"
+UNIQUE_CODE,COURSE_CODE,STUDENT_ID,STUDENT_NAME
+4567,CCE109,537237,Kim Brian Abucay,Present
+4567,CCE109,538181,Schann Jorson Alves,Present
+4567,CCE109,535940,Francisco III Avena,Present
+4567,CCE109,537375,John Paul Ayop,Present
+4567,CCE109,538306,James Nathaniel Baguio,Present
+4567,CCE109,541419,Prinz Andrei Basalo,Present
+4567,CCE109,53802,Justine Bayron,Present
+4567,CCE109,537122,Japeth Bingtan,Present
+4567,CCE109,536215,Aidre Cabrera,Present
+4567,CCE109,537218,Kesheen Aerriane Cabrera,Present
+4567,CCE109,530871,Charmelle John Cahucom,Present
+4567,CCE109,534103,Febraine Candia,Present
+4567,CCE109,537196,Arljason Canillo,Present
+4567,CCE109,537723,Chris John Castillon,Present
+4567,CCE109,538616,Jerry Ian Cellona,Present
+4567,CCE109,536970,Neziel Mae Claveria,Present
+4567,CCE109,537525,John Kenneth Contridas,Present
+4567,CCE109,538234,Justine Paul Dalumpines,Present
+4567,CCE109,535773,Joebert Del Rosario,Present
+4567,CCE109,486996,Paul Tristan Dujali,Present
+4567,CCE109,537153,Jazryl Mae Exentos,Present
+4567,CCE109,537717,Cyver Waynne Gamorot,Present
+4567,CCE109,537347,Marcus Johann Garcia,Present
+4567,CCE109,538381,Joseph Jamero,Present
+4567,CCE109,541431,Roxanne Jardin,Present
+4567,CCE109,538374,John Carlo Ledesma,Present
+4567,CCE109,538499,John Gabriel Lenares,Present
+4567,CCE109,531746,John Marlo Liu,Present
+4567,CCE109,525015,Andre John Llerin,Present
+4567,CCE109,538542,Erronn John Madelo,Present
+4567,CCE109,538613,Christopher Pond Maquidato,Present
+4567,CCE109,538401,Joross Pacturan,Present
+4567,CCE109,538555,Hafeez Palis,Present
+4567,CCE109,532288,Earl Jan Pantaleta,Present
+4567,CCE109,538474,Ann Pedregosa,Present
+4567,CCE109,537492,Martin John Salado,Present
+4567,CCE109,538101,Ben Alexandre Tagud,Present
+4567,CCE109,538102,Quennie Grace Utal,Present
+4567,CCE109,537753,Alexis Ariel Zanoria,Present

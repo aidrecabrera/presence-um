@@ -1,6 +1,7 @@
 package presence.attendance;
 
 import javafx.scene.layout.*;
+import presence.API_CourseSheet;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -11,7 +12,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class AttendanceBindAndCell implements AttendanceBinder {
-    FileReader fileReader = new FileReader(AttendanceFunction.getLocationSheetFilePath());
+    String LOCATION_SHEET_FILE_PATH = API_CourseSheet.getInstance().getCourseSheet();
+    FileReader fileReader = new FileReader(LOCATION_SHEET_FILE_PATH);
     BufferedReader ComponentLabelReader = new BufferedReader(fileReader);
     String rowStudentInformation;
 
@@ -20,18 +22,18 @@ public class AttendanceBindAndCell implements AttendanceBinder {
 
     @Override
     public String[] setAttendanceLabel() throws IOException {
+        FileReader fileReader = new FileReader(LOCATION_SHEET_FILE_PATH);
         BufferedReader getCourse = new BufferedReader(fileReader);
         getCourse.readLine();
         String getCurrentCourse = getCourse.readLine();
         String[] rowToArray = getCurrentCourse.split(",");
         System.out.println("COURSES" + Arrays.asList(rowToArray));
-        System.out.println(AttendanceFunction.getCourseCode());
-        System.out.println(AttendanceFunction.getCourseSubject());
         return rowToArray;
     }
 
     @Override
     public List<String> getAttendanceHeaders() throws IOException {
+        FileReader fileReader = new FileReader(LOCATION_SHEET_FILE_PATH);
         BufferedReader getCourse = new BufferedReader(fileReader);
         String getCurrentCourse = getCourse.readLine();
         List<String> attendanceHeaders = new ArrayList<>(Arrays.asList(getCurrentCourse.split(",")));

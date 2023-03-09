@@ -11,6 +11,7 @@ import org.opencv.core.Core;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.imgproc.Imgproc;
+import presence.attendance.AttendanceFunction;
 
 import javax.swing.*;
 import java.awt.*;
@@ -79,7 +80,7 @@ public class QRScanner extends JFrame implements Runnable {
                     System.out.println("Scanned Already");
                 } else {
                     setStudentID(result.getText());
-                    JOptionPane.showConfirmDialog((Component) null, "STUDENT ID: " + getStudentID(),
+                    JOptionPane.showConfirmDialog(null, "STUDENT ID: " + getStudentID(),
                             "alert", JOptionPane.OK_CANCEL_OPTION);
                 }
                 System.out.println("STUDENT ID: " + getStudentID());

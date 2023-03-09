@@ -9,11 +9,9 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import presence.API_Database;
 import presence.API_Utilities;
-import presence.HomeTab;
-import presence.backend.AttendancePresence;
+import presence.API_CourseSheet;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -65,9 +63,9 @@ public abstract class DashboardBindCourses {
             utilities.courseCardPropertySetter(newCourseCard, bindCourseCode, bindCourseName, bindCourseSchedule);
             newCourseCard.setOnAction(event -> {
                 try {
+                    API_CourseSheet.getInstance().setCourseSheet(courseInformationArray[0], courseInformationArray[1]);
+                    System.out.println("SHEET!!!!!!!!!!!!!!!!!!!!" + API_CourseSheet.getInstance().getCourseSheet());
                     newCourseCard.setUserData(course.getCourseCode() + course.getCourseName() + course.getCourseSched());
-                    System.out.println("DATA PASSED: " + course.getCourseCode() + course.getCourseName() + course.getCourseSched());
-                    System.out.println("Button ID: " + newCourseCard.getId());
                     Stage popupStage = new Stage();
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("CourseTemplate.fxml"));
                     Parent root = loader.load();
@@ -76,6 +74,7 @@ public abstract class DashboardBindCourses {
                     popupStage.show();
                 } catch (Exception e) {
                     e.printStackTrace();
+                } finally {
                 }
             });
             embedContainer.add(newCourseCard, col, row);

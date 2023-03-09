@@ -32,7 +32,6 @@ public class DashboardPresence implements Initializable  {
     @FXML
     private SplitPane dashboardSplitContainer;
 
-    AttendancePresence attendancePresence = new AttendancePresence();
     HomeTab homeTab = new HomeTab();
 
     @Override

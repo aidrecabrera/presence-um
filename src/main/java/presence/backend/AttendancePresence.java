@@ -10,16 +10,17 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import presence.API_Utilities;
+import presence.API_CourseSheet;
 import presence.HomeTab;
+import presence.attendance.AttendanceAutomationQR;
 import presence.attendance.AttendanceBindAndCell;
 import presence.attendance.AttendanceFunction;
 
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class AttendancePresence extends AttendanceFunction {
+    AttendanceBindAndCell bind = new AttendanceBindAndCell();
     API_Utilities utilities = new API_Utilities();
     int row = 1;
     int col = 0;
@@ -49,11 +50,23 @@ public class AttendancePresence extends AttendanceFunction {
     private String Course;
     private String AttendanceCSVLocation;
     private final String AttendanceStatus = "PRESENT"; // STATUS FROM COMBOBOX
-    AttendanceBindAndCell bind = new AttendanceBindAndCell();
+    private static String sheetURL;
+
     public AttendancePresence() throws FileNotFoundException {
     }
+
+    public static void setSheetURL(String sheetURL) {
+        AttendancePresence.sheetURL = sheetURL;
+    }
+
+    public String getSheetURL() {
+        return this.sheetURL;
+    }
+
     @FXML
     void initialize() throws IOException {
+        System.out.println("TEST" + getSheetURL());
+        String sheetURL = API_CourseSheet.getInstance().getCourseSheet();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("DashboardHome.fxml"));
         HomeTab homeTab = loader.getController();
         bind.bindStudentCard(STUDENT_CONTAINER, row, col, counter);
@@ -75,6 +88,12 @@ public class AttendancePresence extends AttendanceFunction {
     }
 
     @FXML
+    void QCP_COURSE_NEW_MEETING(ActionEvent event) {
+        AttendanceAutomationQR quickCheckAPI = new AttendanceAutomationQR();
+        quickCheckAPI.apiQQ();
+    }
+
+    @FXML
     public void COURSE_NEW_MEETING() throws IOException {
         addNewColumnSheet();
         GENERATE_NEW_COLUMN();
@@ -84,5 +103,7 @@ public class AttendancePresence extends AttendanceFunction {
         Stage stage = (Stage) COURSE.getScene().getWindow();
         stage.close();
     }
+
+
 
 }
