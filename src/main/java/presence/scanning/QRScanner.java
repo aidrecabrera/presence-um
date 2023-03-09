@@ -11,12 +11,16 @@ import org.opencv.core.Core;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.imgproc.Imgproc;
+import presence.API_Utilities;
+import presence.attendance.AttendanceBindAndCell;
 import presence.attendance.AttendanceFunction;
+import presence.backend.AttendancePresence;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
+import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.Executors;
@@ -33,12 +37,11 @@ public class QRScanner extends JFrame implements Runnable {
     private final Webcam webcam;
     private final Dimension size = WebcamResolution.VGA.getSize();
 
-    private String StudentID;
 
     static {
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
     }
-    public QRScanner() {
+    public QRScanner() throws FileNotFoundException {
         super("UM Presence | Initiate Attendance");
 
         this.panel.setLayout(new BorderLayout());
@@ -62,8 +65,14 @@ public class QRScanner extends JFrame implements Runnable {
         this.executor.scheduleAtFixedRate(this, 0, 33, TimeUnit.MILLISECONDS);
     }
 
+    AttendanceFunction attendanceFunction = new AttendanceFunction();
+    API_Utilities utilities = new API_Utilities();
+    private boolean scanningEnabled = true;
     @Override
     public void run() {
+        if (!scanningEnabled) {
+            return;
+        }
         BufferedImage image = this.webcam.getImage();
 
         if (image == null) {
@@ -76,13 +85,15 @@ public class QRScanner extends JFrame implements Runnable {
             BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(new BufferedImageLuminanceSource(bufferedImage)));
             Result result = this.reader.decode(bitmap);
             if (result != null) {
-                if (result.getText() == getStudentID()) {
-                    System.out.println("Scanned Already");
-                } else {
+                if (result.getText() == getStudentID() || getStudentID() == result.getText() || result.getText().equals(getStudentID())) {
+                    JOptionPane.showConfirmDialog(null, "STUDENT ID: " + utilities.removeFirstChar(getStudentID()) + " | Already Present.",
+                            "Quick Check Presence", JOptionPane.OK_CANCEL_OPTION);
+                } else if (result.getText() != getStudentID()){
                     setStudentID(result.getText());
-                    JOptionPane.showConfirmDialog(null, "STUDENT ID: " + getStudentID(),
-                            "alert", JOptionPane.OK_CANCEL_OPTION);
+                    JOptionPane.showConfirmDialog(null, "STUDENT ID: " + utilities.removeFirstChar(getStudentID()) + " | Marked Present.",
+                            "Quick Check Presence", JOptionPane.OK_CANCEL_OPTION);
                 }
+
                 System.out.println("STUDENT ID: " + getStudentID());
                 System.out.println(result.getText());
                 this.label.setText(result.getText());
@@ -139,7 +150,7 @@ public class QRScanner extends JFrame implements Runnable {
             return bi;
         }
     }
-
+    String StudentID;
     public String getStudentID() {
         return StudentID;
     }
@@ -149,6 +160,12 @@ public class QRScanner extends JFrame implements Runnable {
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new QRScanner());
+        SwingUtilities.invokeLater(() -> {
+            try {
+                new QRScanner();
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 }

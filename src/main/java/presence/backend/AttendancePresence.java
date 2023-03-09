@@ -88,9 +88,11 @@ public class AttendancePresence extends AttendanceFunction {
     }
 
     @FXML
-    void QCP_COURSE_NEW_MEETING(ActionEvent event) {
+    void QCP_COURSE_NEW_MEETING(ActionEvent event) throws IOException {
+        COURSE_NEW_MEETING();
         AttendanceAutomationQR quickCheckAPI = new AttendanceAutomationQR();
-        quickCheckAPI.apiQQ();
+        String MeetingDateID = bind.getAttendanceHeaders().get(col-1);
+        quickCheckAPI.runUntilNewID(MeetingDateID, col);
     }
 
     @FXML

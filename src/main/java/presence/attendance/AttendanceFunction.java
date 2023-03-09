@@ -93,7 +93,7 @@ public class AttendanceFunction implements AttendanceSheet, AttendanceMeeting {
     }
 
     @Override
-    public void attendanceEditor(String meetingReference, String paramStudentID, String paramAttendanceStatus, int ColumnHeader) throws IOException {
+    public void attendanceEditor(String meetingReference, String paramStudentID, String paramAttendanceStatus) throws IOException {
         String filePath = LOCATION_SHEET_FILE_PATH;
         String searchString = paramStudentID;
         String headerName = meetingReference;
@@ -129,8 +129,6 @@ public class AttendanceFunction implements AttendanceSheet, AttendanceMeeting {
         while ((line = br.readLine()) != null) {
             String[] values = line.split(",");
             ArrayList<String> statusValuesList = new ArrayList<>(Arrays.asList(values));
-            System.out.println("VALUES! " + statusValuesList);
-            System.out.println("INDEX IN EDITOR! " + colIndex);
             if (values.length >= 4 && statusValuesList.contains(searchString)) {
                 if ((values.length == header.length) && !values[colIndex].isBlank() || !values[colIndex].isEmpty()) {
                     values[colIndex] = newData;
