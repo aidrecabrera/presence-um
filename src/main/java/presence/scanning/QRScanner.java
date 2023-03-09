@@ -49,7 +49,7 @@ public class QRScanner extends JFrame implements Runnable {
 
         this.setContentPane(this.panel);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(1280, 960);
+        this.setSize(720, 480);
         this.setLocationRelativeTo(panel);
         this.setVisible(true);
 
@@ -62,7 +62,7 @@ public class QRScanner extends JFrame implements Runnable {
         this.webcam.open();
 
         this.reader.setHints(null);
-        this.executor.scheduleAtFixedRate(this, 0, 33, TimeUnit.MILLISECONDS);
+        this.executor.scheduleAtFixedRate(this, 300, 33, TimeUnit.MILLISECONDS);
     }
 
     AttendanceFunction attendanceFunction = new AttendanceFunction();
@@ -87,40 +87,22 @@ public class QRScanner extends JFrame implements Runnable {
             if (result != null) {
                 if (result.getText() == getStudentID() || getStudentID() == result.getText() || result.getText().equals(getStudentID())) {
                     JOptionPane.showConfirmDialog(null, "STUDENT ID: " + utilities.removeFirstChar(getStudentID()) + " | Already Present.",
-                            "Quick Check Presence", JOptionPane.OK_CANCEL_OPTION);
+                            "Quick Check Presence", JOptionPane.OK_OPTION);
                 } else if (result.getText() != getStudentID()){
                     setStudentID(result.getText());
                     JOptionPane.showConfirmDialog(null, "STUDENT ID: " + utilities.removeFirstChar(getStudentID()) + " | Marked Present.",
-                            "Quick Check Presence", JOptionPane.OK_CANCEL_OPTION);
+                            "Quick Check Presence", JOptionPane.OK_OPTION);
                 }
 
                 System.out.println("STUDENT ID: " + getStudentID());
                 System.out.println(result.getText());
                 this.label.setText(result.getText());
 
-                int qrCodeX = (int) result.getResultPoints()[0].getX();
-                int qrCodeY = (int) result.getResultPoints()[0].getY();
-                int qrCodeSize = (int) (result.getResultPoints()[2].getX() - result.getResultPoints()[0].getX());
-                int width = (int) (result.getResultPoints()[2].getX() - result.getResultPoints()[0].getX());
-                int height = (int) (result.getResultPoints()[2].getY() - result.getResultPoints()[0].getY());
-                Graphics2D g2d = bufferedImage.createGraphics();
-                g2d.setColor(Color.GREEN);
-                g2d.setStroke(new BasicStroke(3));
-                g2d.drawRect(qrCodeX, qrCodeY, width, height);
-                g2d.dispose();
-
-                g2d.setFont(new Font("Arial", Font.BOLD, 20));
-                g2d.setColor(Color.BLACK);
-                g2d.drawString(result.getText(), 10, 30);
-                g2d.dispose();
-                g2d.setColor(Color.GREEN);
-                g2d.setStroke(new BasicStroke(5));
-                g2d.drawRect(qrCodeX, qrCodeY, qrCodeSize, qrCodeSize);
-                g2d.dispose();
-
-                this.label.setText("<html><div style='text-align: center;'>" + result.getText() + "</div></html>");
-
-
+                try {
+                    Thread.sleep(200); // Sleep for 1 second
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         } catch (Exception e) {
 

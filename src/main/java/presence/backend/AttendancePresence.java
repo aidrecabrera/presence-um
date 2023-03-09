@@ -1,8 +1,10 @@
 package presence.backend;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.ScrollPane;
@@ -18,6 +20,8 @@ import presence.attendance.AttendanceFunction;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+
+import static sun.jvm.hotspot.runtime.PerfMemory.start;
 
 public class AttendancePresence extends AttendanceFunction {
     AttendanceBindAndCell bind = new AttendanceBindAndCell();
