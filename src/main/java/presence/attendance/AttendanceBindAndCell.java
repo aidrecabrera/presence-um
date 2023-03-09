@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class AttendanceBindAndCell implements AttendanceBinder {
-    FileReader fileReader = new FileReader("src/main/resources/attendance/9709_CCE107_ATTENDANCE_SHEET.csv");
+    FileReader fileReader = new FileReader(AttendanceFunction.getLocationSheetFilePath());
     BufferedReader ComponentLabelReader = new BufferedReader(fileReader);
     String rowStudentInformation;
 
@@ -20,7 +20,6 @@ public class AttendanceBindAndCell implements AttendanceBinder {
 
     @Override
     public String[] setAttendanceLabel() throws IOException {
-        FileReader fileReader = new FileReader("src/main/resources/attendance/9709_CCE107_ATTENDANCE_SHEET.csv");
         BufferedReader getCourse = new BufferedReader(fileReader);
         getCourse.readLine();
         String getCurrentCourse = getCourse.readLine();
@@ -33,7 +32,6 @@ public class AttendanceBindAndCell implements AttendanceBinder {
 
     @Override
     public List<String> getAttendanceHeaders() throws IOException {
-        FileReader fileReader = new FileReader("src/main/resources/attendance/9709_CCE107_ATTENDANCE_SHEET.csv");
         BufferedReader getCourse = new BufferedReader(fileReader);
         String getCurrentCourse = getCourse.readLine();
         List<String> attendanceHeaders = new ArrayList<>(Arrays.asList(getCurrentCourse.split(",")));

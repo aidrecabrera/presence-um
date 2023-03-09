@@ -26,7 +26,7 @@ public abstract class AuthenticateFunction implements SignIn, Register {
      * @USER_HASHMAPS Private field to store the registered users
      */
 
-    private final HashMap<String, String> USER_HASHMAP = new HashMap<>();
+    private static final HashMap<String, String> USER_HASHMAP = new HashMap<>();
     private final String filePath;
     public AuthenticateFunction(String userFilePath) {
         this.filePath = userFilePath;
@@ -37,8 +37,7 @@ public abstract class AuthenticateFunction implements SignIn, Register {
      Reads user information from a file and stores it in the users map.
      @param filePath the path to the file containing USER_HASHMAP information
      */
-    @Override
-    public void readUsersFromFile(String filePath) {
+    public static void readUsersFromFile(String filePath) {
         File file = new File(filePath);
         if (file.length() == 0) {
             System.out.println("Database is empty. Please register.");
@@ -47,6 +46,7 @@ public abstract class AuthenticateFunction implements SignIn, Register {
 
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String rowLineUserInformation;
+            br.readLine();
             while ((rowLineUserInformation = br.readLine()) != null) {
                 String[] sessionToken = rowLineUserInformation.split(",");
                 USER_HASHMAP.put(sessionToken[0], sessionToken[1]);

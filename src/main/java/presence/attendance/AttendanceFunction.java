@@ -107,7 +107,7 @@ public class AttendanceFunction implements AttendanceSheet, AttendanceMeeting, A
 
     public void addNewColumnSheet() throws IOException {
         utilities.generateDate();
-        FileReader fileReader = new FileReader("src/main/resources/attendance/9709_CCE107_ATTENDANCE_SHEET.csv");
+        FileReader fileReader = new FileReader(LOCATION_SHEET_FILE_PATH);
         BufferedReader getCourse = new BufferedReader(fileReader);
         String line;
         StringBuffer sb = new StringBuffer();
@@ -121,7 +121,7 @@ public class AttendanceFunction implements AttendanceSheet, AttendanceMeeting, A
             sb.append("\n");
         }
         getCourse.close();
-        FileWriter fw = new FileWriter("src/main/resources/attendance/9709_CCE107_ATTENDANCE_SHEET.csv");
+        FileWriter fw = new FileWriter(LOCATION_SHEET_FILE_PATH);
         BufferedWriter bw = new BufferedWriter(fw);
         bw.write(sb.toString());
         bw.close();
@@ -129,7 +129,7 @@ public class AttendanceFunction implements AttendanceSheet, AttendanceMeeting, A
 
     @Override
     public void attendanceEditor(String meetingReference, String paramStudentID, String paramAttendanceStatus, int ColumnHeader) throws IOException {
-        String filePath = "src/main/resources/attendance/9709_CCE107_ATTENDANCE_SHEET.csv";
+        String filePath = LOCATION_SHEET_FILE_PATH;
         String searchString = paramStudentID;
         String headerName = meetingReference;
         String newData = paramAttendanceStatus; // the new data to replace the old data with

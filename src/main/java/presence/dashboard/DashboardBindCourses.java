@@ -65,14 +65,15 @@ public abstract class DashboardBindCourses {
             utilities.courseCardPropertySetter(newCourseCard, bindCourseCode, bindCourseName, bindCourseSchedule);
             newCourseCard.setOnAction(event -> {
                 try {
+                    newCourseCard.setUserData(course.getCourseCode() + course.getCourseName() + course.getCourseSched());
+                    System.out.println("DATA PASSED: " + course.getCourseCode() + course.getCourseName() + course.getCourseSched());
+                    System.out.println("Button ID: " + newCourseCard.getId());
                     Stage popupStage = new Stage();
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("CourseTemplate.fxml"));
                     Parent root = loader.load();
                     Scene scene = new Scene(root);
                     popupStage.setScene(scene);
                     popupStage.show();
-                    newCourseCard.setUserData(course.getCourseCode() + course.getCourseName() + course.getCourseSched());
-                    System.out.println("Button ID: " + newCourseCard.getId());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

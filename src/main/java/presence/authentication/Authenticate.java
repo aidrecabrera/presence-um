@@ -18,6 +18,7 @@ public class Authenticate extends AuthenticateFunction implements Logs {
 
     public static void DatabaseValidation() {
         createFileIfNotExists(PRESENCE_USER_INFORMATION_DATABASE);
+        readUsersFromFile(PRESENCE_USER_INFORMATION_DATABASE);
     }
 
     protected void register(String userAddress, String userPassword) {
