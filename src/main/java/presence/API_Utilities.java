@@ -12,10 +12,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import presence.attendance.AttendanceFunction;
 
-import java.beans.Statement;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -54,11 +54,12 @@ public class API_Utilities {
         statusMark.setAlignment(Pos.CENTER);
         statusMark.setContentDisplay(ContentDisplay.CENTER);
 
-        if (MeetingStatus != "NULL") {
-            if (MeetingStatus == "NULL") {
-                MeetingStatus = "Mark";
-            }
+        String CellStatus = MeetingStatus;
+        if (CellStatus != "NULL") {
             statusMark.setText(MeetingStatus);
+        } else if (CellStatus == "NULL") {
+            CellStatus = "Mark";
+            statusMark.setText(CellStatus);
         }
 
         MenuItem presentItem = new MenuItem("Present");
@@ -148,7 +149,7 @@ public class API_Utilities {
         hbox.setId("STUDENT_REFERENCE");
         hbox.setFillHeight(false);
         hbox.setPrefHeight(100);
-        hbox.setPrefWidth(300);
+        hbox.setPrefWidth(250);
         hbox.setPadding(new Insets(0, 0, 0, 0));
         hbox.getStyleClass().add("student-hbox");
 
@@ -169,41 +170,16 @@ public class API_Utilities {
 
         childHBox1.getChildren().addAll(label);
 
-        HBox childHBox2 = new HBox();
-        childHBox2.setAlignment(Pos.CENTER);
-        childHBox2.setPrefHeight(100.0);
-        childHBox2.setPrefWidth(100);
-        childHBox2.setSpacing(3.0);
-        childHBox2.getStyleClass().add("child-hbox2");
-
-        Label overallLabel = new Label();
-        overallLabel.setId("STUDENT_OVERALL");
-        overallLabel.setText("100");
-        overallLabel.setFont(new Font("System Bold", 12.0));
-        overallLabel.getStyleClass().add("student-overall");
-
-        Label slashLabel = new Label();
-        slashLabel.setText("/");
-        slashLabel.setFont(new Font("System Bold", 12.0));
-        slashLabel.getStyleClass().add("student-slash");
-
-        Label totalLabel = new Label();
-        totalLabel.setText(studentTotal);
-        totalLabel.setFont(new Font("System Bold", 12.0));
-        totalLabel.getStyleClass().add("student-total");
-
-        childHBox2.getChildren().addAll(overallLabel, slashLabel, totalLabel);
-
-        hbox.getChildren().addAll(childHBox1, childHBox2);
+        hbox.getChildren().addAll(childHBox1);
     }
     public void courseCardPropertySetter(JFXButton newComponent, String CourseCode, String CourseSubject, String CourseSchedule) {
         newComponent.setId(CourseCode);
 
         newComponent.setAlignment(Pos.CENTER);
         newComponent.setContentDisplay(ContentDisplay.CENTER);
-        newComponent.setPrefHeight(141.25);
-        newComponent.setPrefWidth(310);
-        newComponent.setStyle("-fx-background-color: #ADE8F4; -fx-background-radius: 15; -fx-background-radius: 15;");
+        newComponent.setPrefHeight(200);
+        newComponent.setPrefWidth(334.333333);
+        newComponent.setStyle("-fx-background-color: #76b0ff; -fx-background-radius: 15; -fx-background-radius: 15;");
         newComponent.setText(" ");
 
         VBox newVBox = new VBox();
@@ -216,6 +192,7 @@ public class API_Utilities {
         newHBox1.setPrefHeight(100.0);
         newHBox1.setPrefWidth(200.0);
         Label newCourseCode = new Label(CourseCode);
+        newCourseCode.setTextFill(Paint.valueOf("000000FF"));
         newHBox1.getChildren().add(newCourseCode);
 
         HBox newHBox2 = new HBox();
@@ -223,6 +200,7 @@ public class API_Utilities {
         newHBox2.setPrefHeight(100.0);
         newHBox2.setPrefWidth(200.0);
         Label newCourseName = new Label(CourseSubject);
+        newCourseName.setTextFill(Paint.valueOf("000000FF"));
         newCourseName.setFont(new Font(29.0));
         newHBox2.getChildren().add(newCourseName);
 
@@ -231,6 +209,7 @@ public class API_Utilities {
         newHBox3.setPrefHeight(100.0);
         newHBox3.setPrefWidth(200.0);
         Label newCourseSched = new Label(CourseSchedule);
+        newCourseSched.setTextFill(Paint.valueOf("000000FF"));
         newHBox3.getChildren().add(newCourseSched);
 
         newVBox.getChildren().add(newHBox1);

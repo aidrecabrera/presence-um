@@ -70,7 +70,7 @@ public class AttendancePresence extends AttendanceFunction {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("DashboardHome.fxml"));
         HomeTab homeTab = loader.getController();
         bind.bindStudentCard(STUDENT_CONTAINER, row, col, counter);
-        COURSE.setText(bind.setAttendanceLabel()[1]);
+        COURSE.setText(bind.setAttendanceLabel()[0] + " " + bind.setAttendanceLabel()[1]);
         for (String existingHeaders : bind.getAttendanceHeaders()) {
             ++col;
             generateAttendanceSheet();

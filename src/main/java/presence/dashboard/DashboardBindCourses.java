@@ -50,7 +50,7 @@ public abstract class DashboardBindCourses {
         BufferedReader ComponentLabelReader = new BufferedReader(fileReader);
         ComponentLabelReader.readLine();
 
-        RowConstraints rowConstraints = new RowConstraints(141.25);
+        RowConstraints rowConstraints = new RowConstraints(186);
         embedContainer.getRowConstraints().add(rowConstraints);
         while ((rowCourseInformation = ComponentLabelReader.readLine()) != null) {
             JFXButton newCourseCard = new JFXButton();
@@ -60,7 +60,7 @@ public abstract class DashboardBindCourses {
             setBindCourseName(course.getCourseName());
             setBindCourseSchedule(course.getCourseSched());
             CourseList.put(course.getCourseCode(), course.getCourseName());
-            utilities.courseCardPropertySetter(newCourseCard, bindCourseCode, bindCourseName, bindCourseSchedule);
+            utilities.courseCardPropertySetter(newCourseCard, bindCourseName, bindCourseCode, bindCourseSchedule);
             newCourseCard.setOnAction(event -> {
                 try {
                     API_CourseSheet.getInstance().setCourseSheet(courseInformationArray[0], courseInformationArray[1]);
@@ -83,7 +83,9 @@ public abstract class DashboardBindCourses {
             if (col == 3) {
                 col = 0;
                 row++;
-                embedContainer.getRowConstraints().add(rowConstraints);
+                if (row == 3) {
+                    embedContainer.getRowConstraints().add(rowConstraints);
+                }
             }
             System.out.println("Course Code: " + bindCourseCode + " | Course Subject: " + bindCourseName + " | Course Schedule: " + bindCourseSchedule);
         }

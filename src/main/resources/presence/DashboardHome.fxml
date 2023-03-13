@@ -5,24 +5,30 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="DashboardPane" prefHeight="706.0" prefWidth="1047.0" style="-fx-background-color: #f7f6f0;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presence.HomeTab">
+<Pane fx:id="DashboardPane" prefHeight="706.0" prefWidth="1047.0" style="-fx-background-color: White;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presence.HomeTab">
    <children>
-      <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="22.0" layoutY="129.0" prefHeight="558.0" prefWidth="1003.0" style="-fx-border-color: #f7f6f0;">
+      <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="22.0" layoutY="129.0" prefHeight="558.0" prefWidth="1003.0" style="-fx-border-color: white;">
          <content>
-            <GridPane fx:id="courseContainer" hgap="10.0" prefWidth="1000.0" vgap="10.0">
+            <GridPane fx:id="courseContainer" hgap="5.0" prefWidth="1000.0" style="-fx-background-color: white;" vgap="5.0">
+              <rowConstraints>
+                  <RowConstraints fillHeight="false" minHeight="0.0" prefHeight="200.0" vgrow="SOMETIMES" />
+                  <RowConstraints fillHeight="false" minHeight="10.0" prefHeight="200.0" vgrow="SOMETIMES" />
+                  <RowConstraints fillHeight="false" minHeight="10.0" prefHeight="200.0" vgrow="SOMETIMES" />
+              </rowConstraints>
                <columnConstraints>
-                  <ColumnConstraints hgrow="ALWAYS" minWidth="310.0" percentWidth="33.0" prefWidth="310.0" />
+                  <ColumnConstraints fillWidth="false" minWidth="334.333333" prefWidth="334.333333" />
                </columnConstraints>
             </GridPane>
          </content>
       </ScrollPane>
-      <Rectangle arcHeight="35.0" arcWidth="35.0" fill="#0077b6" height="91.0" layoutX="22.0" layoutY="19.0" stroke="#0077b6" strokeType="INSIDE" width="1003.0" />
-      <Label fx:id="DashboardHeader" layoutX="62.0" layoutY="19.0" prefHeight="91.0" prefWidth="372.0" text="DASHBOARD">
+      <Rectangle arcHeight="35.0" arcWidth="35.0" fill="#10244c" height="91.0" layoutX="22.0" layoutY="19.0" stroke="#10244c" strokeType="INSIDE" width="1003.0" />
+      <Label fx:id="DashboardHeader" layoutX="62.0" layoutY="19.0" prefHeight="91.0" prefWidth="372.0" text="DASHBOARD" textFill="WHITE">
          <font>
-            <Font name="Gill Sans MT" size="53.0" />
+            <Font name="Roboto Black" size="53.0" />
          </font>
       </Label>
    </children>

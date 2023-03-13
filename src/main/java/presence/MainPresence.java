@@ -4,7 +4,6 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import presence.attendance.AttendanceAutomationQR;
 import presence.backend.AuthenticatePresence;
 
 import java.io.IOException;
@@ -16,7 +15,7 @@ public class MainPresence extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(MainPresence.class.getResource("MainPresenceUI.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setResizable(false);
-        stage.setTitle("UM Presence");
+        stage.setTitle("Presence");
         stage.setScene(scene);
         stage.show();
     }

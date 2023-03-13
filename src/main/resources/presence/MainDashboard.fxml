@@ -14,7 +14,7 @@
    <children>
       <SplitPane fx:id="dashboardSplitContainer" dividerPositions="0.1925133689839572" layoutX="-1.0" prefHeight="720.0" prefWidth="1400.0">
          <items>
-            <VBox alignment="TOP_CENTER" prefHeight="721.0" prefWidth="400.0" style="-fx-background-color: #00b4d8;" SplitPane.resizableWithParent="false">
+            <VBox alignment="TOP_CENTER" prefHeight="721.0" prefWidth="400.0" style="-fx-background-color: #206cd4;" SplitPane.resizableWithParent="false">
                <children>
                   <VBox alignment="CENTER" fillWidth="false" prefHeight="200.0" prefWidth="415.0">
                      <children>
@@ -25,16 +25,16 @@
                                     <Font name="Segoe UI Semibold" size="17.0" />
                                  </font>
                                  <graphic>
-                                    <HBox fx:id="ButtonDashboard" alignment="CENTER" prefHeight="43.0" prefWidth="152.0" spacing="5.0">
+                                    <HBox fx:id="ButtonDashboard" alignment="CENTER" prefHeight="43.0" prefWidth="152.0" spacing="15.0">
                                        <children>
                                           <ImageView fitHeight="29.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@img.png" />
                                              </image>
                                           </ImageView>
-                                          <Label fx:id="TEST" text="Dashboard">
+                                          <Label fx:id="TEST" text="Dashboard" textFill="WHITE">
                                              <font>
-                                                <Font size="17.0" />
+                                                <Font name="Roboto Black" size="17.0" />
                                              </font>
                                           </Label>
                                        </children>
@@ -46,16 +46,16 @@
                                     <Font name="Segoe UI Semibold" size="17.0" />
                                  </font>
                                  <graphic>
-                                    <HBox alignment="CENTER" prefHeight="43.0" prefWidth="152.0" spacing="5.0">
+                                    <HBox alignment="CENTER" prefHeight="43.0" prefWidth="152.0" spacing="15.0">
                                        <children>
                                           <ImageView fitHeight="33.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@img_1.png" />
                                              </image>
                                           </ImageView>
-                                          <Label text="Sign Out">
+                                          <Label text="Sign Out" textFill="WHITE">
                                              <font>
-                                                <Font size="17.0" />
+                                                <Font name="Roboto Black" size="17.0" />
                                              </font>
                                           </Label>
                                        </children>

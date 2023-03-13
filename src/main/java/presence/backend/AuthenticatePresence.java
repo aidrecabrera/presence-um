@@ -28,7 +28,7 @@ public class AuthenticatePresence extends Authenticate{
     }
 
     @FXML
-    public void initialize() {
+    public void initialize() throws IOException {
         System.out.println("UM Presence by Cabrera, Aidre Love");
         DatabaseValidation();
     }
