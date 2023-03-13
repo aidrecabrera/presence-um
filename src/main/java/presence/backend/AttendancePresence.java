@@ -1,8 +1,10 @@
 package presence.backend;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.ScrollPane;
@@ -18,6 +20,8 @@ import presence.attendance.AttendanceFunction;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+
+import static sun.jvm.hotspot.runtime.PerfMemory.start;
 
 public class AttendancePresence extends AttendanceFunction {
     AttendanceBindAndCell bind = new AttendanceBindAndCell();
@@ -88,9 +92,11 @@ public class AttendancePresence extends AttendanceFunction {
     }
 
     @FXML
-    void QCP_COURSE_NEW_MEETING(ActionEvent event) {
+    void QCP_COURSE_NEW_MEETING(ActionEvent event) throws IOException {
+        COURSE_NEW_MEETING();
         AttendanceAutomationQR quickCheckAPI = new AttendanceAutomationQR();
-        quickCheckAPI.apiQQ();
+        String MeetingDateID = bind.getAttendanceHeaders().get(col-1);
+        quickCheckAPI.runUntilNewID(MeetingDateID, col);
     }
 
     @FXML

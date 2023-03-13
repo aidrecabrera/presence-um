@@ -71,7 +71,7 @@ public class API_Utilities {
             statusMark.setText("Present");
             String statusStudent = "Present";
             try {
-                attendanceFunction.attendanceEditor(MarkID, MarkStudent, statusStudent, ColumnHeader);
+                attendanceFunction.attendanceEditor(MarkID, MarkStudent, statusStudent);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -81,7 +81,7 @@ public class API_Utilities {
             statusMark.setText("Absent");
             String statusStudent = "Absent";
             try {
-                attendanceFunction.attendanceEditor(MarkID, MarkStudent, statusStudent, ColumnHeader);
+                attendanceFunction.attendanceEditor(MarkID, MarkStudent, statusStudent);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -91,7 +91,7 @@ public class API_Utilities {
             statusMark.setText("Excused");
             String statusStudent = "Excused";
             try {
-                attendanceFunction.attendanceEditor(MarkID, MarkStudent, statusStudent, ColumnHeader);
+                attendanceFunction.attendanceEditor(MarkID, MarkStudent, statusStudent);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

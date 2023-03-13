@@ -11,12 +11,16 @@ import org.opencv.core.Core;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.imgproc.Imgproc;
+import presence.API_Utilities;
+import presence.attendance.AttendanceBindAndCell;
 import presence.attendance.AttendanceFunction;
+import presence.backend.AttendancePresence;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
+import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.Executors;
@@ -33,12 +37,11 @@ public class QRScanner extends JFrame implements Runnable {
     private final Webcam webcam;
     private final Dimension size = WebcamResolution.VGA.getSize();
 
-    private String StudentID;
 
     static {
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
     }
-    public QRScanner() {
+    public QRScanner() throws FileNotFoundException {
         super("UM Presence | Initiate Attendance");
 
         this.panel.setLayout(new BorderLayout());
@@ -46,7 +49,7 @@ public class QRScanner extends JFrame implements Runnable {
 
         this.setContentPane(this.panel);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(1280, 960);
+        this.setSize(720, 480);
         this.setLocationRelativeTo(panel);
         this.setVisible(true);
 
@@ -59,11 +62,17 @@ public class QRScanner extends JFrame implements Runnable {
         this.webcam.open();
 
         this.reader.setHints(null);
-        this.executor.scheduleAtFixedRate(this, 0, 33, TimeUnit.MILLISECONDS);
+        this.executor.scheduleAtFixedRate(this, 300, 33, TimeUnit.MILLISECONDS);
     }
 
+    AttendanceFunction attendanceFunction = new AttendanceFunction();
+    API_Utilities utilities = new API_Utilities();
+    private boolean scanningEnabled = true;
     @Override
     public void run() {
+        if (!scanningEnabled) {
+            return;
+        }
         BufferedImage image = this.webcam.getImage();
 
         if (image == null) {
@@ -76,40 +85,24 @@ public class QRScanner extends JFrame implements Runnable {
             BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(new BufferedImageLuminanceSource(bufferedImage)));
             Result result = this.reader.decode(bitmap);
             if (result != null) {
-                if (result.getText() == getStudentID()) {
-                    System.out.println("Scanned Already");
-                } else {
+                if (result.getText() == getStudentID() || getStudentID() == result.getText() || result.getText().equals(getStudentID())) {
+                    JOptionPane.showConfirmDialog(null, "STUDENT ID: " + utilities.removeFirstChar(getStudentID()) + " | Already Present.",
+                            "Quick Check Presence", JOptionPane.OK_OPTION);
+                } else if (result.getText() != getStudentID()){
                     setStudentID(result.getText());
-                    JOptionPane.showConfirmDialog(null, "STUDENT ID: " + getStudentID(),
-                            "alert", JOptionPane.OK_CANCEL_OPTION);
+                    JOptionPane.showConfirmDialog(null, "STUDENT ID: " + utilities.removeFirstChar(getStudentID()) + " | Marked Present.",
+                            "Quick Check Presence", JOptionPane.OK_OPTION);
                 }
+
                 System.out.println("STUDENT ID: " + getStudentID());
                 System.out.println(result.getText());
                 this.label.setText(result.getText());
 
-                int qrCodeX = (int) result.getResultPoints()[0].getX();
-                int qrCodeY = (int) result.getResultPoints()[0].getY();
-                int qrCodeSize = (int) (result.getResultPoints()[2].getX() - result.getResultPoints()[0].getX());
-                int width = (int) (result.getResultPoints()[2].getX() - result.getResultPoints()[0].getX());
-                int height = (int) (result.getResultPoints()[2].getY() - result.getResultPoints()[0].getY());
-                Graphics2D g2d = bufferedImage.createGraphics();
-                g2d.setColor(Color.GREEN);
-                g2d.setStroke(new BasicStroke(3));
-                g2d.drawRect(qrCodeX, qrCodeY, width, height);
-                g2d.dispose();
-
-                g2d.setFont(new Font("Arial", Font.BOLD, 20));
-                g2d.setColor(Color.BLACK);
-                g2d.drawString(result.getText(), 10, 30);
-                g2d.dispose();
-                g2d.setColor(Color.GREEN);
-                g2d.setStroke(new BasicStroke(5));
-                g2d.drawRect(qrCodeX, qrCodeY, qrCodeSize, qrCodeSize);
-                g2d.dispose();
-
-                this.label.setText("<html><div style='text-align: center;'>" + result.getText() + "</div></html>");
-
-
+                try {
+                    Thread.sleep(200); // Sleep for 1 second
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         } catch (Exception e) {
 
@@ -139,7 +132,7 @@ public class QRScanner extends JFrame implements Runnable {
             return bi;
         }
     }
-
+    String StudentID;
     public String getStudentID() {
         return StudentID;
     }
@@ -149,6 +142,12 @@ public class QRScanner extends JFrame implements Runnable {
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new QRScanner());
+        SwingUtilities.invokeLater(() -> {
+            try {
+                new QRScanner();
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 }

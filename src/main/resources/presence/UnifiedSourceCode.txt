@@ -1,0 +1,1686 @@
+package presence;
+
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import presence.attendance.AttendanceAutomationQR;
+import presence.backend.AuthenticatePresence;
+
+import java.io.IOException;
+
+public class MainPresence extends Application {
+    @Override
+    public void start(Stage stage) throws IOException {
+        Application.setUserAgentStylesheet(Application.STYLESHEET_MODENA);
+        FXMLLoader fxmlLoader = new FXMLLoader(MainPresence.class.getResource("MainPresenceUI.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setResizable(false);
+        stage.setTitle("UM Presence");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public static void main(String[] args) throws IOException {
+        AuthenticatePresence authenticatePresence = new AuthenticatePresence();
+        launch();
+    }
+}
+
+package presence.attendance;
+
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import presence.API_Utilities;
+import presence.scanning.QRScanner;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+public class AttendanceAutomationQR {
+    QRScanner apiQRScanner = new QRScanner();
+    AttendanceFunction attendanceFunction = new AttendanceFunction();
+    AttendanceBindAndCell attendanceBindAndCell = new AttendanceBindAndCell();
+    API_Utilities utilities = new API_Utilities();
+
+    @FXML
+    private TextArea confirmationLog;
+
+    @FXML
+    private Label studentID;
+
+    public AttendanceAutomationQR() throws FileNotFoundException {
+    }
+
+    public void apiQQ() {
+        apiQRScanner.run();
+    }
+
+    public void runUntilNewID(String header, int col) throws IOException {
+        String oldID = null;
+        while (true) {
+            while (true) {
+                apiQQ();
+                if (apiQRScanner.getStudentID() != null) {
+                    String newID = utilities.removeFirstChar(apiQRScanner.getStudentID());
+                    System.out.println("Return Student ID: " + newID);
+                    attendanceFunction.attendanceEditor(header, newID, "PRESENT");
+                    System.out.println("Passed Parameters: " + header + " " + newID + " " + "PRESENT");
+                    confirmationLog.appendText("Confirmed Presence for " + newID + "\n");
+                    studentID.setText(newID);
+                }
+                break;
+            }
+        }
+    }
+
+}
+
+package presence.attendance;
+
+import javafx.scene.layout.*;
+import presence.API_CourseSheet;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class AttendanceBindAndCell implements AttendanceBinder {
+    String LOCATION_SHEET_FILE_PATH = API_CourseSheet.getInstance().getCourseSheet();
+    FileReader fileReader = new FileReader(LOCATION_SHEET_FILE_PATH);
+    BufferedReader ComponentLabelReader = new BufferedReader(fileReader);
+    String rowStudentInformation;
+
+    public AttendanceBindAndCell() throws FileNotFoundException {
+    }
+
+    @Override
+    public String[] setAttendanceLabel() throws IOException {
+        FileReader fileReader = new FileReader(LOCATION_SHEET_FILE_PATH);
+        BufferedReader getCourse = new BufferedReader(fileReader);
+        getCourse.readLine();
+        String getCurrentCourse = getCourse.readLine();
+        String[] rowToArray = getCurrentCourse.split(",");
+        System.out.println("COURSES" + Arrays.asList(rowToArray));
+        return rowToArray;
+    }
+
+    @Override
+    public List<String> getAttendanceHeaders() throws IOException {
+        FileReader fileReader = new FileReader(LOCATION_SHEET_FILE_PATH);
+        BufferedReader getCourse = new BufferedReader(fileReader);
+        String getCurrentCourse = getCourse.readLine();
+        List<String> attendanceHeaders = new ArrayList<>(Arrays.asList(getCurrentCourse.split(",")));
+        attendanceHeaders.remove(0);
+        attendanceHeaders.remove(0);
+        attendanceHeaders.remove(0);
+        attendanceHeaders.remove(0);
+        System.out.println(attendanceHeaders);
+        return attendanceHeaders;
+    }
+
+    @Override
+    public void bindStudentCard(GridPane embedContainer, int row, int col, int counter) throws IOException {
+        ComponentLabelReader.readLine();
+        while ((rowStudentInformation = ComponentLabelReader.readLine()) != null) {
+            HBox newStudentCard = new HBox();
+            String[] courseInformationArray = rowStudentInformation.split(",");
+            utilities.createStudentHBox(newStudentCard, courseInformationArray[3], "100", "500");
+            embedContainer.add(newStudentCard, 0, row);
+            ++counter;
+            row++;
+            if (row >= 6) {
+                embedContainer.setPrefHeight(embedContainer.getPrefHeight() + 100);
+            }
+            if (row == 0 && col < 20) {
+                embedContainer.setPrefHeight(embedContainer.getPrefHeight() + 138.75);
+                embedContainer.addRow(1);
+            }
+        }
+    }
+
+    @Override
+    public void newStudentCell(GridPane embedContainer, int row, int col, int counter) throws IOException {
+        String MeetingDateID = getAttendanceHeaders().get(col-1);
+        HBox hBox = (HBox) utilities.generateMeetingHeader(embedContainer, MeetingDateID);
+        embedContainer.add(hBox, col, 0);
+        ColumnConstraints columnConstraints = new ColumnConstraints();
+        columnConstraints.setHgrow(Priority.SOMETIMES);
+        columnConstraints.setMaxWidth(175.0);
+        columnConstraints.setMinWidth(175.0);
+        columnConstraints.setPrefWidth(175.0);
+        embedContainer.getColumnConstraints().add(columnConstraints);
+        ComponentLabelReader.readLine();
+        while ((rowStudentInformation = ComponentLabelReader.readLine()) != null) {
+            String[] courseInformationArray = rowStudentInformation.split(",");
+            ArrayList<String> statusRow = new ArrayList<>(Arrays.asList(courseInformationArray));
+            statusRow.remove(0);
+            statusRow.remove(0);
+            statusRow.remove(0);
+            statusRow.remove(0);
+            String MeetingStatus = statusRow.get(col-1);
+            VBox newMeetingCell = new VBox();
+            utilities.setPropertyNewMeetingCell(newMeetingCell, MeetingDateID, courseInformationArray[2], MeetingStatus, col);
+            embedContainer.add(newMeetingCell, col, row);
+            row++;
+            if (row == 0 && col < 20) {
+                embedContainer.setPrefHeight(embedContainer.getPrefHeight() + 138.75);
+                embedContainer.addRow(1);
+            }
+        }
+    }
+}
+
+package presence.attendance;
+
+import javafx.scene.layout.GridPane;
+import presence.API_Utilities;
+
+import java.io.IOException;
+import java.util.List;
+
+public interface AttendanceBinder {
+    API_Utilities utilities = new API_Utilities();
+
+    String[] setAttendanceLabel() throws IOException;
+
+    void bindStudentCard(GridPane embedContainer, int row, int col, int counter) throws IOException;
+
+    void newStudentCell(GridPane embedContainer, int row, int col, int counter) throws IOException;
+
+    List<String> getAttendanceHeaders() throws IOException;
+}
+
+package presence.attendance;
+
+import presence.API_Utilities;
+import presence.API_CourseSheet;
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class AttendanceFunction implements AttendanceSheet, AttendanceMeeting {
+    private final String LOCATION_SHEET_FILE_PATH = API_CourseSheet.getInstance().getCourseSheet();
+
+    public AttendanceFunction() throws FileNotFoundException {
+    }
+
+    @Override
+    public void createNewMeeting() {
+
+    }
+    @Override
+    public void markStudentMeetingStatus() {
+
+    }
+
+    @Override
+    public void generateAttendanceSheet() {
+        File attendanceFile = new File(LOCATION_SHEET_FILE_PATH);
+        if (!attendanceFile.exists()) {
+            try {
+                System.out.println("File created: " + LOCATION_SHEET_FILE_PATH);
+                try (BufferedWriter writer = new BufferedWriter(new FileWriter(attendanceFile))) {
+                    writer.write("COURSE,STUDENT_ID,STUDENT_NAME\n");
+                    writer.flush();
+                }
+            } catch (IOException e) {
+                System.out.println("Failed to create file: " + LOCATION_SHEET_FILE_PATH);
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Override
+    public void initializeAttendanceSheetHeader() {
+        try {
+            FileReader fileReader = new FileReader(LOCATION_SHEET_FILE_PATH);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            String firstLine = bufferedReader.readLine();
+            String DateNowForMeetingSession = API_Utilities.getCurrentDate();
+            String modifiedFirstLine = firstLine + "," + DateNowForMeetingSession;
+
+            FileWriter fileWriter = new FileWriter(LOCATION_SHEET_FILE_PATH);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
+            bufferedWriter.write(modifiedFirstLine);
+            bufferedWriter.newLine();
+
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                bufferedWriter.write(line + ",UNMARKED");
+                bufferedWriter.newLine();
+            }
+
+            bufferedReader.close();
+            bufferedWriter.close();
+            fileReader.close();
+            fileWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void addNewColumnSheet() throws IOException {
+        utilities.generateDate();
+        FileReader fileReader = new FileReader(LOCATION_SHEET_FILE_PATH);
+        BufferedReader getCourse = new BufferedReader(fileReader);
+        String line;
+        StringBuffer sb = new StringBuffer();
+        line = getCourse.readLine();
+        sb.append(line);
+        sb.append("," + utilities.generateDate());
+        sb.append("\n");
+        while ((line = getCourse.readLine()) != null) {
+            sb.append(line);
+            sb.append(",NULL");
+            sb.append("\n");
+        }
+        getCourse.close();
+        FileWriter fw = new FileWriter(LOCATION_SHEET_FILE_PATH);
+        BufferedWriter bw = new BufferedWriter(fw);
+        bw.write(sb.toString());
+        bw.close();
+    }
+
+    @Override
+    public void attendanceEditor(String meetingReference, String paramStudentID, String paramAttendanceStatus) throws IOException {
+        String filePath = LOCATION_SHEET_FILE_PATH;
+        String searchString = paramStudentID;
+        String headerName = meetingReference;
+        String newData = paramAttendanceStatus; // the new data to replace the old data with
+
+        System.out.println(searchString);
+        System.out.println(headerName);
+        System.out.println(newData);
+
+        BufferedReader br = new BufferedReader(new FileReader(filePath));
+        String line;
+        StringBuilder sb = new StringBuilder();
+        boolean found = false;
+
+        // read the header row and get the index of the column to edit
+        String headerRow = br.readLine();
+        String[] header = headerRow.split(",");
+        System.out.println("READ: " + headerRow);
+        int colIndex = -1;
+        for (int i = 0; i < header.length; i++) {
+            if (header[i].equals(headerName)) {
+                colIndex = i;
+                break;
+            }
+        }
+        if (colIndex == -1) {
+            System.out.println("Header not found in CSV file");
+            br.close();
+            return;
+        }
+        sb.append(headerRow).append("\n");
+
+        while ((line = br.readLine()) != null) {
+            String[] values = line.split(",");
+            ArrayList<String> statusValuesList = new ArrayList<>(Arrays.asList(values));
+            if (values.length >= 4 && statusValuesList.contains(searchString)) {
+                if ((values.length == header.length) && !values[colIndex].isBlank() || !values[colIndex].isEmpty()) {
+                    values[colIndex] = newData;
+                    line = String.join(",", values);
+                    found = true;
+                } else {
+                    System.out.println("Row doesn't have data in the column, skipping...");
+                }
+            }
+            sb.append(line).append("\n");
+        }
+        br.close();
+
+        if (!found) {
+            System.out.println("Search string not found in the CSV file");
+            return;
+        }
+
+        FileWriter writer = new FileWriter(filePath);
+        writer.write(sb.toString());
+        writer.close();
+
+        System.out.println("Data edited in the matching row and column in the CSV file");
+    }
+}
+
+package presence.attendance;
+
+public interface AttendanceMeeting {
+
+    void createNewMeeting();
+
+    void markStudentMeetingStatus();
+}
+
+package presence.attendance;
+
+import presence.API_Database;
+import presence.API_Utilities;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+public interface AttendanceSheet {
+    API_Database importDatabase = new API_Database();
+    API_Database importData = new API_Database();
+    API_Utilities util = new API_Utilities();
+    API_Utilities DateAPI = new API_Utilities();
+    API_Utilities utilities = new API_Utilities();
+    void initializeAttendanceSheetHeader();
+
+    void generateAttendanceSheet();
+
+    void attendanceEditor(String meetingReference, String paramStudentID, String paramAttendanceStatus) throws IOException;
+}
+
+package presence.authentication;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+public class Authenticate extends AuthenticateFunction implements Logs {
+    private static String PRESENCE_USER_INFORMATION_DATABASE;
+    private static String PRESENCE_USER_LOG_SHEET;
+
+    public Authenticate() {
+        super(PRESENCE_USER_INFORMATION_DATABASE);
+        PRESENCE_USER_LOG_SHEET = importData.getDatabaseRequestLogs();
+        PRESENCE_USER_INFORMATION_DATABASE = importData.getDatabaseAuthentication();
+    }
+
+    public static void DatabaseValidation() {
+        createFileIfNotExists(PRESENCE_USER_INFORMATION_DATABASE);
+        readUsersFromFile(PRESENCE_USER_INFORMATION_DATABASE);
+    }
+
+    protected void register(String userAddress, String userPassword) {
+        if (userExists(userAddress)) {
+            System.out.println("Username already exists.");
+            return;
+        }
+        AuthenticateProfessorRetrieve newUserInformation = new AuthenticateProfessorRetrieve(userAddress, userPassword);
+        registerUser(newUserInformation);
+        saveUsersToFile(PRESENCE_USER_INFORMATION_DATABASE);
+        System.out.println("Registration successful.");
+    }
+
+    protected boolean signIn(String userAddress, String userPassword) {
+        if (!userExists(userAddress)) {
+            requestLogs(userAddress, false);
+            System.out.println("Username not found.");
+            return false;
+        }
+        if (!authenticateUser(userAddress, userPassword)) {
+            requestLogs(userAddress, false);
+            System.out.println("Incorrect password.");
+            return false;
+        }
+        System.out.println("Sign in successful.");
+        return true;
+    }
+    @Override
+    public void requestLogs(String username, boolean successful) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(PRESENCE_USER_LOG_SHEET, true))) {
+            writer.write("DATE,LOGIN DATE,NAME,STATUS,HASH\n");
+            LocalDateTime now = LocalDateTime.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            String timestamp = now.format(formatter);
+            String status = successful ? "SUCCESS" : "FAILURE";
+            String hash = String.format("%08X", username.hashCode());
+            String logLine = String.format("%s, %s, %s, %s\n", timestamp, username, status, hash);
+            writer.write(logLine);
+            writer.flush();
+        } catch (IOException e) {
+            System.err.println("Error writing to login log file: " + e.getMessage());
+        }
+    }
+}
+
+package presence.authentication;
+
+import java.io.*;
+import java.util.HashMap;
+
+public abstract class AuthenticateFunction implements SignIn, Register {
+    /**
+     * @Description This class provides methods for managing and authenticating user accounts. It has a private field 'USER_HASHMAP'
+     * that stores the registered users as key-value pairs, with the username as the key and the password as the value.
+     *
+     * @readUsersFromFile reads user information from a file and stores it in the 'USER_HASHMAP' map. The
+     * `saveUsersToFile` method writes the user information from the 'USER_HASHMAP' map to a file.
+     *
+     * @userExists checks if a user with the given username exists in the 'USER_HASHMAP' map.
+     *
+     * @registerUser registers a new user with the given username and password. It takes an `AuthenticateUserRetrieval` object
+     * as input parameter containing the user's information.
+     *
+     * @authenticateUser authenticates a user with the given username and password. It checks if the 'USER_HASHMAP'
+     * map contains the given username, and if so, compares the stored password with the provided password.
+     *
+     * @intent By encapsulating user authentication and management functionality into a separate class, this promotes code
+     * modularity and maintainability by separating this functionality from the rest of the program's logic.
+     *
+     *
+     * @USER_HASHMAPS Private field to store the registered users
+     */
+
+    private static final HashMap<String, String> USER_HASHMAP = new HashMap<>();
+    private final String filePath;
+    public AuthenticateFunction(String userFilePath) {
+        this.filePath = userFilePath;
+    }
+
+    /**
+
+     Reads user information from a file and stores it in the users map.
+     @param filePath the path to the file containing USER_HASHMAP information
+     */
+    public static void readUsersFromFile(String filePath) {
+        File file = new File(filePath);
+        if (file.length() == 0) {
+            System.out.println("Database is empty. Please register.");
+            return;
+        }
+
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+            String rowLineUserInformation;
+            br.readLine();
+            while ((rowLineUserInformation = br.readLine()) != null) {
+                String[] sessionToken = rowLineUserInformation.split(",");
+                USER_HASHMAP.put(sessionToken[0], sessionToken[1]);
+            }
+        } catch (IOException e) {
+            System.out.println("FROM: readUsersFromFile MSG: Failed to read users from file. READS");
+            e.printStackTrace();
+        }
+    }
+    /**
+
+     Writes user information from the USER_HASHMAP map to a file.
+     @param filePath the path to the file to write USER_HASHMAP information to
+     */
+    @Override
+    public void saveUsersToFile(String filePath) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath, true))) {
+            for (String username : USER_HASHMAP.keySet()) {
+                bw.write(username + "," + USER_HASHMAP.get(username));
+                bw.newLine();
+            }
+        } catch (IOException e) {
+            System.out.println("FROM: saveUsersToFile MSG: Failed to save users to file.");
+            e.printStackTrace();
+        }
+    }
+    /**
+
+     Checks if a user with the given username exists in the USER_HASHMAP map.
+     @param username the username to check for
+     @return true if the user exists, false otherwise
+     */
+    @Override
+    public boolean userExists(String username) {
+        return USER_HASHMAP.containsKey(username);
+    }
+    /**
+
+     Registers a new user with the given username and password.
+     @param user an AuthenticateUserRetrieval object containing the user's information
+     */
+    @Override
+    public void registerUser(AuthenticateProfessorRetrieve user) {
+        USER_HASHMAP.put(user.getUsername(), user.getPassword());
+    }
+    /**
+
+     Authenticates a user with the given username and password.
+     @param username the username of the user to authenticate
+     @param password the password of the user to authenticate
+     @return true if the user is authenticated, false otherwise
+     */
+    @Override
+    public boolean authenticateUser(String username, String password) {
+        String storedPassword = USER_HASHMAP.get(username);
+        return storedPassword != null && storedPassword.equals(password);
+    }
+
+    public static void createFileIfNotExists(String filePath) {
+        File file = new File(filePath);
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+                System.out.println("File created: " + filePath);
+                try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+                    writer.write("ADMIN EMAIL,ADMIN PASSWORD\n");
+                    writer.flush();
+                }
+
+            } catch (IOException e) {
+                System.out.println("Failed to create file: " + filePath);
+                e.printStackTrace();
+            }
+        }
+    }
+}
+
+
+package presence.authentication;
+
+/**
+ The AuthenticateUserRetrieval class encapsulates the
+ username and password for authenticating a user.
+ */
+public class AuthenticateProfessorRetrieve {
+    /**
+     * @username Private field to store the username
+     * @password Private field to store the password
+     */
+    private final String username;
+    private final String password;
+    /**
+     Constructs a new AuthenticateUserRetrieval object with the given username and password.
+     @param username the username for the authentication request
+     @param password the password for the authentication request
+     */
+    public AuthenticateProfessorRetrieve(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+    /**
+
+     Gets the username associated with this authentication request.
+     @return the username for the authentication request
+     */
+    public String getUsername() {
+        return username;
+    }
+    /**
+
+     Gets the password associated with this authentication request.
+     @return the password for the authentication request
+     */
+    public String getPassword() {
+        return password;
+    }
+}
+
+package presence.authentication;
+
+public interface Logs {
+    void requestLogs(String username, boolean successful);
+
+}
+
+package presence.authentication;
+
+interface Register {
+    void saveUsersToFile(String filePath);
+
+    void registerUser(AuthenticateProfessorRetrieve user);
+}
+
+package presence.authentication;
+
+import presence.API_Database;
+
+import java.util.HashMap;
+
+public interface SignIn {
+    API_Database importData = new API_Database();
+    HashMap<String, String> USER_HASHMAP = new HashMap<>();
+
+    boolean userExists(String username);
+
+    boolean authenticateUser(String username, String password);
+}
+
+package presence.backend;
+
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
+import presence.API_Utilities;
+import presence.API_CourseSheet;
+import presence.HomeTab;
+import presence.attendance.AttendanceAutomationQR;
+import presence.attendance.AttendanceBindAndCell;
+import presence.attendance.AttendanceFunction;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import static sun.jvm.hotspot.runtime.PerfMemory.start;
+
+public class AttendancePresence extends AttendanceFunction {
+    AttendanceBindAndCell bind = new AttendanceBindAndCell();
+    API_Utilities utilities = new API_Utilities();
+    int row = 1;
+    int col = 0;
+    int counter = 0;
+    @FXML
+    private Label COURSE;
+    @FXML
+    private Label MEETING_DATE;
+    @FXML
+    private MenuButton STATUS_MARK;
+    @FXML
+    private GridPane STUDENT_CONTAINER;
+    @FXML
+    private Label STUDENT_NAME;
+    @FXML
+    private Label STUDENT_OVERALL;
+    @FXML
+    private HBox STUDENT_REFERENCE;
+    @FXML
+    private ScrollPane MEETING_SP;
+    @FXML
+    private ScrollPane STUDENT_SP;
+    @FXML
+    private GridPane ATTENDANCE_MEETING_COLUMN;
+    @FXML
+    private HBox MEETING_COLUMN_CONTAINER;
+    private String Course;
+    private String AttendanceCSVLocation;
+    private final String AttendanceStatus = "PRESENT"; // STATUS FROM COMBOBOX
+    private static String sheetURL;
+
+    public AttendancePresence() throws FileNotFoundException {
+    }
+
+    public static void setSheetURL(String sheetURL) {
+        AttendancePresence.sheetURL = sheetURL;
+    }
+
+    public String getSheetURL() {
+        return sheetURL;
+    }
+
+    @FXML
+    void initialize() throws IOException {
+        System.out.println("TEST" + getSheetURL());
+        String sheetURL = API_CourseSheet.getInstance().getCourseSheet();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("DashboardHome.fxml"));
+        HomeTab homeTab = loader.getController();
+        bind.bindStudentCard(STUDENT_CONTAINER, row, col, counter);
+        COURSE.setText(bind.setAttendanceLabel()[1]);
+        for (String existingHeaders : bind.getAttendanceHeaders()) {
+            ++col;
+            generateAttendanceSheet();
+            AttendanceBindAndCell bind = new AttendanceBindAndCell();
+            bind.newStudentCell(STUDENT_CONTAINER, row, col, counter);
+        }
+    }
+
+    @FXML
+    public void GENERATE_NEW_COLUMN() throws IOException {
+        ++col;
+        generateAttendanceSheet();
+        AttendanceBindAndCell bind = new AttendanceBindAndCell();
+        bind.newStudentCell(STUDENT_CONTAINER, row, col, counter);
+    }
+
+    @FXML
+    void QCP_COURSE_NEW_MEETING(ActionEvent event) throws IOException {
+        COURSE_NEW_MEETING();
+        AttendanceAutomationQR quickCheckAPI = new AttendanceAutomationQR();
+        String MeetingDateID = bind.getAttendanceHeaders().get(col-1);
+        quickCheckAPI.runUntilNewID(MeetingDateID, col);
+    }
+
+    @FXML
+    public void COURSE_NEW_MEETING() throws IOException {
+        addNewColumnSheet();
+        GENERATE_NEW_COLUMN();
+    }
+
+    public void backToDashboard(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage) COURSE.getScene().getWindow();
+        stage.close();
+    }
+
+
+
+}
+
+package presence.backend;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
+import presence.API_Utilities;
+import presence.authentication.Authenticate;
+
+import java.io.IOException;
+
+import static presence.API_Utilities.validateEntry;
+
+public class AuthenticatePresence extends Authenticate{
+    static API_Utilities utilities = new API_Utilities();
+    @FXML
+    private Text Description;
+    @FXML
+    private Text Headline;
+    @FXML
+    private TextField userAddress;
+    @FXML
+    private TextField userPassword;
+
+    DashboardPresence dashboardPresence = new DashboardPresence();
+
+    public AuthenticatePresence() throws IOException {
+    }
+
+    @FXML
+    public void initialize() {
+        System.out.println("UM Presence by Cabrera, Aidre Love");
+        DatabaseValidation();
+    }
+    @FXML
+    void loginAuthenticate(ActionEvent event) throws IOException {
+        boolean loginValid = validateEntry(userAddress.getText(), userPassword.getText());
+        if (loginValid) {
+            if (signIn(userAddress.getText(), userPassword.getText())) {
+                utilities.PresenceSwitchScene("/presence/MainDashboard.fxml", Description);
+            }
+        }
+    }
+    @FXML
+    void registerAuthenticate(ActionEvent event) {
+        boolean loginValid = validateEntry(userAddress.getText(), userPassword.getText());
+        if (loginValid) {
+            register(userAddress.getText(), userPassword.getText());
+        }
+    }
+}
+
+package presence.backend;
+
+import com.jfoenix.controls.JFXButton;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.control.SplitPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import presence.API_Database;
+import presence.API_Utilities;
+import presence.HomeTab;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class DashboardPresence implements Initializable  {
+    API_Database importData = new API_Database();
+    API_Utilities utilities = new API_Utilities();
+    @FXML
+    private JFXButton ButtonCalendar;
+    @FXML
+    private HBox ButtonDashboard;
+    @FXML
+    private JFXButton ButtonSignout;
+    @FXML
+    private JFXButton courseCardCCE107;
+    @FXML
+    private GridPane courseContainer;
+    @FXML
+    private SplitPane dashboardSplitContainer;
+
+    HomeTab homeTab = new HomeTab();
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        dashboardSplitContainer.setPrefHeight(720);
+        dashboardSplitContainer.setDividerPositions(0.167);
+        try {
+            importData.setDatabaseGetFXML("DashboardHome.fxml");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Node rightSide = dashboardSplitContainer.getItems().get(1);
+        dashboardSplitContainer.getItems().set(1, importData.getDatabaseGetFXML());
+    }
+
+    public DashboardPresence() throws IOException {
+
+    }
+
+    @FXML
+    void AttendanceBclicked(ActionEvent event) throws IOException {
+        utilities.PresenceSwitchScene("MainPresenceUI.fxml", dashboardSplitContainer);
+    }
+
+    @FXML
+    void CalendarBclicked(ActionEvent event) {
+
+    }
+
+    @FXML
+    void DashboardBclicked(ActionEvent event) {
+
+    }
+}
+
+package presence.dashboard;
+
+import com.jfoenix.controls.JFXButton;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.SplitPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.RowConstraints;
+import javafx.stage.Stage;
+import presence.API_Database;
+import presence.API_Utilities;
+import presence.API_CourseSheet;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.HashMap;
+
+public abstract class DashboardBindCourses {
+    public API_Database importData = new API_Database();
+    API_Utilities utilities = new API_Utilities();
+    private String bindCourseCode;
+    private String bindCourseName;
+    private String bindCourseSchedule;
+    int row = 0;
+    int col = 0;
+    int counter = 0;
+    public void setBindCourseCode(String bindCourseCode) {
+        this.bindCourseCode = bindCourseCode;
+    }
+    public void setBindCourseName(String bindCourseName) {
+        this.bindCourseName = bindCourseName;
+    }
+    public void setBindCourseSchedule(String bindCourseSchedule) {
+        this.bindCourseSchedule = bindCourseSchedule;
+    }
+    private final HashMap<String, String> CourseList = new HashMap<>();
+
+    public HashMap<String, String> getCourseList() {
+        return CourseList;
+    }
+
+    public void bindCourseCard(GridPane embedContainer, SplitPane rightPane, Label header) throws IOException {
+        String rowCourseInformation;
+        FileReader fileReader = new FileReader(importData.getDatabaseCourseList());
+        BufferedReader ComponentLabelReader = new BufferedReader(fileReader);
+        ComponentLabelReader.readLine();
+
+        RowConstraints rowConstraints = new RowConstraints(141.25);
+        embedContainer.getRowConstraints().add(rowConstraints);
+        while ((rowCourseInformation = ComponentLabelReader.readLine()) != null) {
+            JFXButton newCourseCard = new JFXButton();
+            String[] courseInformationArray = rowCourseInformation.split(",");
+            DashboardLoadCourses course = new DashboardLoadCourses(courseInformationArray[1], courseInformationArray[2], courseInformationArray[3]);
+            setBindCourseCode(course.getCourseCode());
+            setBindCourseName(course.getCourseName());
+            setBindCourseSchedule(course.getCourseSched());
+            CourseList.put(course.getCourseCode(), course.getCourseName());
+            utilities.courseCardPropertySetter(newCourseCard, bindCourseCode, bindCourseName, bindCourseSchedule);
+            newCourseCard.setOnAction(event -> {
+                try {
+                    API_CourseSheet.getInstance().setCourseSheet(courseInformationArray[0], courseInformationArray[1]);
+                    System.out.println("SHEET!!!!!!!!!!!!!!!!!!!!" + API_CourseSheet.getInstance().getCourseSheet());
+                    newCourseCard.setUserData(course.getCourseCode() + course.getCourseName() + course.getCourseSched());
+                    Stage popupStage = new Stage();
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("CourseTemplate.fxml"));
+                    Parent root = loader.load();
+                    Scene scene = new Scene(root);
+                    popupStage.setScene(scene);
+                    popupStage.show();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                }
+            });
+            embedContainer.add(newCourseCard, col, row);
+            ++counter;
+            ++col;
+            if (col == 3) {
+                col = 0;
+                row++;
+                embedContainer.getRowConstraints().add(rowConstraints);
+            }
+            System.out.println("Course Code: " + bindCourseCode + " | Course Subject: " + bindCourseName + " | Course Schedule: " + bindCourseSchedule);
+        }
+    }
+    public void refreshCourseCard(GridPane courseContainer) {
+        counter += 1;
+        try (BufferedReader ComponentLabelReader = Files.newBufferedReader(Paths.get("src/main/resources/course/courseList.csv"))) {
+            String newLabel = ComponentLabelReader.readLine();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        JFXButton newCourseCard = new JFXButton();
+        utilities.courseCardPropertySetter(newCourseCard, bindCourseCode, bindCourseName, bindCourseSchedule);
+        System.out.println("New Course Generated!");
+        courseContainer.add(newCourseCard, col, row);
+        col++;
+        if (col == 3) {
+            col = 0;
+            row++;
+        }
+    }
+}
+
+package presence.dashboard;
+
+public class DashboardLoadCourses {
+    private String courseCode;
+    private String courseName;
+    private String courseSched;
+
+    public DashboardLoadCourses() {
+    }
+
+    public DashboardLoadCourses(String courseCode, String courseName, String courseSched) {
+        this.courseCode = courseCode;
+        this.courseName = courseName;
+        this.courseSched = courseSched;
+    }
+
+    public String getCourseCode() {
+        return courseCode;
+    }
+
+    public String getCourseName() {
+        return courseName;
+    }
+
+    public String getCourseSched() {
+        return courseSched;
+    }
+}
+
+package presence.scanning;
+
+import com.github.sarxos.webcam.Webcam;
+import com.github.sarxos.webcam.WebcamResolution;
+import com.google.zxing.BinaryBitmap;
+import com.google.zxing.MultiFormatReader;
+import com.google.zxing.Result;
+import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
+import com.google.zxing.common.HybridBinarizer;
+import org.opencv.core.Core;
+import org.opencv.core.CvType;
+import org.opencv.core.Mat;
+import org.opencv.imgproc.Imgproc;
+import presence.API_Utilities;
+import presence.attendance.AttendanceBindAndCell;
+import presence.attendance.AttendanceFunction;
+import presence.backend.AttendancePresence;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferByte;
+import java.io.FileNotFoundException;
+import java.util.Arrays;
+import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
+public class QRScanner extends JFrame implements Runnable {
+
+    private static final long serialVersionUID = 1L;
+    private final MultiFormatReader reader = new MultiFormatReader();
+    private final ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
+    private final JPanel panel = new JPanel();
+    private final JLabel label = new JLabel();
+    private final Webcam webcam;
+    private final Dimension size = WebcamResolution.VGA.getSize();
+
+
+    static {
+        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+    }
+    public QRScanner() throws FileNotFoundException {
+        super("UM Presence | Initiate Attendance");
+
+        this.panel.setLayout(new BorderLayout());
+        this.panel.add(this.label, BorderLayout.CENTER);
+
+        this.setContentPane(this.panel);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setSize(720, 480);
+        this.setLocationRelativeTo(panel);
+        this.setVisible(true);
+
+        List<Webcam> webcams = Webcam.getWebcams();
+        String[] options = webcams.stream().map(Webcam::getName).toArray(String[]::new);
+        String selectedOption = (String) JOptionPane.showInputDialog(null, "Select a webcam", "Webcam selection", JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+        this.webcam = webcams.get(Arrays.asList(options).indexOf(selectedOption));
+
+        this.webcam.setViewSize(size);
+        this.webcam.open();
+
+        this.reader.setHints(null);
+        this.executor.scheduleAtFixedRate(this, 300, 33, TimeUnit.MILLISECONDS);
+    }
+
+    AttendanceFunction attendanceFunction = new AttendanceFunction();
+    API_Utilities utilities = new API_Utilities();
+    private final boolean scanningEnabled = true;
+    @Override
+    public void run() {
+        if (!scanningEnabled) {
+            return;
+        }
+        BufferedImage image = this.webcam.getImage();
+
+        if (image == null) {
+            return;
+        }
+        Mat mat = new Mat();
+        Imgproc.cvtColor(MatUtil.bufferedImageToMat(image), mat, Imgproc.COLOR_BGR2GRAY);
+        try {
+            BufferedImage bufferedImage = MatUtil.matToBufferedImage(mat);
+            BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(new BufferedImageLuminanceSource(bufferedImage)));
+            Result result = this.reader.decode(bitmap);
+            if (result != null) {
+                if (result.getText() == getStudentID() || getStudentID() == result.getText() || result.getText().equals(getStudentID())) {
+                    JOptionPane.showConfirmDialog(null, "STUDENT ID: " + utilities.removeFirstChar(getStudentID()) + " | Already Present.",
+                            "Quick Check Presence", JOptionPane.OK_OPTION);
+                } else if (result.getText() != getStudentID()){
+                    setStudentID(result.getText());
+                    JOptionPane.showConfirmDialog(null, "STUDENT ID: " + utilities.removeFirstChar(getStudentID()) + " | Marked Present.",
+                            "Quick Check Presence", JOptionPane.OK_OPTION);
+                }
+
+                System.out.println("STUDENT ID: " + getStudentID());
+                System.out.println(result.getText());
+                this.label.setText(result.getText());
+
+                try {
+                    Thread.sleep(200); // Sleep for 1 second
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        } catch (Exception e) {
+
+        }
+        BufferedImage outputImage = MatUtil.matToBufferedImage(mat);
+        this.label.setIcon(new ImageIcon(outputImage));
+    }
+
+
+    public class MatUtil {
+
+        public static Mat bufferedImageToMat(BufferedImage bi) {
+            Mat mat = new Mat(bi.getHeight(), bi.getWidth(), CvType.CV_8UC3);
+            byte[] data = ((DataBufferByte) bi.getRaster().getDataBuffer()).getData();
+            mat.put(0, 0, data);
+            return mat;
+        }
+
+        public static BufferedImage matToBufferedImage(Mat mat) {
+            int type = BufferedImage.TYPE_BYTE_GRAY;
+            if (mat.channels() > 1) {
+                type = BufferedImage.TYPE_3BYTE_BGR;
+            }
+            BufferedImage bi = new BufferedImage(mat.width(), mat.height(), type);
+            byte[] data = ((DataBufferByte) bi.getRaster().getDataBuffer()).getData();
+            mat.get(0, 0, data);
+            return bi;
+        }
+    }
+    String StudentID;
+    public String getStudentID() {
+        return StudentID;
+    }
+
+    public void setStudentID(String studentID) {
+        StudentID = studentID;
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            try {
+                new QRScanner();
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+        });
+    }
+}
+
+package presence.scanning;
+
+import com.google.zxing.BinaryBitmap;
+import com.google.zxing.MultiFormatReader;
+import com.google.zxing.Result;
+import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
+import com.google.zxing.common.HybridBinarizer;
+
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.FileInputStream;
+
+public class QuickReadPresence {
+    private static String QR_Retrieved_ID;
+    public static String QR_Read(String paramQR_IMAGE_PATH) {
+        try {
+            String QR_PATH = paramQR_IMAGE_PATH;
+            BufferedImage QR_IMAGE_BF = ImageIO.read(new FileInputStream(QR_PATH));
+            BinaryBitmap QR_BITMAP = new BinaryBitmap(new HybridBinarizer(
+                    new BufferedImageLuminanceSource(QR_IMAGE_BF)
+            ));
+            Result QR_TEXT_RETRIEVAL = new MultiFormatReader().decode(QR_BITMAP);
+            QR_Retrieved_ID = QR_TEXT_RETRIEVAL.getText();
+            System.out.println("Scanned Student ID: " + QR_TEXT_RETRIEVAL.getText());
+        } catch (Exception e) {
+
+        }
+        return QR_Retrieved_ID;
+    }
+}
+
+package presence.scanning;
+
+import com.github.sarxos.webcam.Webcam;
+import com.google.zxing.BinaryBitmap;
+import com.google.zxing.MultiFormatReader;
+import com.google.zxing.Result;
+import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
+import com.google.zxing.common.HybridBinarizer;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.image.BufferedImage;
+import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+
+public class QuickReadScannerPresence {
+    private static final int FRAME_WIDTH = 640;
+    private static final int FRAME_HEIGHT = 480;
+    private static final int IMAGE_WIDTH = 320;
+    private static final int IMAGE_HEIGHT = 240;
+
+    private static JComboBox<String> webcamComboBox;
+    private static JLabel label;
+
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("QR Scanner");
+        frame.setLayout(new FlowLayout());
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
+
+        webcamComboBox = new JComboBox<>();
+        frame.add(webcamComboBox);
+
+        label = new JLabel();
+        frame.add(label);
+
+        JButton scanButton = new JButton("Scan");
+        scanButton.addActionListener((ActionEvent e) -> {
+            int selectedWebcamIndex = webcamComboBox.getSelectedIndex();
+            List<Webcam> webcams = Webcam.getWebcams();
+            if (selectedWebcamIndex < 0 || selectedWebcamIndex >= webcams.size()) {
+                System.out.println("Invalid webcam index");
+                return;
+            }
+
+            Webcam selectedWebcam = webcams.get(selectedWebcamIndex);
+            selectedWebcam.setViewSize(new Dimension(IMAGE_WIDTH, IMAGE_HEIGHT));
+            selectedWebcam.open();
+
+            Executor executor = Executors.newSingleThreadExecutor();
+            executor.execute(() -> {
+                while (true) {
+                    BufferedImage image = selectedWebcam.getImage();
+                    try {
+                        Result result = new MultiFormatReader().decode(new BinaryBitmap(new HybridBinarizer(new BufferedImageLuminanceSource(image))));
+                        if (result != null) {
+                            label.setIcon(new ImageIcon(image));
+                            System.out.println(result.getText());
+                        }
+                    } catch (Exception ex) {
+                        // QR code not detected in the image
+                    }
+                }
+            });
+        });
+        frame.add(scanButton);
+
+        List<Webcam> webcams = Webcam.getWebcams();
+        if (webcams.isEmpty()) {
+            System.out.println("No webcams found");
+            return;
+        }
+
+        System.out.println("Available webcams:");
+        DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
+        for (int i = 0; i < webcams.size(); i++) {
+            String webcamName = webcams.get(i).getName();
+            model.addElement(webcamName);
+            System.out.println((i + 1) + ". " + webcamName);
+        }
+        webcamComboBox.setModel(model);
+
+        frame.setVisible(true);
+    }
+}
+
+
+package presence;
+
+import presence.attendance.AttendanceAutomationQR;
+import presence.backend.AttendancePresence;
+import presence.backend.DashboardPresence;
+import presence.dashboard.DashboardBindCourses;
+
+public class API_CourseSheet extends AttendancePresence {
+
+    private static API_CourseSheet instance;
+    private String courseSheet;
+
+    private API_CourseSheet() {
+        super();
+        // Private constructor to prevent instantiation
+    }
+
+    public static API_CourseSheet getInstance() {
+        if(instance == null) {
+            instance = new API_CourseSheet();
+        }
+        return instance;
+    }
+
+    public String getCourseSheet() {
+        return courseSheet;
+    }
+
+    public void setCourseSheet(String courseCode, String courseSubject) {
+        this.courseSheet = "src/main/resources/attendance/" + courseCode + "_" + courseSubject + "_ATTENDANCE_SHEET.csv";
+    }
+}
+
+package presence;
+
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+
+import java.io.IOException;
+
+public class API_Database {
+    private String DatabaseAuthentication = "src/main/resources/database/DB_PRESENCE_USER_AUTH.csv";
+    private String DatabaseCourseList = "src/main/resources/course/courseList.csv";
+    private String DatabaseRequestLogs = "src/main/resources/database/PRESENCE_ACTIVITY_LOGS.csv";
+
+    private Parent DatabaseGetFXML;
+
+    public API_Database() {
+    }
+
+    public Parent getDatabaseGetFXML() {
+        return DatabaseGetFXML;
+    }
+
+    public void setDatabaseGetFXML(String databaseGetFXML) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(databaseGetFXML));
+        Parent newView = loader.load();
+        DatabaseGetFXML = newView;
+    }
+
+    public String getDatabaseAuthentication() {
+        return DatabaseAuthentication;
+    }
+
+    public void setDatabaseAuthentication(String databaseAuthentication) {
+        DatabaseAuthentication = databaseAuthentication;
+    }
+
+    public String getDatabaseCourseList() {
+        return DatabaseCourseList;
+    }
+
+    public void setDatabaseCourseList(String databaseCourseList) {
+        DatabaseCourseList = databaseCourseList;
+    }
+
+    public String getDatabaseRequestLogs() {
+        return DatabaseRequestLogs;
+    }
+
+    public void setDatabaseRequestLogs(String databaseRequestLogs) {
+        DatabaseRequestLogs = databaseRequestLogs;
+    }
+}
+
+package presence;
+
+import com.jfoenix.controls.JFXButton;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.ContentDisplay;
+import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
+import javafx.scene.layout.*;
+import javafx.scene.text.Font;
+import presence.attendance.AttendanceFunction;
+
+import java.beans.Statement;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+public class API_Utilities {
+    public String generateDate() {
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM dd yyyy - (hh:mm a)");
+        String today = now.format(formatter);
+        return today;
+    }
+    public Node generateMeetingHeader(GridPane gridPan, String MeetingDateID) {
+        HBox hBox = new HBox();
+        hBox.setAlignment(Pos.CENTER);
+        hBox.setPrefHeight(100.0);
+        hBox.setPrefWidth(125);
+        hBox.setSpacing(3.0);
+
+        Label meetingDate = new Label();
+        meetingDate.setId(MeetingDateID);
+        meetingDate.setText(MeetingDateID);
+        Font font = new Font("System Bold", 12.0);
+        meetingDate.setFont(font);
+        hBox.getChildren().add(meetingDate);
+        return hBox;
+    }
+    public void setPropertyNewMeetingCell(VBox vBox, String MarkID, String MarkStudent, String MeetingStatus, int ColumnHeader) throws FileNotFoundException {
+        vBox.setAlignment(Pos.CENTER);
+        vBox.setPrefHeight(100.0);
+        vBox.setPrefWidth(125);
+        GridPane.setRowIndex(vBox, 1);
+
+        MenuButton statusMark = new MenuButton();
+        statusMark.setId(MarkStudent);
+        statusMark.setAlignment(Pos.CENTER);
+        statusMark.setContentDisplay(ContentDisplay.CENTER);
+
+        if (MeetingStatus != "NULL") {
+            if (MeetingStatus == "NULL") {
+                MeetingStatus = "Mark";
+            }
+            statusMark.setText(MeetingStatus);
+        }
+
+        MenuItem presentItem = new MenuItem("Present");
+        MenuItem absentItem = new MenuItem("Absent");
+        MenuItem excusedItem = new MenuItem("Excused");
+
+        AttendanceFunction attendanceFunction = new AttendanceFunction();
+        presentItem.setOnAction(event -> {
+            statusMark.setText("Present");
+            String statusStudent = "Present";
+            try {
+                attendanceFunction.attendanceEditor(MarkID, MarkStudent, statusStudent);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+        absentItem.setOnAction(event -> {
+            statusMark.setText("Absent");
+            String statusStudent = "Absent";
+            try {
+                attendanceFunction.attendanceEditor(MarkID, MarkStudent, statusStudent);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+        excusedItem.setOnAction(event -> {
+            statusMark.setText("Excused");
+            String statusStudent = "Excused";
+            try {
+                attendanceFunction.attendanceEditor(MarkID, MarkStudent, statusStudent);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+        statusMark.getItems().addAll(presentItem, absentItem, excusedItem);
+        vBox.getChildren().add(statusMark);
+    }
+
+    public void setPropertyNewBindMeetingColumn(VBox meetingColumn) {
+        meetingColumn.setPrefHeight(200);
+        meetingColumn.setPrefWidth(100.0);
+
+        GridPane attendanceMeetingColumn = new GridPane();
+        attendanceMeetingColumn.setGridLinesVisible(true);
+        attendanceMeetingColumn.setPrefWidth(100);
+
+        ColumnConstraints columnConstraints = new ColumnConstraints();
+        columnConstraints.setHgrow(Priority.SOMETIMES);
+        columnConstraints.setMaxWidth(125.0);
+        columnConstraints.setMinWidth(125.0);
+        columnConstraints.setPrefWidth(125.0);
+        attendanceMeetingColumn.getColumnConstraints().add(columnConstraints);
+
+        RowConstraints rowConstraints1 = new RowConstraints();
+        rowConstraints1.setMaxHeight(200);
+        rowConstraints1.setMinHeight(200);
+        rowConstraints1.setPrefHeight(200);
+        rowConstraints1.setVgrow(Priority.ALWAYS);
+        RowConstraints rowConstraints2 = new RowConstraints();
+        rowConstraints2.setMaxHeight(200);
+        rowConstraints2.setMinHeight(200);
+        rowConstraints2.setPrefHeight(200);
+        rowConstraints2.setVgrow(Priority.ALWAYS);
+        attendanceMeetingColumn.getRowConstraints().addAll(rowConstraints1, rowConstraints2);
+
+        HBox hBox = new HBox();
+        hBox.setAlignment(Pos.CENTER);
+        hBox.setPrefHeight(100.0);
+        hBox.setPrefWidth(83.0);
+        hBox.setSpacing(3.0);
+        attendanceMeetingColumn.add(hBox, 0, 0);
+
+        Label meetingDate = new Label();
+        meetingDate.setId("MEETING_DATE");
+        meetingDate.setText("Meeting_Date");
+        Font font = new Font("System Bold", 12.0);
+        meetingDate.setFont(font);
+        hBox.getChildren().add(meetingDate);
+
+        meetingColumn.getChildren().add(attendanceMeetingColumn);
+    }
+    String[] sampleArray = {"Student 1", "Student 2", "Student 3", "Student 4", "Student 5", "Student 6"};
+    public void createStudentHBox(HBox hbox, String studentName, String studentOverall, String studentTotal) {
+        hbox.setId("STUDENT_REFERENCE");
+        hbox.setFillHeight(false);
+        hbox.setPrefHeight(100);
+        hbox.setPrefWidth(300);
+        hbox.setPadding(new Insets(0, 0, 0, 0));
+        hbox.getStyleClass().add("student-hbox");
+
+        HBox childHBox1 = new HBox();
+        childHBox1.setAlignment(Pos.CENTER);
+        childHBox1.setPrefHeight(100.0);
+        childHBox1.setPrefWidth(307.0);
+        childHBox1.getStyleClass().add("child-hbox1");
+        childHBox1.setPadding(new Insets(0, 0, 0, 15.0));
+
+        Label label = new Label();
+        label.setId(studentName);
+        label.setAlignment(Pos.CENTER);
+        label.setPrefHeight(100.0);
+        label.setPrefWidth(187);
+        label.setText(studentName);
+        label.getStyleClass().add(studentName);
+
+        childHBox1.getChildren().addAll(label);
+
+        HBox childHBox2 = new HBox();
+        childHBox2.setAlignment(Pos.CENTER);
+        childHBox2.setPrefHeight(100.0);
+        childHBox2.setPrefWidth(100);
+        childHBox2.setSpacing(3.0);
+        childHBox2.getStyleClass().add("child-hbox2");
+
+        Label overallLabel = new Label();
+        overallLabel.setId("STUDENT_OVERALL");
+        overallLabel.setText("100");
+        overallLabel.setFont(new Font("System Bold", 12.0));
+        overallLabel.getStyleClass().add("student-overall");
+
+        Label slashLabel = new Label();
+        slashLabel.setText("/");
+        slashLabel.setFont(new Font("System Bold", 12.0));
+        slashLabel.getStyleClass().add("student-slash");
+
+        Label totalLabel = new Label();
+        totalLabel.setText(studentTotal);
+        totalLabel.setFont(new Font("System Bold", 12.0));
+        totalLabel.getStyleClass().add("student-total");
+
+        childHBox2.getChildren().addAll(overallLabel, slashLabel, totalLabel);
+
+        hbox.getChildren().addAll(childHBox1, childHBox2);
+    }
+    public void courseCardPropertySetter(JFXButton newComponent, String CourseCode, String CourseSubject, String CourseSchedule) {
+        newComponent.setId(CourseCode);
+
+        newComponent.setAlignment(Pos.CENTER);
+        newComponent.setContentDisplay(ContentDisplay.CENTER);
+        newComponent.setPrefHeight(141.25);
+        newComponent.setPrefWidth(310);
+        newComponent.setStyle("-fx-background-color: #ADE8F4; -fx-background-radius: 15; -fx-background-radius: 15;");
+        newComponent.setText(" ");
+
+        VBox newVBox = new VBox();
+        newVBox.setAlignment(Pos.CENTER);
+        newVBox.setPrefHeight(102.0);
+        newVBox.setPrefWidth(267.0);
+
+        HBox newHBox1 = new HBox();
+        newHBox1.setAlignment(Pos.CENTER_LEFT);
+        newHBox1.setPrefHeight(100.0);
+        newHBox1.setPrefWidth(200.0);
+        Label newCourseCode = new Label(CourseCode);
+        newHBox1.getChildren().add(newCourseCode);
+
+        HBox newHBox2 = new HBox();
+        newHBox2.setAlignment(Pos.CENTER_LEFT);
+        newHBox2.setPrefHeight(100.0);
+        newHBox2.setPrefWidth(200.0);
+        Label newCourseName = new Label(CourseSubject);
+        newCourseName.setFont(new Font(29.0));
+        newHBox2.getChildren().add(newCourseName);
+
+        HBox newHBox3 = new HBox();
+        newHBox3.setAlignment(Pos.CENTER_LEFT);
+        newHBox3.setPrefHeight(100.0);
+        newHBox3.setPrefWidth(200.0);
+        Label newCourseSched = new Label(CourseSchedule);
+        newHBox3.getChildren().add(newCourseSched);
+
+        newVBox.getChildren().add(newHBox1);
+        newVBox.getChildren().add(newHBox2);
+        newVBox.getChildren().add(newHBox3);
+
+        newComponent.setGraphic(newVBox);
+    }
+
+
+    public void PresenceSwitchScene(String fxmlLocation, Node sceneComponent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlLocation));
+        Parent dashboardRoot = fxmlLoader.load();
+        Scene currentScene = sceneComponent.getScene();
+        currentScene.setRoot(dashboardRoot);
+    }
+
+    public static boolean validateEntry(String userAddress, String userPassword) {
+        boolean valid = false;
+        if (userAddress.isBlank() && userPassword.isBlank()) {
+            System.out.println("Empty Email Address and Password");
+        } else if (userAddress.isBlank()) {
+            System.out.println("Empty Email Address");
+        } else if (userPassword.isBlank()) {
+            System.out.println("Empty Password");
+        } else {
+            System.out.println("Logging in...");
+            valid = true;
+        }
+        return valid;
+    }
+    public static String getCurrentDate() {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        LocalDateTime now = LocalDateTime.now();
+        System.out.println(dtf.format(now));
+        return dtf.format(now);
+    }
+    public String removeFirstChar(String s){
+        return s.substring(1);
+    }
+
+
+}
+
+package presence;
+
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.control.SplitPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
+import presence.dashboard.DashboardBindCourses;
+
+import java.io.IOException;
+
+public class HomeTab extends DashboardBindCourses {
+    @FXML
+    private Pane DashboardPane;
+    @FXML
+    private GridPane courseContainer;
+    @FXML
+    private Label DashboardHeader;
+
+    public void initialize() throws IOException {
+        loadDashboardCourses((SplitPane) DashboardPane.getParent());
+    }
+    public void loadDashboardCourses(SplitPane splitPane) throws IOException {
+        String FilePath = importData.getDatabaseCourseList();
+        bindCourseCard(courseContainer, splitPane, DashboardHeader);
+    }
+}

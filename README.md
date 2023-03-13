@@ -51,10 +51,6 @@ mvn compile
 mvn javafx:run
 ```
 
-## Usage
-
-The application can be used to detect and identify people in a given area. It will capture images from the web camera and process them to detect and identify people who are present in the area.
-
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
