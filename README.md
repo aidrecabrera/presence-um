@@ -3,7 +3,7 @@
 
 <p align="center">
   <h1 align="center">Presence</h3>
-	<h3 align="center">Automating the Attendance Tracking Through Design and Implementation of a Smart Attendance System Using Java Programming Language</h3>
+	<h3 align="center">Design and Implementation of a Java-Based Machine-Readable Code Attendance System</h3>
 </p>
 
 ![auth](https://user-images.githubusercontent.com/61798731/223685998-d936c303-9d91-450d-81f1-180921d6d306.png)
