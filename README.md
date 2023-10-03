@@ -104,8 +104,7 @@ Our project will adhere to Object-Oriented Programming principles to ensure a ro
 - Utilizes JFoenix to create an aesthetically pleasing and user-friendly interface.
 - Follows Material Design principles for improved user experience.
 
-# Data Types in Presence: Attendance Tracking System
-
+## Data Types
 As part of the Project Requirements, the Data Types will be briefly introduced. In the context of a Presence: Attendance Tracking System, the choice of data types plays a crucial role in designing and implementing the system. This document outlines the essential data types used within the Java software application, emphasizing their significance in handling course, student, and attendance data.
 
 ## String
